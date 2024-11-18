@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     font-family: 'roboto', sans-serif;
+    box-sizing: border-box;
 }
 html{
     background-color: black;
@@ -43,17 +44,19 @@ nav ul li a:hover {
     text-decoration: underline rgb(163, 149, 149) 2px;
 }
 #main-image{
+    justify-content: center;
+    align-items: center;
     position: relative;
     margin-left: 9%;
     filter: brightness(70%);
     z-index: 1;
-    top: 47px;
-    left: 40px;
+    top: 180px;
+    left:250px;
 }
 
 .text{
-    top: 40%;
-    left: 20%;
+    top: 45%;
+    left: 25%;
     position: absolute;
     text-align: center;
     color: #fff;

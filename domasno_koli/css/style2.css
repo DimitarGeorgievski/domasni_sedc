@@ -43,23 +43,23 @@ nav ul li a:hover {
 #picture{
     position: absolute;
     left: 4%;
-    width: 640px;
-    height: 501px;
+    width: 850px;
+    height: 820px;
 }
 aside{
-    right: 7%;
+    right: 13%;
     top: 15%;
     position: absolute;
     width: 500px;
     height: 250px;
 }
 aside h1{
-    font-size: 35px;
+    font-size: 45px;
     text-align: center;
     color: #fff;
 }
 aside p{
     margin-top: 5px;
-    font-size: 16px;
+    font-size: 20px;
     color: #fff;
 }
