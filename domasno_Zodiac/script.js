@@ -1,8 +1,8 @@
 // Example 1
 let money = prompt("How much money do you have");
 let input = parseInt(money);
-if(input === null){
-    console.log(null)
+if(Number.isNaN(input)){
+    alert("Please enter a valid number")
 }
 else if(input > 100){
     alert("you are rich");
@@ -28,7 +28,10 @@ else{
 let input1 = prompt("Which year have you been born? ");
 let year = parseInt(input1);
 let ZodiacCalculation = (year - 4) % 12;
-if(ZodiacCalculation == 0){
+if(Number.isNaN(year)){
+    alert("Please enter a valid year")
+}
+else if(ZodiacCalculation == 0){
     alert("You are rat");
 }
 else if(ZodiacCalculation == 1){
