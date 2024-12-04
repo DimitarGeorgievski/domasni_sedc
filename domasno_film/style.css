@@ -1,0 +1,582 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Condensed", sans-serif;
+}
+html{
+     scroll-behavior: smooth; 
+}
+:root{
+    --yellow: #FFDD95;
+    --gray: #242428;
+    --lightgray: #56565B;
+    --greenish: #B0E3AF;
+    --pinky: #E3B5CD;
+}
+nav{
+    position: fixed;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    z-index: 999;
+    & .logo{
+        margin-top: 0.4rem;
+    }
+    & .search-content{
+        position: relative;
+        top: 1.5rem;
+        right: 0;
+        & #search{
+            width: 15rem;
+            height: 2.3rem;
+            border-radius: 1.5rem;
+            padding: 0.5rem;
+            border: none;
+        }
+        & #submit{
+            width: 3.5rem;
+            height: 2rem;
+            border-radius: 1.5rem;
+            background-color:transparent;
+            border: 1px solid black;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+    }
+    & ul{
+        list-style: none;
+        display: flex;
+        gap: 5rem;
+        align-items: center;
+        font-size: 1.4rem;
+        padding-left: 6rem;
+        & a {
+            text-decoration: none;
+            color: white;
+        }
+        & a:hover{
+            color: black;
+            text-decoration: underline var(--gray);
+        }
+    }
+}
+.main-section{
+    width: 100%;
+    height: 55rem;
+    background-color: var(--yellow);
+    & .text-wrapper{
+        position: absolute;
+        top: 15rem;
+        width: 50rem;
+        height: 30rem;
+        padding: 5rem;
+        & h2{
+            padding-bottom: 0.5rem;
+            font-size: 3rem;
+        }
+        & p{
+            font-size: 1.3rem;
+            padding-bottom: 1rem;
+        }
+        & button{
+          background-color: var(--gray);
+          width: 9rem;
+          height: 2.9rem;
+          border-radius: 1.5rem;
+          border: 0.05rem solid black;
+          font-size: 1rem;
+          cursor: pointer;
+          & a{
+            text-decoration: none;
+            color: var(--yellow);
+          }
+          & i{
+            margin-right: 0.3rem;
+          }
+        }
+        & #details-button{
+            cursor: pointer;
+            margin-left: 2rem;
+           background-color: var(--lightgray);
+          width: 9rem;
+          height: 2.9rem;
+          border-radius: 1.5rem;
+          border: none;
+          font-size: 1rem;
+          & a{
+            text-decoration: none;
+            color: white;
+          }
+          & i{
+            margin-left: 0.35rem;
+          }
+        }
+        & .details-main-anime{
+            display: flex;
+            gap: 2rem;
+        }
+    }
+    & .poster{
+        position: relative;
+        width:40rem;
+        height: 40rem;
+        top: 7rem;
+        left: 50%;
+        background-image: linear-gradient(to right, var(--yellow), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 80%, var(--yellow)), url(./img/main-poster.jpg);
+        background-repeat: no-repeat;
+        
+    }
+}
+.card-section-anime{
+    width: 100%;
+    height: 55rem;
+    background-color: var(--gray);
+    & .card-wrapper{
+        display: flex;
+    }
+    & .card-list{
+        display: flex;
+    }
+    & .title-wrapper{
+        display: flex;
+        justify-content: space-around;
+        padding-top: 5rem;
+        margin-right: 5rem;
+        color: var(--yellow);
+    }
+    & .ul1{
+        display: flex;
+        flex-direction: column;
+        padding-left: 10.2rem;
+        margin-top: 1rem;
+        max-width: 32rem;
+        & li{
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .075);
+            & img{
+                width: 4rem;
+                height: 100%;
+                border-radius: 0.5rem;
+                cursor: pointer;
+            }
+            & .anime-detail{
+                padding: 0 1rem;
+                display: flex;
+                flex-direction: column;
+                & .title-anime{
+                    padding-top: 1rem;
+                    & a{
+                        text-decoration: none;
+                        color: white;
+                    }
+                    & a:hover{
+                        color: var(--yellow);
+                    }
+                }
+                & .tick-items{
+                    display: flex;
+                    padding: 0.9rem 0;
+                    gap: 0.2rem;
+                    & .tick1{
+                        border-top-left-radius: 4px;
+                        border-bottom-left-radius: 4px;
+                        background-color: var(--greenish);
+                        padding: 0.2rem;
+                        font-size: 13px;
+                    }
+                    & .tick2{
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                        background-color: var(--pinky);
+                        padding: 0.2rem;
+                        font-size: 13px;
+                    }
+                    & .tick2-p{
+                        background-color: var(--pinky);
+                        padding: 0.2rem;
+                        font-size: 13px;
+                    }
+                    & .tick3{
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                        background-color: #EEEEEE33;
+                        padding: 3px 6px;
+                        font-size: 13px;
+                        color: #FFF;
+                    }
+                    & .dot{
+                        position: relative;
+                        top: 25%;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        background-color: #FFFFFF4D;
+                        margin: 3px 6px;
+                    }
+                    & p{
+                        color: #DDDDDD;
+                        padding: 0.1rem 0;
+                    }
+                }
+            }
+        }
+    }
+}
+& .ul2{
+    display: flex;
+    padding-left: 4.5rem;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: 32rem;
+    & li{
+        display: flex;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .075);
+        & img{
+            width: 4rem;
+            height: 100%;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        & .anime-detail{
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            & .title-anime{
+                padding-top: 1rem;
+                & a{
+                    text-decoration: none;
+                    color: white;
+                }
+                & a:hover{
+                    color: var(--yellow);
+                }
+            }
+            & .tick-items{
+                display: flex;
+                padding: 0.9rem 0;
+                gap: 0.2rem;
+                & .tick1{
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    background-color: var(--greenish);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2-p{
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick3{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: #EEEEEE33;
+                    padding: 3px 6px;
+                    font-size: 13px;
+                    color: #FFF;
+                }
+                & .dot{
+                    position: relative;
+                    top: 25%;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: #FFFFFF4D;
+                    margin: 3px 6px;
+                }
+                & p{
+                    color: #DDDDDD;
+                    padding: 0.1rem 0;
+                }
+            }
+        }
+    }
+}
+& .ul3{
+    display: flex;
+    padding-left: 11.5rem;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: 32rem;
+    & li{
+        display: flex;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .075);
+        & img{
+            width: 4rem;
+            height: 100%;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        & .anime-detail{
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            & .title-anime{
+                padding-top: 0.5rem;
+                & a{
+                    text-decoration: none;
+                    color: white;
+                }
+                & a:hover{
+                    color: var(--yellow);
+                }
+            }
+            & .tick-items{
+                display: flex;
+                padding: 0.2rem 0;
+                gap: 0.2rem;
+                & .tick1{
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    background-color: var(--greenish);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2-p{
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick3{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: #EEEEEE33;
+                    padding: 3px 6px;
+                    font-size: 13px;
+                    color: #FFF;
+                }
+                & .dot{
+                    position: relative;
+                    top: 25%;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: #FFFFFF4D;
+                    margin: 3px 6px;
+                }
+                & p{
+                    color: #DDDDDD;
+                    padding: 0.1rem 0;
+                }
+            }
+        }
+    }
+}
+& .ul4{
+    display: flex;
+    padding-left: 8rem;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: 32rem;
+    & li{
+        display: flex;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .075);
+        & img{
+            width: 4rem;
+            height: 100%;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        & .anime-detail{
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            & .title-anime{
+                padding-top: 1rem;
+                & a{
+                    text-decoration: none;
+                    color: white;
+                }
+                & a:hover{
+                    color: var(--yellow);
+                }
+            }
+            & .tick-items{
+                display: flex;
+                padding: 0.9rem 0;
+                gap: 0.2rem;
+                & .tick1{
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    background-color: var(--greenish);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick2-p{
+                    background-color: var(--pinky);
+                    padding: 0.2rem;
+                    font-size: 13px;
+                }
+                & .tick3{
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    background-color: #EEEEEE33;
+                    padding: 3px 6px;
+                    font-size: 13px;
+                    color: #FFF;
+                }
+                & .dot{
+                    position: relative;
+                    top: 25%;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: #FFFFFF4D;
+                    margin: 3px 6px;
+                }
+                & p{
+                    color: #DDDDDD;
+                    padding: 0.1rem 0;
+                }
+            }
+        }
+    }
+}
+.card-section-movie{
+    width: 100%;
+    height: 70rem;
+    background-color: var(--yellow);
+}
+.card-section-movie h2{
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    font-size: 2rem;
+}
+.card-section-movie .cards{
+    width: 100%;
+    height: 40rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4rem;
+    padding-left: 15rem;
+    margin-top: 5rem;
+}
+.card{
+    width: 14rem;
+    height: 25rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+.card img{
+    width: 100%;
+    height: 18rem;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    background-size: cover;
+}
+.card i{
+    font-size: 2rem;
+    color: var(--lightgray);
+}
+.card button{
+    width: 5rem;
+    height: 2rem;
+    background-color: var(--gray);
+    border-radius: 1.5rem;
+    border: none;
+    margin-left: 1rem;
+}
+.card button a{
+    text-decoration: none;
+    color: var(--yellow);
+}
+.wrapper{
+    padding-top: 0.5rem;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.wrapper .buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.wrapper .telegram{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(46, 63, 221);
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.wrapper .twitter{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(76, 155, 219);
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.wrapper .discord{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: lightblue;
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.wrapper .reddit{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(238, 92, 25);
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.wrapper .rights{
+    padding: 0.5rem 0;
+    text-align: center;
+    color: #fff;
+}
+.wrapper .rights span{
+    color: orangered;
+}
+.wrapper .aniwatch{
+    position: relative;
+    left: 47%;
+    width: 6rem;
+    height: 1.5rem;
+    background-color: black;
+    border: none;
+    margin-bottom: 1rem;
+}
+.wrapper .aniwatch a{
+    color: var(--yellow);
+    text-decoration: none;
+}
