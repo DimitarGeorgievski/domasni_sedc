@@ -1,0 +1,15 @@
+let nizaBrojki = [1,2,3,4,5,6];
+let nizaIminja = ["Dimitar", "Marija", "Petar"];
+console.log(nizaBrojki[1]);
+console.log(nizaIminja[1]);
+nizaBrojki.unshift(7);
+nizaIminja.unshift("Trajko");
+console.log(nizaBrojki);
+console.log(nizaIminja);
+nizaBrojki[100] = 101;
+console.log(nizaBrojki);
+console.log(nizaBrojki[99]);
+nizaBrojki.push(202);
+nizaBrojki.pop;
+console.log(nizaBrojki[1000]);
+console.log(nizaIminja[1000]);
