@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <div class="box">
+        <div id="login-form" style="display: block;">
+            <p id="loginText">Log in</p>
+            <input type="text" placeholder="Enter your username" id="usernameInput">
+            <span id="usernameLoginError" class="error-message"></span>
+            <input type="password" placeholder="Enter your password" id="passwordInput">
+            <span id="passwordLoginError" class="error-message"></span>
+            <button type="submit" id="loginButton">Najavi se</button>
+            <hr>
+            <button id="registerButton">Napravi smetka</button>
+        </div>
+        <div id="register-form" style="display: none;">
+            <p id="registerText">Register</p>
+            <input type="text" placeholder="Enter your username" id="usernameRegisterInput">
+            <span id="usernameError" class="error-message"></span>
+            <input type="password" placeholder="Enter your password" id="passwordRegisterInput">
+            <span id="passwordError" class="error-message"></span>
+            <input type="number" value="18" id="ageInput">
+            <span id="ageError" class="error-message"></span>
+            <input type="email" placeholder="Enter your email" id="emailInput">
+            <span id="emailError" class="error-message"></span>
+            <button type="submit" id="registrationButton">Kreiraj smetka</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
