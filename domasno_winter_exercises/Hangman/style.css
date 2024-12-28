@@ -1,0 +1,111 @@
+:root{
+    --green: #c1d72e;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Condensed", "Times New Roman", Times, serif;
+    background-color: var(--green);
+}
+h1{
+    text-align: center;
+    color: white;
+    font-size: 45px;
+    padding: 0.5rem;
+}
+#primaryHeader{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 0.5rem;
+}
+#firstParagraph{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 1rem;
+}
+#letterList{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+}
+.letters{
+    border-radius: 5px;
+    width: 2rem;
+    height: 3rem;
+    background-color: white;
+    border: none;
+    color: var(--green);
+    font-size: 20px;
+    cursor: pointer;
+}
+img{
+    background-color: transparent;
+    position: relative;
+    left: 39%;
+    width: 22%;
+}
+#secondParagraph{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding-top: 3rem;
+}
+#wordToGuess{
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 25px;
+    color: white;
+    padding-top: 1rem;
+}
+#thirdParagraph{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding-top: 1rem;
+}
+#forthParagraph{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding-top: 1rem;
+}
+#buttons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items:flex-end;
+}
+#hintButton{
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 8rem;
+    height: 3rem;
+    cursor: pointer;
+}
+#playAgainButton{
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 8rem;
+    height: 3rem;
+    cursor: pointer;
+}
+#topicChangeButton{
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 8rem;
+    height: 3rem;
+    cursor: pointer;
+}

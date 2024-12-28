@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+</head>
+<body>
+    <h1>HANGMAN</h1>
+    <h2 id="primaryHeader">VANILLA JAVASCRIPT HANGMAN GAME</h2>
+    <p id="firstParagraph">Use the alphabet belot to guess the word, or click hint to get a clue.</p>
+    <ul id="letterList">
+        <button class="letters">a</button>
+        <button class="letters">b</button>
+        <button class="letters">c</button>
+        <button class="letters">d</button>
+        <button class="letters">e</button>
+        <button class="letters">f</button>
+        <button class="letters">g</button>
+        <button class="letters">h</button>
+        <button class="letters">i</button>
+        <button class="letters">j</button>
+        <button class="letters">k</button>
+        <button class="letters">l</button>
+        <button class="letters">m</button>
+        <button class="letters">n</button>
+        <button class="letters">o</button>
+        <button class="letters">p</button>
+        <button class="letters">q</button>
+        <button class="letters">r</button>
+        <button class="letters">s</button>
+        <button class="letters">t</button>
+        <button class="letters">u</button>
+        <button class="letters">v</button>
+        <button class="letters">w</button>
+        <button class="letters">x</button>
+        <button class="letters">y</button>
+        <button class="letters">z</button>
+    </ul>
+    <p id="secondParagraph">The Chosen Category is: <span id="topic">films</span></p>
+    <span id="wordToGuess"></span>
+    <p id="thirdParagraph">You have <span id="lives"></span> lives</p>
+    <p id="forthParagraph">Hint - <span id="clue"></span></p>
+    <img src="./img/hangman-6.png" id="hangman" alt="" style="display: block;">
+    <div id="buttons">
+        <button id="hintButton">Hint</button>
+        <button id="playAgainButton">Play again</button>
+        <button id="topicChangeButton">Change Topic</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
