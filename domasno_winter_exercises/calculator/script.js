@@ -16,6 +16,7 @@ function numberPressedByKeyboard(selector, number) {
         }
     });
 }
+
 document.getElementById("clearButton").addEventListener("click",function(){
     mainOutput.innerText = "";
     primaryOutput.innerText = "";
@@ -27,6 +28,9 @@ document.getElementById("even").addEventListener("click", function(){
     primaryOutput.innerText += mainOutput.innerText;
     mainOutput.innerText = "";
 })
+.document.getElementById("divide").addEventListener("click", function(){
+            mainOutput.innerText += /;
+});
 numberPressedByKeyboard("clearDigit", "Backspace");
 numberToOutput("divide", "÷");
 numberPressedByKeyboard("divide", "÷");
