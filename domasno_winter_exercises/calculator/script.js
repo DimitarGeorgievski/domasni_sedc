@@ -26,10 +26,10 @@ document.getElementById("clearDigit").addEventListener("click",function(){
 })
 document.getElementById("even").addEventListener("click", function(){
     primaryOutput.innerText += mainOutput.innerText;
-    mainOutput.innerText = "";
+    mainOutput.innerText = ""; 
 })
 .document.getElementById("divide").addEventListener("click", function(){
-            mainOutput.innerText += /;
+        
 });
 numberPressedByKeyboard("clearDigit", "Backspace");
 numberToOutput("divide", "÷");
