@@ -1,80 +1,83 @@
 // variables
 let topic = "Film";
+let currentWord = "";
+let mysteriousWord = "";
 let filmWords = ["Director","Screenplay", "Cinematography", "Blockbuster", "Actor", "Premiere", "Soundtrack", "Trailer", "Sequel", "Animation"];
 let tvShowWords = ["Pilot", "Viewer", "Showrunner","Antagonist", "Cliffhanger", "Season","Series", "Streaming", "Episode", "Sitcom"];
 let allowedHints = 3;
 let mistakes = 0;
-let wordToGuess = document.getElementById("wordToGuess");
 let lives = 6;
+let wordToGuess = document.getElementById("wordToGuess");
 
 // functions
-function getHint(input) {
-    let hint = Math.floor(Math.random() * input.length);
-    return hint;
-}
-function newGame(){
+function newGame() {
     allowedHints = 3;
-    document.getElementById("hangman").src = `./img/hangman-${mistakes}.png`;
-    document.getElementById("lives").innerHTML = lives;
-    let randomWordFilm = tvShowWords[Math.floor(Math.random() * tvShowWords.length)];
-    let mysteriousWord = ""
-    for (let i = 0; i < randomWordFilm.length; i++) {
-        mysteriousWord += "_";
+    lives = 6;
+    mistakes = 0;
+    document.getElementById("lives").innerText = lives;
+    document.getElementById("hangman").src = `./img/hangman-0.png`;
+    if (topic === "Film") {
+        currentWord = filmWords[Math.floor(Math.random() * filmWords.length)];
+    } else {
+        currentWord = tvShowWords[Math.floor(Math.random() * tvShowWords.length)];
     }
+    mysteriousWord = "_".repeat(currentWord.length);
     wordToGuess.innerText = mysteriousWord;
+    document.querySelectorAll(".letters").forEach(button => {
+        button.disabled = false;
+        button.style.opacity = "1";
+    });
 }
-function wrongGuess(){
-    document.getElementById("hangman").src = `./img/hangman-${mistakes + 1}.png`;
-    lives -= 1;
-    target.remove();
-    if(lives === 0){
-        alert("Game Over");
-        return;
-    }
-}
-document.getElementById("topicChangeButton").addEventListener("click", function(){
-    if(topic === "Film"){
-        document.getElementById("topic").innerText = "TV show";
-        topic = "TV";
-        newGame();
-        let randomWordFilm = tvShowWords[Math.floor(Math.random() * tvShowWords.length)];
-        let mysteriousWord = ""
-        for (let i = 0; i < randomWordFilm.length; i++) {
-            mysteriousWord += "_";
-        }
+document.getElementById("topicChangeButton").addEventListener("click", function() {
+    topic = topic === "Film" ? "TV" : "Film";
+    document.getElementById("topic").innerText = topic;
+    newGame();
+});
+document.getElementById("playAgainButton").addEventListener("click", newGame);
+document.getElementById("hintButton").addEventListener("click", function() {
+    if (allowedHints > 0 && mysteriousWord.includes("_")) {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * mysteriousWord.length);
+        } while (mysteriousWord[randomIndex] !== "_");
+
+        let letter = currentWord[randomIndex];
+        mysteriousWord = mysteriousWord.substring(0, randomIndex) + letter + mysteriousWord.substring(randomIndex + 1);
         wordToGuess.innerText = mysteriousWord;
-        
-    }
-    else{
-        document.getElementById("topic").innerText = "Film";
-        topic = "Film";
-        newGame();
-        let randomWordFilm = tvShowWords[Math.floor(Math.random() * tvShowWords.length)];
-        wordToGuess.innerText = randomWordFilm;
+        allowedHints--;
+    } else {
+        alert("No hints left!");
     }
 });
-document.getElementById("playAgainButton").addEventListener("click",newGame);
-document.getElementById("hintButton").addEventListener("click", function(){
-    if(allowedHints === 0){
-        alert("You've used all your hints!");
-        newGame(); 
-    }
-    else{
-        if(mysteriousWord.includes("_")){  
-            let randomIndex = Math.floor(Math.random() * mysteriousWord.length);
-            while (mysteriousWord[randomIndex] !== "_") {
-                randomIndex = Math.floor(Math.random() * mysteriousWord.length);
+document.querySelectorAll(".letters").forEach(button => {
+    button.addEventListener("click", function() {
+        let letter = button.innerText.toLowerCase();
+        let updatedWord = "";
+        let isCorrect = false;
+        for (let i = 0; i < currentWord.length; i++) {
+            if (currentWord[i].toLowerCase() === letter) {
+                updatedWord += currentWord[i];
+                isCorrect = true;
+            } else {
+                updatedWord += mysteriousWord[i];
             }
-            let bukva;
-            if(topic === "Film"){
-                bukva = randomWordFilm[randomIndex];
-            }
-            else if(topic === "TV"){
-                bukva = randomWordShow[randomIndex];
-            }
-            mysteriousWord = mysteriousWord.slice(0, randomIndex) + bukva + mysteriousWord.slice(randomIndex + 1);
-            wordToGuess.innerText += mysteriousWord;
         }
-        allowedHints -= 1;
-    }
+        mysteriousWord = updatedWord;
+        wordToGuess.innerText = mysteriousWord;
+        button.disabled = true;
+        button.style.opacity = "0";
+        if (!isCorrect) {
+            mistakes++;
+            lives--;
+            document.getElementById("lives").innerText = lives;
+            document.getElementById("hangman").src = `./img/hangman-${mistakes}.png`;
+        }
+        if (!mysteriousWord.includes("_")) {
+            alert("Congratulations! You won!");
+            newGame();
+        } else if (lives === 0) {
+            alert("Game Over! The word was: " + currentWord);
+            newGame();
+        }
+    });
 });

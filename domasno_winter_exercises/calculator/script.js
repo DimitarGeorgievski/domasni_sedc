@@ -2,7 +2,6 @@
 let mainOutput = document.getElementById("mainOutput");
 let primaryOutput = document.getElementById("primaryOutput");
 let operators = ["-", "*", "-", "+"];
-
 //functions
 function numberToOutput(selector,number){
     document.getElementById(`${selector}`).addEventListener("click",function(){
@@ -28,9 +27,7 @@ document.getElementById("even").addEventListener("click", function(){
     primaryOutput.innerText += mainOutput.innerText;
     mainOutput.innerText = ""; 
 })
-.document.getElementById("divide").addEventListener("click", function(){
-        
-});
+
 numberPressedByKeyboard("clearDigit", "Backspace");
 numberToOutput("divide", "÷");
 numberPressedByKeyboard("divide", "÷");

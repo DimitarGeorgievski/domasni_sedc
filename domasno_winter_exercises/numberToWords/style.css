@@ -34,8 +34,8 @@ h1{
     color: white;
     font-size: 25px;
     position: relative;
-    top: 45%;
-    left: 25%;
+    top: 35%;
+    padding-left: 2%;
 }
 #numbersInput{
     position: relative;
