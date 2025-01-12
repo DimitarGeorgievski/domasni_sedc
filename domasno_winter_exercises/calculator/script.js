@@ -1,7 +1,7 @@
 //variabli
 let mainOutput = document.getElementById("mainOutput");
 let primaryOutput = document.getElementById("primaryOutput");
-let operators = ["-", "*", "-", "+"];
+
 //functions
 function numberToOutput(selector,number){
     document.getElementById(`${selector}`).addEventListener("click",function(){
@@ -15,6 +15,48 @@ function numberPressedByKeyboard(selector, number) {
         }
     });
 }
+function calculateExpression(expression) {
+    let chars = [];
+    let currentNumber = "";
+    for (let i = 0; i < expression.length; i++) {
+        let char = expression[i];
+        if ("+-*/".includes(char)) {
+            if (currentNumber !== "") {
+                chars.push(parseFloat(currentNumber));
+                currentNumber = "";
+            }
+            chars.push(char);
+        } else {
+            currentNumber += char;
+        }
+    }
+    if (currentNumber !== "") {
+        chars.push(parseFloat(currentNumber));
+    }
+    let stack = [];
+    for (let i = 0; i < chars.length; i++) {
+        if (chars[i] === "*") {
+            stack[stack.length - 1] *= chars[i + 1];
+            i++;
+        } else if (chars[i] === "/") {
+            stack[stack.length - 1] /= chars[i + 1];
+            i++;
+        } else {
+            stack.push(chars[i]);
+        }
+    }
+    let result = stack[0];
+    for (let i = 1; i < stack.length; i += 2) {
+        let op = stack[i];
+        let nextNum = stack[i + 1];
+        if (op === "+") {
+            result += nextNum;
+        } else if (op === "-") {
+            result -= nextNum;
+        }
+    }
+    return result;
+}
 
 document.getElementById("clearButton").addEventListener("click",function(){
     mainOutput.innerText = "";
@@ -24,8 +66,12 @@ document.getElementById("clearDigit").addEventListener("click",function(){
     mainOutput.innerText = mainOutput.innerText.slice(0, -1);
 })
 document.getElementById("even").addEventListener("click", function(){
-    primaryOutput.innerText += mainOutput.innerText;
-    mainOutput.innerText = ""; 
+    let expression = mainOutput.innerText.replace("÷", "/").replace("×", "*");
+    if (expression.trim() !== "") {
+        let result = calculateExpression(expression);
+        primaryOutput.innerText = result;
+        mainOutput.innerText = "";
+    }
 })
 
 numberPressedByKeyboard("clearDigit", "Backspace");
