@@ -48,49 +48,96 @@ function numberToWordConvert(){
     }
     else if(parsedInput < 10000){
         result = singleDigit[Math.floor(parsedInput / 1000) -1] + " thousand ";
-        remainder = (parsedInput % 1000);
-        if (remainder < 20) {
-            result += singleDigit[remainder - 1];
-        } 
+        remainder = parsedInput % 1000;
         if(remainder >= 100){
-            result += singleDigit[Math.floor(parsedInput / 1000) -1] + " hundred";
+            result += singleDigit[Math.floor(remainder / 100) -1] + " hundred";
+        remainder %= 100;
         }
         if (remainder > 0) {
             result += " and ";
         }
-        if(remainder >= 20) {
-            remainder = (parsedInput % 100);
-            result += ten[Math.floor(remainder % 10) - 3];
+        if (remainder < 20 && remainder > 0) {
+            result += singleDigit[remainder - 1];
+        } 
+        else if(remainder >= 20) {
+            result += ten[Math.floor(remainder / 10) - 2];
             if (remainder % 10 !== 0) {
-                result += "-" + singleDigit[remainder % 10 - 1];
+                result += " " + singleDigit[(remainder % 10) - 1];
             }
+        }
+}
+else if(parsedInput < 100000){
+    remainder = parsedInput % 1000;
+    if(parsedInput <= 20000){
+        result = singleDigit[Math.floor(parsedInput / 1000) - 1] + " thousand";
+    }
+    else{
+        result = ten[Math.floor(parsedInput / 10000) - 2] + " ";
+        let thousands = parsedInput % 10000;
+        if(thousands >= 1000){
+            result += singleDigit[Math.floor(thousands / 1000) - 1] + " thousand";
+        }
+        else{
+            result += "thousand"; 
+        }
+    }
+    if(remainder >= 100){
+        result += " " + singleDigit[Math.floor(remainder / 100) - 1] + " hundred";
+        remainder %= 100;
+    }
+    if (remainder > 0) {
+        result += " and ";
+    }
+    if(remainder < 20 && remainder > 0) {
+        result += singleDigit[remainder - 1];
+    }
+    else if(remainder >= 20){
+        result += ten[Math.floor(remainder / 10) - 2];
+        if (remainder % 10 !== 0) { 
+            result += " " + singleDigit[(remainder % 10) - 1]; 
+        }
     }
 }
-    else if(parsedInput < 100000){
-        if(parsedInput >= 20000){
-            result = singleDigit[Math.floor(parsedInput / 1000) - 1] + " thousand";
-        }
-        else{
-            result = ten[Math.floor(parsedInput / 10000) - 2] + " thousand";
-        }
-        remainder = (parsedInput % 1000);
-        if(remainder >= 100){
-            result += " " + singleDigit[Math.floor(remainder / 100) - 1] + " hundred ";
-            remainder %= 100;
-        }
-        if (remainder > 0 && remainder < 100) {
-            result += " and ";
-        }
-        if(remainder < 20) {
-            result += singleDigit[remainder - 1];
-        }
-        else{
-            result += ten[Math.floor(remainder / 10) - 2];
-        }
-            if (remainder % 10 !== 0) {
-                result += "-" + singleDigit[remainder % 10 - 1];
-            }
-    
+else if(parsedInput < 1000000){
+    remainder = parsedInput;
+    if(parsedInput >= 100000){
+        result = singleDigit[Math.floor(parsedInput / 100000) - 1] + " hundred";
+        remainder %= 100000;
     }
+    if(remainder >= 20000){
+        result += " " + ten[Math.floor(remainder / 10000) - 2];
+        remainder %= 10000;
+    }
+    else if(remainder >= 10000){
+        result += " " + singleDigit[Math.floor(remainder / 1000) -1] + " thousand";
+        remainder %= 1000;
+    }
+    if(remainder >= 1000){
+        result += " " + singleDigit[Math.floor(remainder / 1000) - 1] + " thousand";
+        remainder %= 1000;
+    }
+    if(remainder >= 100){
+        result += " " + singleDigit[Math.floor(remainder / 100) - 1] + " hundred";
+        remainder %= 100;
+        }
+    if (remainder > 0) {
+        result += " and ";
+    if(remainder < 20) {
+        result += singleDigit[remainder - 1];
+        }
+    else{
+        result += ten[Math.floor(remainder / 10) - 2];
+        if (remainder % 10 !== 0) { 
+            result += " " + singleDigit[(remainder % 10) - 1]; 
+        }
+    }
+}
+}
+if(parsedInput === 10000){
+    result = "Ten Thousand";
+}
+if(parsedInput === 1000000){
+    result = "One Million";
+}
     output.innerText = result;
 }
