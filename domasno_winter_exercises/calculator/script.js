@@ -74,6 +74,7 @@ document.getElementById("even").addEventListener("click", function(){
     }
 })
 
+
 numberPressedByKeyboard("clearDigit", "Backspace");
 numberToOutput("divide", "÷");
 numberPressedByKeyboard("divide", "÷");

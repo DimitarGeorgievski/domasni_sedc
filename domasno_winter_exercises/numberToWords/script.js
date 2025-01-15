@@ -68,7 +68,10 @@ function numberToWordConvert(){
 }
 else if(parsedInput < 100000){
     remainder = parsedInput % 1000;
-    if(parsedInput <= 20000){
+    if(parsedInput === 20000){
+        result = "Twenty thousand";
+    }
+    else if(parsedInput <= 20000){
         result = singleDigit[Math.floor(parsedInput / 1000) - 1] + " thousand";
     }
     else{
