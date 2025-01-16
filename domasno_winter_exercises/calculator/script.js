@@ -5,7 +5,9 @@ let primaryOutput = document.getElementById("primaryOutput");
 //functions
 function numberToOutput(selector,number){
     document.getElementById(`${selector}`).addEventListener("click",function(){
-        mainOutput.innerText += `${number}`;
+        if (isValidInput(number)) {
+            mainOutput.innerText += `${number}`;
+        }
     })
 }
 function numberPressedByKeyboard(selector, number) {
@@ -56,6 +58,15 @@ function calculateExpression(expression) {
         }
     }
     return result;
+}
+function isValidInput(char) {
+    let lastChar = mainOutput.innerText.slice(-1);
+    if ("+-*/.".includes(char)) {
+        if ("+-*/.".includes(lastChar) || (char === "." && mainOutput.innerText.includes("."))) {
+            return false;
+        }
+    }
+    return true;
 }
 
 document.getElementById("clearButton").addEventListener("click",function(){
