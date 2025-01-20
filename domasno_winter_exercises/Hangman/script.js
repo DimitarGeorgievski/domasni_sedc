@@ -10,6 +10,27 @@ let lives = 6;
 let wordToGuess = document.getElementById("wordToGuess");
 
 // functions
+function disableButton(button){
+    button.disabled = true;
+    button.style.opacity = "0";
+}
+function checkWin(){
+    if (!mysteriousWord.includes("_")) {
+        alert("Congratulations! You won!");
+        newGame();
+    } else if (lives === 0) {
+        alert("Game Over! The word was: " + currentWord);
+        newGame();
+    }
+}
+function checkMistake(correct){
+    if (!correct) {
+        mistakes++;
+        lives--;
+        document.getElementById("lives").innerText = lives;
+        document.getElementById("hangman").src = `./img/hangman-${mistakes}.png`;
+    }
+}
 function newGame() {
     allowedHints = 3;
     lives = 6;
@@ -28,6 +49,17 @@ function newGame() {
         button.style.opacity = "1";
     });
 }
+function updateCurrentWord(currentWord){
+    for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i].toLowerCase() === letter) {
+            updatedWord += currentWord[i];
+            isCorrect = true;
+        } else {
+            updatedWord += mysteriousWord[i];
+        }
+    }
+}
+
 document.getElementById("topicChangeButton").addEventListener("click", function() {
     topic = topic === "Film" ? "TV" : "Film";
     document.getElementById("topic").innerText = topic;
@@ -54,30 +86,11 @@ document.querySelectorAll(".letters").forEach(button => {
         let letter = button.innerText.toLowerCase();
         let updatedWord = "";
         let isCorrect = false;
-        for (let i = 0; i < currentWord.length; i++) {
-            if (currentWord[i].toLowerCase() === letter) {
-                updatedWord += currentWord[i];
-                isCorrect = true;
-            } else {
-                updatedWord += mysteriousWord[i];
-            }
-        }
+        updateCurrentWord(currentWord);
         mysteriousWord = updatedWord;
         wordToGuess.innerText = mysteriousWord;
-        button.disabled = true;
-        button.style.opacity = "0";
-        if (!isCorrect) {
-            mistakes++;
-            lives--;
-            document.getElementById("lives").innerText = lives;
-            document.getElementById("hangman").src = `./img/hangman-${mistakes}.png`;
-        }
-        if (!mysteriousWord.includes("_")) {
-            alert("Congratulations! You won!");
-            newGame();
-        } else if (lives === 0) {
-            alert("Game Over! The word was: " + currentWord);
-            newGame();
-        }
+        disableButton(button);
+        checkMistake(isCorrect);
+        checkWin();
     });
 });
