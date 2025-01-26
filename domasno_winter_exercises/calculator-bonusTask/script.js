@@ -107,10 +107,27 @@ document.getElementById("clearDigit").addEventListener("click",function(){
 })
 document.getElementById("even").addEventListener("click", function(){
     let expression = mainOutput.innerText.replace("÷", "/").replace("×", "*");
-    if (expression.trim() !== "") {
-        primaryOutput.innerText = calculateExpression(expression);
-        mainOutput.innerText = "";
+    let chars = checkForCopyOperator(expression);
+    if(chars.length < 3){
+        if(chars.length === 1){
+            if (primaryOutput.innerText.trim() !== "") {
+                return;
+            }
+            primaryOutput.innerText = "Enter second number";
+        }
+        else if(chars.length === 2){
+            primaryOutput.innerText = "Enter second number";
+        }
+        return;
     }
+    let result = calculateExpression(expression);
+    if(isNaN(result)){
+        primaryOutput.innerText = "Enter another number";
+    }
+    else{
+        primaryOutput.innerText = result;
+    }
+    mainOutput.innerText = "";
 })
 for (const [id, value] of Object.entries(buttons)) { // samo ovaj red go vidov od internet neznaev kako da zemam od objekt elementite
     document.getElementById(id).addEventListener("click", function () {
