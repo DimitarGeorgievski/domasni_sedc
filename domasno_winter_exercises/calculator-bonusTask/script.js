@@ -55,14 +55,19 @@ function multiplicationAndDivideFunction(chars){
 function checkForCopyOperator(expression){
     let chars = [];
     let currentNumber = "";
-    for(let i = 0; i < expression.length; i++) {
+    for(let i = 0; i < expression.length; i++){
         let char = expression[i];
-        if ("+-*/".includes(char)) {
-            if (currentNumber !== "") {
-                chars.push(parseFloat(currentNumber));
-                currentNumber = "";
+        if("+-*/".includes(char)){
+            if(char === "-" && (i === 0 || "+-*/".includes(expression[i - 1]))){
+                currentNumber += char;
             }
-            chars.push(char);
+            else{
+                if(currentNumber !== "") {
+                    chars.push(parseFloat(currentNumber));
+                    currentNumber = "";
+                }
+                chars.push(char);
+            }
         }
         else{
             currentNumber += char;
@@ -90,7 +95,12 @@ function isValidInput(char) {
 }
 function replaceOperator(operator){
     let lastChar = mainOutput.innerText.slice(-1);
-    if("+-*÷".includes(lastChar)){
+    if(operator === "-" && "+-*/÷".includes(lastChar)){
+        if (lastChar === "-") return;
+        mainOutput.innerText += operator;
+        return;
+    }
+    if("+-*/÷".includes(lastChar)){
         mainOutput.innerText = mainOutput.innerText.slice(0, -1) + operator;
     }
     else{
@@ -129,7 +139,7 @@ document.getElementById("even").addEventListener("click", function(){
     }
     mainOutput.innerText = "";
 })
-for (const [id, value] of Object.entries(buttons)) { // samo ovaj red go vidov od internet neznaev kako da zemam od objekt elementite
+for(const [id, value] of Object.entries(buttons)){ // samo ovaj red go vidov od internet neznaev kako da zemam od objekt elementite
     document.getElementById(id).addEventListener("click", function () {
         if("+-*÷".includes(value)){
             replaceOperator(value);
