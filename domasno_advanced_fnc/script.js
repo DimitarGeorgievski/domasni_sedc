@@ -23,8 +23,9 @@ document.getElementById("btnThree").addEventListener("click", () => {
 })
 document.getElementById("btnFour").addEventListener("click", () => {
     let femaleStudentsOver24AverageGrades = students.filter(x => x.age > 24)
-        .map(student => `${student.firstName} ${student.lastName}, ${student.averageGrade}\n`)
-        outputData.innerText = femaleStudentsOver24AverageGrades
+    let totalGrades = femaleStudentsOver24AverageGrades.reduce((sum, student) => sum += student.averageGrade, 0);
+    let averageGrade = totalGrades / femaleStudentsOver24AverageGrades.length;
+        outputData.innerText = `Average grade of female students over 24 years old is: ${averageGrade}`
 })
 document.getElementById("btnFive").addEventListener("click", () => {
     let maleStudentStartingBAndAverageGrade2 = students.filter(x => x.gender === "Male" && x.averageGrade > 2 && x.firstName.startsWith("B"))
