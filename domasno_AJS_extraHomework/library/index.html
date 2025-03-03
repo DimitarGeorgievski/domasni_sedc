@@ -8,19 +8,23 @@
 </head>
 <body>
     <div class="form" style="display: flex;justify-content:center; margin: 1rem 1rem;">
-        <div class="book-type" style="display: flex; gap: 1rem;">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">Roman</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">Anthology</label>
-              </div>
+        <div class="book-type" style="display: block;">
+            <h3 style="margin-left: 0.5rem;">Enter a Book</h1>
+            <div class="options" style="display: flex; gap: 1rem;">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">Roman</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">Anthology</label>
+                  </div>
+            </div>
+
         </div>
     </div>
     <hr>
-    <form class="form-roman" style="display: block; margin: 1rem 1rem; ; height: 30rem; width: 40rem;">
+    <form id="form-roman" style="display: none; margin: 1rem 1rem; ; height: 30rem; width: 40rem;">
         <h4 style="margin-left: 11.5rem;">Form For Roman</h4>
         <input type="text" name="nameRoman" id="nameRoman" placeholder="Enter book's name" style="width: 15rem; margin: 1rem;">
         <input type="text" name="authorBook" id="authorBook" placeholder="Enter author of the book" style="width: 15rem;">
@@ -30,7 +34,7 @@
             <input style="margin-left: 7.5rem; width: 15rem;" type="text" name="publisherRomanInput" id="publisherRomanInput" placeholder="Enter publisher">
         </div>
         <label style="margin-left: 1rem;" for="dateOfPublication">Enter your date of publication:</label>
-        <input style="margin-left: 2.6rem; margin-top: 1rem;" type="date" name="dateOfPublication" id="dateOfPublication" value="2025-02-28">
+        <input style="margin-left: 2.6rem; margin-top: 1rem;" type="Number" name="dateOfPublication" id="dateOfPublication" value="2025">
         <label style="margin-left: 1rem;" for="lengthBook">Enter the length of the book:</label>
         <input style="margin-left: 3.25rem; margin-top: 1rem; " type="number" name="lengthBook" id="lengthBook" value="100">
         <label style="margin-left: 1rem;" for="nameRomanSerie">Enter the name of the roman series:</label>
@@ -41,9 +45,38 @@
         <label style="margin-left: 1rem;" for="isbnInput">Enter the ISBN:</label>
         <input style="margin-left: 9.4rem; margin-top: 1rem; " type="number" name="isbnInput" id="isbnInput">
         <br>
-        <label style="margin-left: 1rem;" for="isbnInput">Enter the review:</label>
+        <label style="margin-left: 1rem;" for="reviewInput">Enter the review:</label>
         <input style="margin-left: 8.65rem; margin-top: 1rem;" type="text" name="reviewInput" id="reviewInput">
-        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96); margin: 1rem;">Publish Your Roman</button>
+        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96); margin: 1rem;" id="publishRomanButton">Publish Your Roman</button>
+    </form>
+    <form id="form-anthology"style="display: block; margin: 1rem 1rem; ; height: 30rem; width: 40rem;">
+        <h4 style="margin-left: 11.5rem;">Form For Anthology</h4>
+        <input type="text" name="titleAnthology" id="titleAnthology" placeholder="Enter anthology's title" style="width: 15rem; margin: 1rem;">
+        <input type="text" name="editorAnthology" id="editorAnthology" placeholder="Enter Editor of the Anthology" style="width: 15rem;">
+        <label style="margin-left: 1rem;" for="publisherAnthologyInput">Enter the Publisher of Anthology:</label>
+        <input style="margin-left: 1.45rem; width: 15rem;" type="text" name="publisherAnthologyInput" id="publisherAnthologyInput" placeholder="Enter publisher">
+        <label style="margin-left: 1rem;" for="publicationAnthologyInput">Enter the year of publication:</label>
+        <input style="margin-left: 3.3rem; margin-top: 1rem; width: 15rem;" type="number" name="publicationAnthologyInput" id="publicationAnthologyInput" value="2005">
+        <label style="margin-left: 1rem;" for="lengthAnthologyInput">Enter the length in pages:</label>
+        <input style="margin-left: 4.75rem; margin-top: 1rem; width: 15rem;" type="number" name="lengthAnthologyInput" id="lengthAnthologyInput" value="150">
+        <p style="text-align: center; margin-left: -5rem;margin-top: 0.5rem;"><b>Enter the stories with author and it's name(at least 2)</b></p>       
+        <label style="margin-left: 1rem;" for="StoryForAnthology">Enter the Story for anthology:</label>
+        <input style="margin-left: 3rem; width: 15rem;" type="text" name="StoryForAnthology" id="StoryForAnthology">
+        <label style="margin-left: 1rem;" for="authorStoryForAnthology">Enter the Author for anthology:</label>
+        <input style="margin-left: 2.15rem; margin-top: 1rem; width: 15rem;" type="text" name="authorStoryForAnthology" id="authorStoryForAnthology">
+        <br>
+        <input type="checkbox" name="originalStory" id="originalStory" style="margin-left: 1rem;" checked>
+        <label for="originalStory">Original Story</label>
+        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96); margin-top: 1rem; margin-left: 0.5rem;" id="publishStoryAntholgy">Publish Your Story</button>
+        <br>
+        <label style="margin-left: 1rem;" for="isbnInputAnthology">Enter the ISBN:</label>
+        <input style="margin-left: 9.4rem; margin-top: 1rem;width: 15rem; " type="number" name="isbnInputAnthology" id="isbnInputAnthology">
+        <br>
+        <label style="margin-left: 1rem;" for="reviewInputAnthology">Enter the review:</label>
+        <input style="margin-left: 8.65rem; margin-top: 1rem; width: 15rem;" type="text" name="reviewInputAnthology" id="reviewInputAnthology">
+        <br>
+        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96);margin-top: 1rem; margin-left: 0.5rem;" id="publishAnthology">Publish Your Anthology</button>
+        <p id="errorTextAnthology" style="color: red;font-size: 13px;margin-left: 10rem; display: none;">You need to enter 2 stories at least</p>
     </form>
     <script src="./script.js"></script>
 </body>
