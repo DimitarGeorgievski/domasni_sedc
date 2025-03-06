@@ -6,6 +6,7 @@ let anthologyFormButton = document.getElementById("exampleRadios2");
 let romanForm = document.getElementById("form-roman");
 let anthologyForm = document.getElementById("form-anthology");
 let errorText = document.getElementById("errorTextAnthology");
+let tbody = document.getElementsByTagName("tbody")[0];
 let alldata = [];
 let storiesAnthology = [];
 
@@ -142,6 +143,33 @@ class publishAnthology {
     this.isbn = checkISBN(isbn) ? isbn : null;
     this.review = review;
   }
+}
+function fillTable(data){
+  let html = "";
+  for(let book of data){
+    let index = 0;
+    let row = `<tr>
+            <td>${index + 1}</td>
+            <td>${book.kind === "Novel" ? book.author : book.editor}</td>
+            <td>${book.year} (${book.publisher})</td>
+            <td>${book.length} pages</td>
+            <td>${book.kind === "novel" && book.serieName !== "" ? book.serieName + "(#" + romanize(book.serieNumber) + ")" : ""}</td>
+            <td>${book.kind === "Anthology" ?  : } Albums, first Album Year: ${firstYear}  Last Album Year: ${lastYear} </td>
+            <td>Studio Albums: ${studioAlbums}, Live Albums: ${liveAlbums}, Compilation Albums: ${compilationAlbums}</td>
+        </tr>
+        `
+  }
+  tbody += html;
+}
+function romanize(num){ // i ova funkcija e od stack overflow forumot
+  var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},roman = '',i;
+  for ( i in lookup ) {
+    while ( num >= lookup[i] ) {
+      roman += i;
+      num -= lookup[i];
+    }
+  }
+  return roman;
 }
 fillSelectButton("publisherRoman", "Select Publisher");
 document

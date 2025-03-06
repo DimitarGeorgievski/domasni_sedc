@@ -68,16 +68,28 @@
         <input type="checkbox" name="originalStory" id="originalStory" style="margin-left: 1rem;" checked>
         <label for="originalStory">Original Story</label>
         <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96); margin-top: 1rem; margin-left: 0.5rem;" id="publishStoryAntholgy">Publish Your Story</button>
-        <br>
         <label style="margin-left: 1rem;" for="isbnInputAnthology">Enter the ISBN:</label>
         <input style="margin-left: 9.4rem; margin-top: 1rem;width: 15rem; " type="number" name="isbnInputAnthology" id="isbnInputAnthology">
-        <br>
         <label style="margin-left: 1rem;" for="reviewInputAnthology">Enter the review:</label>
         <input style="margin-left: 8.65rem; margin-top: 1rem; width: 15rem;" type="text" name="reviewInputAnthology" id="reviewInputAnthology">
-        <br>
         <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96);margin-top: 1rem; margin-left: 0.5rem;" id="publishAnthology">Publish Your Anthology</button>
         <p id="errorTextAnthology" style="color: red;font-size: 13px;margin-left: 10rem; display: none;">You need to enter 2 stories at least</p>
     </form>
+    <table class="table" style="margin-top: 8rem;">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 7rem;">Id</th>
+            <th scope="col"style="width: 20rem;">Title</th>
+            <th scope="col" style="width: 17rem;">Author</th>
+            <th scope="col" style="width: 17rem;">Publishing Information</th>
+            <th scope="col" style="width: 14rem;">Length</th>
+            <th scope="col" style="width: 25rem;">Additional Information</th>
+            <th scope="col" style="width: 10rem;">ISBN</th>
+            <th scope="col" style="width: 25rem;">Review</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     <script src="./script.js"></script>
 </body>
 </html>
