@@ -5,18 +5,18 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const filePath = `${__dirname}/homework.txt`;
 
-const creatingFile = async (filePath, content) => {
+const creatingFile =  (filePath, content) => {
   try {
-    const fileMaker = await fs.writeFileSync(filePath, content, "utf-8");
+    const fileMaker =  fs.writeFileSync(filePath, content, "utf-8");
     console.log("Your file has been created successfully!");
   } catch (error) {
     console.error(`There is a problem creating file: ${error.message}`);
   }
 };
 // creatingFile(filePath,"I tried to created a file")
-const appendFile = async (filePath, content) => {
+const appendFile =  (filePath, content) => {
   try {
-    const addingText = await fs.appendFileSync(
+    const addingText =  fs.appendFileSync(
       filePath,
       `\n${content}`,
       "utf-8"
@@ -28,9 +28,9 @@ const appendFile = async (filePath, content) => {
     );
   }
 };
-const readFile = async (filePath) => {
+const readFile =  (filePath) => {
   try {
-    const readText = await fs.readFileSync(filePath, "utf-8");
+    const readText = fs.readFileSync(filePath, "utf-8");
     console.log(
       `You've read your content successfully sir from: ${filePath} , also here is your data: \n${readText}`
     );

@@ -39,6 +39,10 @@ export const addUser = (user) => {
   };
   parsedUsers.push(newUser);
   fs.writeFileSync("users.json", JSON.stringify(parsedUsers), null, 2);
+  fs.appendFileSync(
+    "logs.txt",
+    `\n[${new Date().toISOString()}] Action Performed: Added User ${newUser.id}`
+  );
 };
 export const editUser = (id, name, username, password) => {
   const users = fs.readFileSync("users.json", "utf-8");
@@ -85,4 +89,4 @@ export const deleteAllUser = () => {
 // addUser(newUser);
 // editUser(12, "Petar", "Shengovski", "123456");
 // deleteUser(16);
-deleteAllUser();
+// deleteAllUser();

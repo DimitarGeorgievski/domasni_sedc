@@ -7,11 +7,12 @@ import {
 } from "./usersService.js";
 
 let user = {
-  firstName: "Jill",
-  lastName: "Wayne",
+  name: "Jill",
+  username: "Wayne",
+  email: "JillWayne@gmail.com"
 };
 addUser(user);
-editUser(10,"Dimitar","Georgievski","Password")
+editUser(1,"Dimitar","Georgievski","Password")
 // deleteAllUser();
 // deleteUser(10);
-greetUser(user.firstName);
+greetUser(user.name);
