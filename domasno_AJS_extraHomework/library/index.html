@@ -48,6 +48,7 @@
         <label style="margin-left: 1rem;" for="reviewInput">Enter the review:</label>
         <input style="margin-left: 8.65rem; margin-top: 1rem;" type="text" name="reviewInput" id="reviewInput">
         <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96); margin: 1rem;" id="publishRomanButton">Publish Your Roman</button>
+        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(151, 153, 151);margin-top: 1rem; margin-left: 0.5rem;" id="cancelRomanButton">Cancel</button>
     </form>
     <form id="form-anthology"style="display: block; margin: 1rem 1rem; ; height: 30rem; width: 40rem;">
         <h4 style="margin-left: 11.5rem;">Form For Anthology</h4>
@@ -74,8 +75,9 @@
         <input style="margin-left: 8.65rem; margin-top: 1rem; width: 15rem;" type="text" name="reviewInputAnthology" id="reviewInputAnthology">
         <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(96, 233, 96);margin-top: 1rem; margin-left: 0.5rem;" id="publishAnthology">Publish Your Anthology</button>
         <p id="errorTextAnthology" style="color: red;font-size: 13px;margin-left: 10rem; display: none;">You need to enter 2 stories at least</p>
+        <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(151, 153, 151);margin-top: 1rem; margin-left: 0.5rem;" id="cancelAnthologyButton">Cancel</button>
     </form>
-    <table class="table" style="margin-top: 8rem;">
+    <table class="table" id="table-books" style="margin-top: 8rem; display: block;">
         <thead>
           <tr>
             <th scope="col" style="width: 7rem;">Id</th>
@@ -90,6 +92,11 @@
         </thead>
         <tbody></tbody>
       </table>
+      <div id="pagination" style="display: flex; justify-content: center; gap: 1rem;">
+        <button type="button" id="previousBtn">Previous</button>
+        <span id="page">0 / 0</span>
+        <button type="button" id="nextBtn">Next</button>
+      </div>
     <script src="./script.js"></script>
 </body>
 </html>

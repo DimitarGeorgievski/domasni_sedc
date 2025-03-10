@@ -9,6 +9,12 @@ let errorText = document.getElementById("errorTextAnthology");
 let tbody = document.getElementsByTagName("tbody")[0];
 let alldata = [];
 let storiesAnthology = [];
+let pagination = {
+  currentPage: 1,
+  itemsPerPage: 10,
+  maxPages: 0,
+  totalItems: 0,
+};
 
 function fillSelectButton(select, firstOption) {
   fetch(url)
@@ -144,33 +150,129 @@ class publishAnthology {
     this.review = review;
   }
 }
-function fillTable(data){
-  let html = "";
-  for(let book of data){
-    let index = 0;
+function fillTable(data) {
+  tbody.innerHTML = "";
+  let index = 0;
+  for (let book of data) {
+    let seriesNumberInfo =
+      book.kind.toLowerCase() === "novel" && book.series
+        ? `${book.series} (${romanize(book.seriesNumber)})`
+        : "";
+    index++;
+    let booksStoriesAndAuthors = bookStoriesAndAuthors(book);
+    let reviewbooks = reviewBook(book);
     let row = `<tr>
-            <td>${index + 1}</td>
-            <td>${book.kind === "Novel" ? book.author : book.editor}</td>
+            <td>${index}</td>
+            <td>${book.title}</td>
+            <td>${
+              book.kind.toLowerCase() === "novel" ? book.author : book.editor
+            }</td>
             <td>${book.year} (${book.publisher})</td>
             <td>${book.length} pages</td>
-            <td>${book.kind === "novel" && book.serieName !== "" ? book.serieName + "(#" + romanize(book.serieNumber) + ")" : ""}</td>
-            <td>${book.kind === "Anthology" ?  : } Albums, first Album Year: ${firstYear}  Last Album Year: ${lastYear} </td>
-            <td>Studio Albums: ${studioAlbums}, Live Albums: ${liveAlbums}, Compilation Albums: ${compilationAlbums}</td>
+            <td>${seriesNumberInfo ? `${seriesNumberInfo},` : ""} ${
+      booksStoriesAndAuthors ? ` ${booksStoriesAndAuthors}` : ""
+    }</td>
+            <td>${book.isbn ? book.isbn : "N/A"}</td>
+            <td>${reviewbooks ? `${reviewbooks}` : ""}</td>
+            <td><button class="btn btn-secondary" name="removeBook" data-book-id=${index}>Delete</button></td>           
         </tr>
-        `
+        `;
+    tbody.innerHTML += row;
   }
-  tbody += html;
 }
-function romanize(num){ // i ova funkcija e od stack overflow forumot
-  var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},roman = '',i;
-  for ( i in lookup ) {
-    while ( num >= lookup[i] ) {
+function cutBooks() {
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    pagination.totalItems = data.length;
+    pagination.maxPages = Math.ceil(
+      pagination.totalItems / pagination.itemsPerPage
+    );
+    let cutBooks = alldata.splice(
+      pagination.currentPage * pagination.itemsPerPage,
+      pagination.itemsPerPage
+    );
+    document.getElementById(
+      "page"
+    ).innerHTML = `${pagination.currentPage} / ${pagination.maxPages}`;
+    fillTable(cutBooks);
+  })
+};
+function bookStoriesAndAuthors(book) {
+  let text = "";
+  if (book.kind.toLowerCase() === "anthology") {
+    let authors = new Set();
+    let originalStories = 0;
+    for (let story of book.stories) {
+      authors.add(story.author);
+      if (story.original) {
+        originalStories += 1;
+      }
+    }
+    let storiesLength = book.stories.length;
+    if (authors.size === 1) {
+      text = `${storiesLength} ${
+        storiesLength === 1 ? "story" : "stories"
+      } by ${[...authors][0]}`;
+    } else if (authors.size === 2) {
+      text = `${storiesLength} stories by ${[...authors]} and others`;
+    } else {
+      text = `${storiesLength} stories by ${authors.size} authors`;
+    }
+    if (originalStories >= 1) {
+      text += ` (${originalStories} original ${
+        originalStories === 1 ? "story" : "stories"
+      })`;
+    }
+  }
+  return text;
+}
+function reviewBook(book) {
+  if (!book.review) {
+    return "No Review";
+  } else {
+    let review = book.review;
+    let characters = review.length;
+    if (characters <= 50) {
+      return review;
+    } else if (characters > 50) {
+      let praznoMesto = review.lastIndexOf(" ", 47);
+      if (praznoMesto !== -1) {
+        return review.substring(0, praznoMesto) + "...";
+      } else {
+        return review.substring(0, 47) + "...";
+      }
+    }
+  }
+}
+function romanize(num) {
+  // i ova funkcija e od stack overflow forumot
+  let lookup = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1,
+    },
+    roman = "",
+    i;
+  for (i in lookup) {
+    while (num >= lookup[i]) {
       roman += i;
       num -= lookup[i];
     }
   }
   return roman;
 }
+
 fillSelectButton("publisherRoman", "Select Publisher");
 document
   .getElementById("nameRomanSerie")
@@ -221,7 +323,7 @@ document
       reviewRoman
     );
     alldata.push(example);
-    console.log(alldata);
+    cutBooks();
   });
 document
   .getElementById("publishStoryAntholgy")
@@ -264,8 +366,32 @@ document
         reviewAntholgy
       );
       alldata.push(newAnthology);
-      console.log(alldata);
+      cutBooks();
     } else {
       errorText.style.display = "block";
     }
   });
+document
+  .getElementById("cancelAnthologyButton")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    storiesAnthology = [];
+    anthologyForm.style.display = "none";
+    document.getElementById("table-books").style.display = "block";
+    cutBooks();
+  });
+document
+  .getElementById("cancelRomanButton")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    romanForm.style.display = "none";
+    document.getElementById("table-books").style.display = "block";
+    cutBooks();
+  });
+tbody.addEventListener("click", function (e) {
+  if (e.target.tagName === "BUTTON" && e.target.name === "removeBook") {
+    let itemId = e.target.getAttribute("data-book-id");
+    alldata.splice(itemId - 1, 1);
+    cutBooks();
+  }
+});
