@@ -10,7 +10,7 @@ let tbody = document.getElementsByTagName("tbody")[0];
 let alldata = [];
 let storiesAnthology = [];
 let pagination = {
-  currentPage: 1,
+  currentPage: 0,
   itemsPerPage: 10,
   maxPages: 0,
   totalItems: 0,
@@ -182,22 +182,29 @@ function fillTable(data) {
 }
 function cutBooks() {
   fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    pagination.totalItems = data.length;
-    pagination.maxPages = Math.ceil(
-      pagination.totalItems / pagination.itemsPerPage
-    );
-    let cutBooks = alldata.splice(
-      pagination.currentPage * pagination.itemsPerPage,
-      pagination.itemsPerPage
-    );
-    document.getElementById(
-      "page"
-    ).innerHTML = `${pagination.currentPage} / ${pagination.maxPages}`;
-    fillTable(cutBooks);
-  })
-};
+    .then((response) => response.json())
+    .then((data) => {
+      alldata = data;
+      pagination.totalItems = data.length;
+      pagination.maxPages = Math.ceil(
+        pagination.totalItems / pagination.itemsPerPage
+      );
+      pagination.currentPage = Math.min(
+        pagination.currentPage,
+        pagination.maxPages
+      );
+      let cutBooks = alldata.slice(
+        pagination.currentPage * pagination.itemsPerPage,
+        pagination.currentPage * pagination.itemsPerPage +
+          pagination.itemsPerPage
+      );
+      document.getElementById(
+        "page"
+      ).innerHTML = `${pagination.currentPage + 1} / ${pagination.maxPages}`;
+      fillTable(cutBooks);
+      console.log(alldata);
+    });
+}
 function bookStoriesAndAuthors(book) {
   let text = "";
   if (book.kind.toLowerCase() === "anthology") {
@@ -334,7 +341,6 @@ document
     let originalStory = document.getElementById("originalStory").checked;
     let story = new StoriesAnthology(storyName, authorStory, originalStory);
     storiesAnthology.push(story);
-    console.log(storiesAnthology);
   });
 document
   .getElementById("publishAnthology")
@@ -390,8 +396,20 @@ document
   });
 tbody.addEventListener("click", function (e) {
   if (e.target.tagName === "BUTTON" && e.target.name === "removeBook") {
-    let itemId = e.target.getAttribute("data-book-id");
-    alldata.splice(itemId - 1, 1);
+    let itemId = parseInt(e.target.getAttribute("data-book-id"), 10);
+    alldata.splice(itemId, 1);
     cutBooks();
   }
 });
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (pagination.currentPage < pagination.maxPages) {
+    pagination.currentPage += 1;
+    cutBooks();
+  }
+});
+document.getElementById('previousBtn').addEventListener("click", () => {
+    if(pagination.currentPage > 0){
+    pagination.currentPage -= 1;
+    cutBooks();
+  }
+})
