@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
         <h1>Add Student to Class</h1>
     <form action="/all_students" method="POST">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your Name">
+        <input type="text" id="name" name="name" placeholder="Enter your Name" required>
         <button type="submit">Add Student</button>
     </form>
         `);
@@ -30,12 +30,8 @@ const server = http.createServer((req, res) => {
       const data = new URLSearchParams(body);
       const name = data.get("name");
       res.writeHead(200, { "content-type": "text/html" });
-      if (!name) {
-        res.end("Please enter your name");
-      } else {
-        res.end(`<p>Student's Name: ${name}</p>`);
-        emiter.emit("addedStudent", name);
-      }
+      res.end(`<p>Student's Name: ${name}</p>`);
+      emiter.emit("addedStudent", name);
     });
   } else {
     res.writeHead(404, { "content-type": "text/plain" });
