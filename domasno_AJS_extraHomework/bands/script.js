@@ -27,6 +27,7 @@ document.getElementById("searchBtn").addEventListener("click", function(){
         (tagFilter === "all" || band.tags.some(tag => tag.toLowerCase().includes(tagFilter))) &&(activeFilter ? band.active === true : true) &&
         (notActiveFilter ? band.active === false : true)
     );
+    pagination.maxPages = Math.ceil(filterBands.length / pagination.itemsPerPage);
     if(filterBands.length === 0){
         tbody.innerHTML = `<p>No Bands found matching your criteria</p>`
     }
@@ -59,6 +60,7 @@ document.getElementById("prevPage").addEventListener("click", function(){
                 (pagination.currentPage + 1) * pagination.itemsPerPage
             );
             fillTable(cutProducts, tbody);
+            document.getElementById("Page").innerHTML = `${pagination.currentPage + 1}/${pagination.maxPages}`;
         });
     }
 });
@@ -72,6 +74,7 @@ document.getElementById("nextPage").addEventListener("click", function(){
                 (pagination.currentPage + 1) * pagination.itemsPerPage
             );
             fillTable(cutProducts, tbody);
+            document.getElementById("Page").innerHTML = `${pagination.currentPage + 1}/${pagination.maxPages}`;
         });
     }
 });

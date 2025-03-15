@@ -9,6 +9,7 @@ let errorText = document.getElementById("errorTextAnthology");
 let tbody = document.getElementsByTagName("tbody")[0];
 let alldata = [];
 let storiesAnthology = [];
+let filteredBooks = [];
 let pagination = {
   currentPage: 0,
   itemsPerPage: 10,
@@ -180,30 +181,30 @@ function fillTable(data) {
     tbody.innerHTML += row;
   }
 }
-function cutBooks() {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      alldata = data;
-      pagination.totalItems = data.length;
-      pagination.maxPages = Math.ceil(
-        pagination.totalItems / pagination.itemsPerPage
-      );
-      pagination.currentPage = Math.min(
-        pagination.currentPage,
-        pagination.maxPages
-      );
-      let cutBooks = alldata.slice(
-        pagination.currentPage * pagination.itemsPerPage,
-        pagination.currentPage * pagination.itemsPerPage +
-          pagination.itemsPerPage
-      );
-      document.getElementById(
-        "page"
-      ).innerHTML = `${pagination.currentPage + 1} / ${pagination.maxPages}`;
-      fillTable(cutBooks);
-      console.log(alldata);
-    });
+function cutBooks(info) {
+  pagination.totalItems = info.length;
+  pagination.maxPages = Math.ceil(
+    pagination.totalItems / pagination.itemsPerPage
+  );
+  pagination.currentPage = Math.min(
+    pagination.currentPage,
+    pagination.maxPages
+  );
+  let cutBooks = info.slice(
+    pagination.currentPage * pagination.itemsPerPage,
+    pagination.currentPage * pagination.itemsPerPage + pagination.itemsPerPage
+  );
+  if (cutBooks.length === 0 && pagination.maxPages > 1) {
+    pagination.currentPage -= 1;
+    cutBooks = info.slice(
+      pagination.currentPage * pagination.itemsPerPage,
+      pagination.currentPage * pagination.itemsPerPage + pagination.itemsPerPage
+    );
+  }
+  document.getElementById("page").innerHTML = `${
+    pagination.currentPage + 1
+  } / ${pagination.maxPages}`;
+  fillTable(cutBooks);
 }
 function bookStoriesAndAuthors(book) {
   let text = "";
@@ -280,6 +281,51 @@ function romanize(num) {
   return roman;
 }
 
+document
+  .getElementById("submitFilterBtn")
+  .addEventListener("click", function () {
+    let titleFilterValue = document
+      .getElementById("titleFilter")
+      .value.toLowerCase();
+    let authorFilterValue = document
+      .getElementById("authorFilter")
+      .value.toLowerCase();
+    let startYearFilterValue = document.getElementById(
+      "startYearPeriodFIlter"
+    ).value;
+    let endYearFilterValue = document.getElementById(
+      "endYearPeriodFIlter"
+    ).value;
+    let novelFilterValue = document.getElementById("novelFilter").checked;
+    let serieFilterValue = document
+      .getElementById("serieFilter")
+      .value.toLowerCase();
+    let anthologyFilter = document.getElementById("anthologyFilter").checked;
+    let defaultValueYearFilter = 1980;
+    filteredBooks = alldata.filter(
+      (books) =>
+        (!titleFilterValue ||
+          books.title?.toLowerCase().includes(titleFilterValue)) &&
+        (!authorFilterValue ||
+          books.author?.toLowerCase().includes(authorFilterValue) ||
+          (books.kind === "anthology" &&
+            books.stories?.some((story) =>
+              story.author?.toLowerCase().includes(authorFilterValue)
+            ))) &&
+        (!startYearFilterValue ||
+          books.year >= parseInt(startYearFilterValue)) &&
+        (!endYearFilterValue || books.year <= parseInt(endYearFilterValue)) &&
+        books.year >= defaultValueYearFilter &&
+        (!novelFilterValue ||
+          (books.kind === "novel" && (!serieFilterValue || books.series))) &&
+        (!serieFilterValue ||
+          (books.kind === "novel" &&
+            books.series?.toLowerCase().includes(serieFilterValue))) && ((!anthologyFilter) || ((books.kind === "anthology") && books.stories))
+    );
+    pagination.currentPage = 0;
+    pagination.maxPages = Math.ceil(filteredBooks.length / pagination.itemsPerPage);
+    cutBooks(filteredBooks);
+  });
 fillSelectButton("publisherRoman", "Select Publisher");
 document
   .getElementById("nameRomanSerie")
@@ -330,7 +376,7 @@ document
       reviewRoman
     );
     alldata.push(example);
-    cutBooks();
+    cutBooks(alldata);
   });
 document
   .getElementById("publishStoryAntholgy")
@@ -372,7 +418,7 @@ document
         reviewAntholgy
       );
       alldata.push(newAnthology);
-      cutBooks();
+      cutBooks(alldata);
     } else {
       errorText.style.display = "block";
     }
@@ -384,7 +430,7 @@ document
     storiesAnthology = [];
     anthologyForm.style.display = "none";
     document.getElementById("table-books").style.display = "block";
-    cutBooks();
+    cutBooks(alldata);
   });
 document
   .getElementById("cancelRomanButton")
@@ -392,24 +438,40 @@ document
     e.preventDefault();
     romanForm.style.display = "none";
     document.getElementById("table-books").style.display = "block";
-    cutBooks();
+    cutBooks(alldata);
   });
 tbody.addEventListener("click", function (e) {
   if (e.target.tagName === "BUTTON" && e.target.name === "removeBook") {
-    let itemId = parseInt(e.target.getAttribute("data-book-id"), 10);
+    let itemId = parseInt(e.target.getAttribute("data-book-id"), 10) - 1;
     alldata.splice(itemId, 1);
-    cutBooks();
+    cutBooks(alldata);
   }
 });
 document.getElementById("nextBtn").addEventListener("click", () => {
   if (pagination.currentPage < pagination.maxPages) {
     pagination.currentPage += 1;
-    cutBooks();
+    if(filteredBooks.length>0){
+      cutBooks(filteredBooks);
+    }
+    else{
+      cutBooks(alldata)
+    }
   }
 });
-document.getElementById('previousBtn').addEventListener("click", () => {
-    if(pagination.currentPage > 0){
+document.getElementById("previousBtn").addEventListener("click", () => {
+  if (pagination.currentPage > 0) {
     pagination.currentPage -= 1;
-    cutBooks();
+    if(filteredBooks.length>0){
+      cutBooks(filteredBooks);
+    }
+    else{
+      cutBooks(alldata)
+    }
   }
-})
+});
+document.getElementById("showFilterBtn").addEventListener("click", function () {
+  document.getElementById("filters").style.display = "flex";
+});
+document.getElementById("hideFilterBtn").addEventListener("click", function () {
+  document.getElementById("filters").style.display = "none";
+});

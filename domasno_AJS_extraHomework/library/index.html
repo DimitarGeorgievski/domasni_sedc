@@ -77,7 +77,33 @@
         <p id="errorTextAnthology" style="color: red;font-size: 13px;margin-left: 10rem; display: none;">You need to enter 2 stories at least</p>
         <button type="submit" style="width: 80%; border-radius: 5px; border: none; background-color: rgb(151, 153, 151);margin-top: 1rem; margin-left: 0.5rem;" id="cancelAnthologyButton">Cancel</button>
     </form>
-    <table class="table" id="table-books" style="margin-top: 8rem; display: block;">
+    <div style="display: flex; gap: 1rem;padding-top: 6rem;padding-left: 2rem;">
+      <button type="button" class="btn btn-secondary" id="showFilterBtn">Show Filters</button>
+      <button type="button" class="btn btn-secondary" id="hideFilterBtn">Hide Filters</button>
+    </div>
+    <div id="filters" style="display: flex; gap: 1rem; margin: 1rem 0 0 2rem">
+      <input type="text" name="titleFilter" id="titleFilter" placeholder="Enter title">
+      <input type="text" name="titleFilter" id="authorFilter" placeholder="Enter Author">
+      <div id="startYearPeriod">
+        <label for="startYearPeriodFIlter">Select start year to filter:</label>
+        <input type="number" name="startYearPeriodFIlter" id="startYearPeriodFIlter">
+      </div>
+      <div id="endYearPeriod">
+        <label for="endYearPeriodFIlter">Select end year to filter:</label>
+        <input type="number" name="endYearPeriodFIlter" id="endYearPeriodFIlter">
+      </div>
+      <div class="novelFilter">
+      <input type="checkbox" name="novelFilter" id="novelFilter">
+      <label for="novelFilter">Novel</label>
+      </div>
+      <div class="anthologyFilter">
+      <input type="checkbox" name="anthologyFilter" id="anthologyFilter">
+      <label for="anthologyFilter">anthology</label>
+      </div>
+      <input type="text" name="serieFilter" id="serieFilter" placeholder="Enter serie">
+      <button type="submit" class="btn btn-secondary" id="submitFilterBtn">Submit</button>
+    </div>
+    <table class="table" id="table-books" style="display: block;">
         <thead>
           <tr>
             <th scope="col" style="width: 7rem;">Id</th>
