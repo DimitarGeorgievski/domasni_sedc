@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "f06f180b-564f-476d-b11f-011313ec2625",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "filteringTrainersByActive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/trainers?currentlyActive=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers"
+					],
+					"query": [
+						{
+							"key": "currentlyActive",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Courses Ascending Trainers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/trainers?sortBy=coursesAsc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers"
+					],
+					"query": [
+						{
+							"key": "sortBy",
+							"value": "coursesAsc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Courses Descending Trainers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/trainers?sortBy=coursesDesc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers"
+					],
+					"query": [
+						{
+							"key": "sortBy",
+							"value": "coursesDesc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

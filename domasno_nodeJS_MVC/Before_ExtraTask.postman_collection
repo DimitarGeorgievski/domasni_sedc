@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "26c4aaa6-7b2e-4897-801a-3e14e30043df",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "GetAllTrainers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/trainers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrainersById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/trainers/75f79bbd-c8c0-4a1b-89af-77452409fdeb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers",
+						"75f79bbd-c8c0-4a1b-89af-77452409fdeb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTrainer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Mirche\",\r\n  \"lastName\": \"Petkovski\",\r\n  \"email\": \"Mirche.petkovski@example.com\",\r\n  \"isCurrentlyTeaching\": true,\r\n  \"timeEmployed\": \"3 months\",\r\n  \"coursesFinished\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/trainers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTrainer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Mirche\",\r\n  \"lastName\": \"Stojanovski\",\r\n  \"email\": \"Mirche.stojanovski@example.com\",\r\n  \"isCurrentlyTeaching\": false,\r\n  \"timeEmployed\": \"1 year\",\r\n  \"coursesFinished\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/trainers/c4793bd1-e6fa-4b22-b2d6-4646c286b5c6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers",
+						"c4793bd1-e6fa-4b22-b2d6-4646c286b5c6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTrainer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Mirche\",\r\n  \"lastName\": \"Stojanovski\",\r\n  \"email\": \"Mirche.stojanovski@example.com\",\r\n  \"isCurrentlyTeaching\": false,\r\n  \"timeEmployed\": \"1 year\",\r\n  \"coursesFinished\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/trainers/9eaf0769-c196-4620-b06c-53c3c6f7f1c6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"trainers",
+						"9eaf0769-c196-4620-b06c-53c3c6f7f1c6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

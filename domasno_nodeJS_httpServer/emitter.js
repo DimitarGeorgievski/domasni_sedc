@@ -14,7 +14,7 @@ const appendFileAsync = function (studentName) {
     console.error(`Error adding the student: ${error.message}`);
   }
 };
-emiter.addListener("addedStudent", (studentName) => {
+emiter.on("addedStudent", (studentName) => {
   console.log(`Student name ${studentName}`);
   appendFileAsync(studentName);
 });
