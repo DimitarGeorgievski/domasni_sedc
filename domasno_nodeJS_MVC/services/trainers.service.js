@@ -37,7 +37,6 @@ export default class TrainerService {
             throw new Error("Trainer not found");
         }
         const updateTrainer = {
-            id: uuidv4(),
             ...body,
             updatedAt: new Date().toISOString()
         }

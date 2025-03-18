@@ -8,6 +8,6 @@ router.get("/:id", TrainerController.getTrainerById);
 router.post("", TrainerController.createTrainer);
 router.put("/:id", TrainerController.updateTrainer);
 router.delete("/:id", TrainerController.deleteTrainer);
-router.delete("", TrainerController.deleteAllTrainer);
+router.delete("", TrainerController.deleteAllTrainers);
 
 export default router;
