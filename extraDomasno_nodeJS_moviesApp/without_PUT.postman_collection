@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "804bf71f-d6b2-4b61-b3f4-91981d9de361",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMovieById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/movies/67d8c744c9bd7c41914235dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						"67d8c744c9bd7c41914235dc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/movies/67d8c744c9bd7c41914235dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						"67d8c744c9bd7c41914235dc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"_id\": \"67d8c744c9bd7c41914235dc\",\r\n    \"name\": \"Venom 2\",\r\n    \"genre\": [\r\n      \"Comedy\",\r\n      \"Action\"\r\n    ],\r\n    \"director\": \"Petar Parker\",\r\n    \"year\": \"2022\",\r\n    \"description\": \"Also Random Description\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMovie",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Venom\",\r\n    \"genre\": [\"Comedy\", \"Action\"],\r\n    \"director\": \"Petar Parker\",\r\n    \"year\": \"2021\",\r\n    \"description\": \"Also Random Description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/movies/67d8c744c9bd7c41914235dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						"67d8c744c9bd7c41914235dc"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
