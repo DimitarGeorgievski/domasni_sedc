@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "a00c910f-c07b-465e-8b74-fd0163252b2f",
+		"name": "Recipes Homework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/recipes/?category=dinner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Grilled Chicken Salad",
+							"disabled": true
+						},
+						{
+							"key": "difficulty",
+							"value": "easy",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "dinner"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/recipes/category/dinner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"category",
+						"dinner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVegetarian",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/recipes/vegetarian",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"vegetarian"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/recipes/67db62d216908123f191bffb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"67db62d216908123f191bffb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"67db62d216908123f191bffb\",\r\n    \"title\": \"Grilled Chicken Salad\",\r\n    \"description\": \"Healthy salad with grilled chicken\",\r\n    \"ingredients\": [\r\n        \"chicken breast\",\r\n        \"lettuce\",\r\n        \"tomatoes\",\r\n        \"olive oil\",\r\n        \"lemon\"\r\n    ],\r\n    \"instructions\": [\r\n        \"Grill chicken\",\r\n        \"Chop vegetables\",\r\n        \"Mix everything\"\r\n    ],\r\n    \"cookingTime\": 25,\r\n    \"difficulty\": \"medium\",\r\n    \"isVegetarian\": false,\r\n    \"category\": \"lunch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/recipes/67db62d216908123f191bffb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"67db62d216908123f191bffb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"67db62d216908123f191bffb\",\r\n    \"title\": \"Grilled Chicken Salad\",\r\n    \"description\": \"Healthy salad with grilled chicken\",\r\n    \"ingredients\": [\r\n        \"chicken breast\",\r\n        \"lettuce\",\r\n        \"tomatoes\",\r\n        \"olive oil\",\r\n        \"lemon\"\r\n    ],\r\n    \"instructions\": [\r\n        \"Grill chicken\",\r\n        \"Chop vegetables\",\r\n        \"Mix everything\"\r\n    ],\r\n    \"cookingTime\": 25,\r\n    \"difficulty\": \"medium\",\r\n    \"isVegetarian\": false,\r\n    \"category\": \"lunch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/recipes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"67db62d216908123f191bffb\",\r\n    \"title\": \"Grilled Chicken Salad\",\r\n    \"description\": \"Healthy salad with grilled chicken\",\r\n    \"ingredients\": [\r\n        \"chicken breast\",\r\n        \"lettuce\",\r\n        \"tomatoes\",\r\n        \"olive oil\",\r\n        \"lemon\"\r\n    ],\r\n    \"instructions\": [\r\n        \"Grill chicken\",\r\n        \"Chop vegetables\",\r\n        \"Mix everything\"\r\n    ],\r\n    \"cookingTime\": 25,\r\n    \"difficulty\": \"medium\",\r\n    \"isVegetarian\": false,\r\n    \"category\": \"lunch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/recipes/67db62d216908123f191bffb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"67db62d216908123f191bffb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
