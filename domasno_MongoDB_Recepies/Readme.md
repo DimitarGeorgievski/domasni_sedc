@@ -29,7 +29,7 @@ cd domasni_sedc/domasno_MongoDB_Recepies
 npm install
 ```
 3. Set up environment variables:
-- Create a .env file and add the necessary configurations (such as database connection string).
+- Create a .env file like the one from the example and add the necessary configurations.
 4. Start the Server
 ```javascript
 npm run start
