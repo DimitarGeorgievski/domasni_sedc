@@ -114,14 +114,14 @@ export default class RecipeController {
       res.status(500).json({ message: error.message });
     }
   }
-  async getVegetarian(req, res) {
+  async getVegetarianRecipes(req, res) {
     try {
       const recipes = await this.RecipeService.getVegetarianRecipes();
       console.log(recipes);
       if (!recipes || recipes.length === 0) {
         return res.status(404).json({ message: "Recipes not found" });
       }
-      res.send(recipes);
+      res.status(200).json(recipes);
     } catch (error) {
       console.error("Error fetching vegetarian recipes:", error);
       res.status(404).json({ message: error.message });
