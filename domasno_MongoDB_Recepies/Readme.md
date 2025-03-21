@@ -1,6 +1,6 @@
 # Recipe API
 
-1. Features
+## Features
 
 - Get all recipes
 - Get a recipe by ID
