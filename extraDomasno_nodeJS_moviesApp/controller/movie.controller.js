@@ -60,7 +60,8 @@ export default class MovieController {
     async addMovie(req,res){
         try {
             const bodyMovie = req.body;
-            const newMovie = await this.movieService.addMovie(bodyMovie);
+            const result = await this.movieService.addMovie(bodyMovie);
+            const newMovie = { _id: result.insertedId, ...req.body}
             res.json(newMovie);
         } catch (error) {
             res.status(500).send({message: error.message});
