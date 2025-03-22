@@ -117,8 +117,7 @@ export default class RecipeController {
   async getVegetarianRecipes(req, res) {
     try {
       const recipes = await this.RecipeService.getVegetarianRecipes();
-      console.log(recipes);
-      if (!recipes || recipes.length === 0) {
+      if (recipes.length === 0) {
         return res.status(404).json({ message: "Recipes not found" });
       }
       res.status(200).json(recipes);
@@ -130,7 +129,7 @@ export default class RecipeController {
   async getByCategory(req, res) {
     try {
       const recipes = await this.RecipeService.getRecipeByCategory(req.params.category);
-      if (!recipes || recipes.length === 0) {
+      if (recipes.length === 0) {
         return res.status(404).json({ message: "Recipes not found" });
       }
       res.json(recipes);
