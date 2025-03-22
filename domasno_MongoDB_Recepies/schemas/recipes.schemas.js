@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { difficlty, category, ingredients } from "../util/constants.js";
+import { difficulty, category, ingredients } from "../util/constants.js";
 
 const recipeSchema = new Schema({
   title: {
@@ -26,9 +26,9 @@ instructions: {
 cookingTime: {
     type: Number
 },
-difficlty: {
+difficulty: {
     type: String,
-    enum: difficlty,
+    enum: difficulty,
 },
 isVegetarian: {
     type: Boolean

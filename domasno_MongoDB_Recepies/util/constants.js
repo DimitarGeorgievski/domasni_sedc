@@ -1,4 +1,4 @@
-export const difficlty = ["easy", "medium", "hard"];
+export const difficulty = ["easy", "medium", "hard"];
 export const category = ["breakfast", "lunch", "dinner", "dessert"];
 export const ingredients = [
   "flour",

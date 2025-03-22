@@ -38,26 +38,26 @@ export default class RecipeController {
         ingredients,
         instructions,
         cookingTime,
-        difficlty,
+        difficulty,
         isVegetarian,
         category,
       } = req.body;
-      const movieData = { updatedAt: new Date().toISOString() };
+      const recipeData = { updatedAt: new Date().toISOString() };
       for (const [key, value] of Object.entries({
         title,
         description,
         ingredients,
         instructions,
         cookingTime,
-        difficlty,
+        difficulty,
         isVegetarian,
         category,
       })) {
         if (value) {
-          movieData[key] = value;
+          recipeData[key] = value;
         }
       }
-      const success = await this.RecipeService.update(req.params.id, movieData);
+      const success = await this.RecipeService.update(req.params.id, recipeData);
       if (!success) {
         return res.status(404).json({ message: "Recipe not found" });
       }
