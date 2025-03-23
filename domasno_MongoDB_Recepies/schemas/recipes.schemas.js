@@ -36,6 +36,9 @@ isVegetarian: {
 category: {
     type: String,
     enum: category,
+},
+updatedAt: {
+    type: String
 }
 });
 

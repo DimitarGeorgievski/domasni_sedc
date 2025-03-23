@@ -16,7 +16,6 @@ export default class RecipeService {
     recipe.set(updateData);
     await recipe.save();
     return recipe;
-
   }
   async deleteById(id) {
     return Recipe.findByIdAndDelete({ _id: new ObjectId(id) });
