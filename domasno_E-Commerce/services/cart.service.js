@@ -1,5 +1,4 @@
 import Cart from "../schemas/cart.schema.js";
-import { ObjectId } from "mongodb";
 
 export default class CartService {
     async getAll(){
@@ -10,7 +9,7 @@ export default class CartService {
         return cartProduct
     }
     async addToCart(id,body){
-        const cartProduct = await this.getById(id);
+        const cartProduct = await Cart.findById(id);
         const ProductData = {...cartProduct, ...body};
         cartProduct.set(ProductData);
         await cartProduct.save();

@@ -28,11 +28,11 @@ export default class CartController {
       const cart = await this.CartService.getById(cartId);
       const { products } = req.body;
       if (!cartId) {
-        return res.status(400).send({ message: "Invalid cart Id" });
+        return res.status(404).send({ message: "Invalid cart Id" });
       }
       const updatedData = [...cart.products];
       for (let productId of products) {
-        const cartProduct = await this.CartService.getById({_id: new ObjectId(id)});
+        const cartProduct = await this.ProductService.getById(productId);
         if (cartProduct) {
           updatedData.push(productId);
         }

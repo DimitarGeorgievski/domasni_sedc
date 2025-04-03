@@ -10,7 +10,7 @@ export default class ProductService {
     return products;
   }
   async getById(id) {
-    const product = await Product.findById({ _id: new ObjectId(id) });
+    const product = await Product.findById(id);
     return product
   }
   async update(id,body){
@@ -24,6 +24,6 @@ export default class ProductService {
     return await Product.create(body);
   }
   async deleteProduct(id){
-    return await Product.findByIdAndDelete({_id: new ObjectId(id)});
+    return await Product.findByIdAndDelete(id);
   }
 }
