@@ -164,10 +164,10 @@ GROUP BY pc.name, mpc.investment_amount
 HAVING SUM(mpc.investment_amount) >= 40000000;
 
 -- Find countries where more than 2 movies were filmed with a total budget exceeding 150 million
-SELECT movies.title,movies.budget,ml.country  FROM movie_locations ml
+SELECT ml.country, SUM(movies.budget), COUNT(movies.movie_id)  FROM movie_locations ml
 INNER JOIN movies ON ml.movie_id = movies.movie_id
-GROUP BY movies.title, movies.budget, ml.country
-HAVING SUM(movies.budget) > 150e6 AND COUNT(movies.movie_id) >= 2; -- neznam dali e tocno napisano ama ne vadi informaci nikakvi
+GROUP BY ml.country
+HAVING SUM(movies.budget) > 150e6 AND COUNT(movies.movie_id) >= 2;
 
 -- Find genres where the average movie duration is over 120 minutes and at least one movie has won an Oscar
 SELECT movies.title,genres.name AS genre_name, AVG(movies.duration_minutes) AS average_duration FROM genres
