@@ -188,5 +188,6 @@ SELECT actors.first_name, actors.last_name FROM actors
 INNER JOIN cast_members cm ON actors.actor_id = cm.actor_id
 INNER JOIN movies ON cm.movie_id = movies.movie_id
 INNER JOIN movie_revenues mr ON mr.movie_id = movies.movie_id
+WHERE cm.is_lead_role = true
 GROUP BY actors.first_name,actors.last_name
 HAVING SUM(mr.domestic_revenue + mr.international_revenue) >= 200e6 AND COUNT(cm.is_lead_role) >= 2;
