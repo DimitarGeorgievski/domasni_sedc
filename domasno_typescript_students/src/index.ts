@@ -36,7 +36,7 @@ class CourseManager {
   }
   RemoveCourse(id: Number): Course[] | null {
     const foundCourse = this.courses.findIndex((course) => course.id === id);
-    if (!foundCourse) {
+    if (foundCourse === -1) {
       return null;
     }
     this.courses.splice(foundCourse, 1);
@@ -74,7 +74,7 @@ const getTopStudents = (CourseId: number, filterStudents: number): Student[] | n
     return null;
   }
   const studentsGrades = course.students.map(student => {
-    const sumGrades: number = student.grades.reduce((totalSum,Grades) => totalSum + Grades,0);
+    const sumGrades: number = student.grades.reduce((totalSum,grades) => totalSum + grades,0);
     const averageGrades:number = sumGrades / student.grades.length;
     return {student, averageGrades};
   })
