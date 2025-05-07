@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "442ef718-7a7f-414c-a444-04fe588bda7c",
+		"name": "NestJs BookApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "GetAllBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/books?minPrice=26&author=Dewey",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books"
+					],
+					"query": [
+						{
+							"key": "minPrice",
+							"value": "26"
+						},
+						{
+							"key": "author",
+							"value": "Dewey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByIdBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/books/1646b746-e57d-45b2-a66e-1fd301cd57f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						"1646b746-e57d-45b2-a66e-1fd301cd57f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Wolf Street\",\r\n    \"author\": \"{{$randomFullName}}\",\r\n    \"price\": 35\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/books/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Wolf Street\",\r\n    \"author\": \"{{$randomFullName}}\",\r\n    \"price\": 35\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/books/664bed98-c7c3-4609-8785-ba92b748f951",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						"664bed98-c7c3-4609-8785-ba92b748f951"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBook",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Learn to Program in NestJs\",\r\n    \"author\": \"{{$randomFullName}}\",\r\n    \"price\": {{$randomPrice}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/books/1646b746-e57d-45b2-a66e-1fd301cd57f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						"1646b746-e57d-45b2-a66e-1fd301cd57f6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

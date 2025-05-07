@@ -1,0 +1,44 @@
+[
+  {
+    "id": "b7f2e7c2-0f8a-4d27-8f88-517e59db4e9f",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "price": 29.99
+  },
+  {
+    "id": "36a02811-3cc2-4f8c-9bc7-64ae058e6e4c",
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "price": 25
+  },
+  {
+    "id": "a4e22318-857b-48aa-8e10-50c39ae6f6fa",
+    "title": "JavaScript: The Good Parts",
+    "author": "Douglas Crockford",
+    "price": 18.5
+  },
+  {
+    "id": "5977d4df-3a20-4696-bde0-2b35de4b64f7",
+    "title": "You Don't Know JS",
+    "author": "Kyle Simpson",
+    "price": 22.75
+  },
+  {
+    "id": "83127a42-94ae-4472-b1cd-d27d1f0c82a1",
+    "title": "Eloquent JavaScript",
+    "author": "Marijn Haverbeke",
+    "price": 21
+  },
+  {
+    "id": "1646b746-e57d-45b2-a66e-1fd301cd57f6",
+    "title": "Learn to Program in NestJs",
+    "author": "Dewey Nicolas",
+    "price": 555.14
+  },
+  {
+    "id": "c5b4693f-c4f1-4db3-98f5-2cb9021a53b2",
+    "title": "Refactoring",
+    "author": "Martin Fowler",
+    "price": 28.95
+  }
+]
