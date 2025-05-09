@@ -1,0 +1,18 @@
+[
+  {
+    "id": "5aa0883c-8a82-451f-9e26-334613e5fb13",
+    "skills": [],
+    "experience": 0,
+    "name": "RogueKiller05",
+    "health": 300,
+    "mana": 200,
+    "attack": 25,
+    "defense": 10,
+    "inventory": [
+      "24/7",
+      "compressing",
+      "Fresh"
+    ],
+    "level": 15
+  }
+]
