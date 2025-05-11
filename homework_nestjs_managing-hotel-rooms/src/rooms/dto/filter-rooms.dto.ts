@@ -52,5 +52,5 @@ export class FilterRoomsDto {
     description: 'check if the room is available for rent',
     example: true,
   })
-  isAvailable?: string; // znam deka mora da e boolean ama i taka naprajv ama ne mi rabotese filtero na toj nacin
+  isAvailable?: boolean; // znam deka mora da e boolean ama i taka naprajv ama ne mi rabotese filtero na toj nacin
 }
