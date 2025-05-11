@@ -24,17 +24,7 @@ export class RoomsController {
     description: "Internal server error",
   })
   getAll(@Query() filters: FilterRoomsDto){
-    const queryFilters: any = {};
-  if (filters?.roomNumber !== undefined) {
-    queryFilters.roomNumber = Number(filters.roomNumber);
-  }
-  if (filters?.isAvailable) {
-    queryFilters.isAvailable = filters.isAvailable === "true";
-  }
-  if (filters?.type) {
-    queryFilters.type = filters.type;
-  }
-    return this.roomsService.getAll(queryFilters);
+    return this.roomsService.getAll(filters);
   }
   @Get(":id")
   @ApiQuery({

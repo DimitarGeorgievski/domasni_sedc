@@ -13,23 +13,23 @@ import { FilterRoomsDto } from './dto/filter-rooms.dto';
 export class RoomsService {
   constructor(@InjectRepository(Room) private roomRepo: Repository<Room>) {}
   async getAll(filters?: FilterRoomsDto) {
-    const filter: any = {};
-    if (filters?.roomNumber) {
-      filter.roomNumber = Number(filters.roomNumber);
+    const query = this.roomRepo.createQueryBuilder("room");
+    if(filters?.isAvailable){
+      query.andWhere("room.isAvailable = :isAvailable", {isAvailable: filters.isAvailable});
     }
-    if (filters?.isAvailable) {
-      filter.isAvailable = filters.isAvailable
+    if(filters?.maxPrice){
+      query.andWhere("room.price <= :maxPrice", {maxPrice: filters.maxPrice});
     }
-    // if (filters?.maxPrice) {
-    //   filter.maxPrice = filters.maxPrice;
-    // }
-    // if (filters?.minPrice) {
-    //   filter.minPrice = filters.minPrice;
-    // } //ne znaev da go napram za so cenite pa ako mozi da mi dadete nekoja nasoka ili slicno nesto
-    if (filters?.type) {
-      filter.type = filters.type;
+    if(filters?.minPrice){
+      query.andWhere("room.price >= :minPrice", {minPrice: filters.minPrice});
     }
-    return this.roomRepo.find({where: filter});
+    if(filters?.roomNumber){
+      query.andWhere("room.roomNumber = :roomNumber", {roomNumber: filters.roomNumber});
+    }
+    if(filters?.type){
+      query.andWhere("room.type = :type", {type: filters.type});
+    }
+    return await query.getMany();
   }
   async getById(roomNumber: number) {
     const foundRoom = await this.roomRepo.findOneBy({ roomNumber });

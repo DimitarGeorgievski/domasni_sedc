@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "d82df8ba-70c7-4269-af07-3fb6df0ca297",
+		"name": "Managing Room Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Link}}/rooms?roomNumber=1&type=DOUBLE&minPrice=650",
+					"host": [
+						"{{Link}}"
+					],
+					"path": [
+						"rooms"
+					],
+					"query": [
+						{
+							"key": "roomNumber",
+							"value": "1"
+						},
+						{
+							"key": "isAvailable",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "DOUBLE"
+						},
+						{
+							"key": "minPrice",
+							"value": "650"
+						},
+						{
+							"key": "maxPrice",
+							"value": "1000",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByRoomNumber",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Link}}/rooms/:id",
+					"host": [
+						"{{Link}}"
+					],
+					"path": [
+						"rooms",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roomNumber\": 2,\r\n    \"type\": \"SUITE\",\r\n    \"price\": 1000,\r\n    \"isAvailable\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Link}}/rooms",
+					"host": [
+						"{{Link}}"
+					],
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Room",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roomNumber\": 1,\r\n    \"type\": \"SINGLE\",\r\n    \"price\": 1500,\r\n    \"isAvailable\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Link}}/rooms/:id",
+					"host": [
+						"{{Link}}"
+					],
+					"path": [
+						"rooms",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Room Copy",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"DOUBLE\",\r\n    \"price\": 450,\r\n    \"isAvailable\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Link}}/rooms/:id",
+					"host": [
+						"{{Link}}"
+					],
+					"path": [
+						"rooms",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
