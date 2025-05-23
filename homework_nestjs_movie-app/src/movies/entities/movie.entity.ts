@@ -6,8 +6,8 @@ export class Movie {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column({
-    unique: true,
     type: 'varchar',
+    unique: true,
   })
   title: string;
   @Column({
@@ -21,7 +21,6 @@ export class Movie {
   @Column({
     enum: movieGenre,
     type: 'enum',
-    enumName: "movie_genres",
     array: true,
   })
   genres: movieGenre[];
@@ -35,7 +34,7 @@ export class Movie {
   rating: number;
   @Column({
     type: 'varchar',
-    default: 'https://example.com'
+    default: 'https://example.com',
   })
   poster_url?: string;
   @Column({

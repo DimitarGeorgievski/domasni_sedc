@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  HttpCode,
+} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -14,8 +24,8 @@ export class MoviesController {
   }
   @HttpCode(200)
   @Get()
-  findAll(@Query() filters: filterMoviesDto) {
-    return this.moviesService.findAll(filters);
+  async findAll(@Query() query: filterMoviesDto) {
+    return this.moviesService.findAll(query);
   }
   @HttpCode(200)
   @Get(':id')
@@ -26,7 +36,7 @@ export class MoviesController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(id, updateMovieDto);
-  } 
+  }
   @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -17,18 +17,21 @@ const INVALID_INPUT_CODE = '22P02';
 @Injectable()
 export class MoviesService {
   constructor(@InjectRepository(Movie) private movieRepo: Repository<Movie>) {}
-  async findAll(filters?: filterMoviesDto): Promise<Movie[]> {
+  async findAll(filters: filterMoviesDto): Promise<Movie[]> {
     try {
       const {
-        title,
+        genre,
         maxDuration,
         minRating,
-        genre,
+        title,
         duration,
         rating,
         release_year,
       } = filters ?? {};
       const query = this.movieRepo.createQueryBuilder('movie');
+      if (genre && genre.length > 0) {
+        query.andWhere('movie.genres = :genre', { genres: genre });
+      }
       if (title) {
         query.andWhere('LOWER(movie.title) LIKE LOWER(:title)', {
           title: `%${title}%`,
@@ -37,9 +40,7 @@ export class MoviesService {
       if (maxDuration) {
         query.andWhere('movie.duration <= :maxDuration', { maxDuration });
       }
-      if (genre && genre.length > 0) {
-        query.andWhere('movie.genres && :genres', { genres:genre });
-      }
+
       if (minRating) {
         query.andWhere('movie.rating >= :minRating', { minRating });
       }

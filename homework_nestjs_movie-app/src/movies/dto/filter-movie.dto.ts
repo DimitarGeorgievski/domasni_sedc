@@ -12,7 +12,7 @@ import { movieGenre } from '../enums/genre-movies.enum';
 
 export class filterMoviesDto {
   @IsOptional()
-  @IsEnum(movieGenre, {each: true})
+  @IsEnum(movieGenre, { each: true })
   genre?: movieGenre[];
   @IsNumber()
   @IsOptional()
