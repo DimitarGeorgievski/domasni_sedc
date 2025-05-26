@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { movieGenre } from '../enums/genre-movies.enum';
+import { Director } from 'src/directors/entities/director.entity';
+import { Actor } from 'src/actors/entities/actor.entity';
 
 @Entity()
 export class Movie {
@@ -47,4 +49,12 @@ export class Movie {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+  @ManyToOne(() => Director, (director) => director.movies) 
+  @JoinColumn({
+    name: 'director_Id', 
+  })
+  director: Director;
+  @ManyToMany(() => Actor, actor => actor.movies)
+  @JoinTable({name: "movie_actors"})
+  actors: Actor[]
 }

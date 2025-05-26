@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -10,13 +11,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
 import { Repository } from 'typeorm';
 import { filterMoviesDto } from './dto/filter-movie.dto';
+import { DirectorsService } from 'src/directors/directors.service';
+import { ActorsService } from 'src/actors/actors.service';
 
 const DUPLICATE_CODE = '23505';
+const NOT_EXIST_IN_TABLE = '23503';
 const INVALID_INPUT_CODE = '22P02';
 
 @Injectable()
 export class MoviesService {
-  constructor(@InjectRepository(Movie) private movieRepo: Repository<Movie>) {}
+  constructor(
+    @InjectRepository(Movie) private movieRepo: Repository<Movie>,
+    private directorService: DirectorsService,
+    private actorService: ActorsService,
+  ) {}
   async findAll(filters: filterMoviesDto): Promise<Movie[]> {
     try {
       const {
@@ -30,7 +38,7 @@ export class MoviesService {
       } = filters ?? {};
       const query = this.movieRepo.createQueryBuilder('movie');
       if (genre && genre.length > 0) {
-        query.andWhere('movie.genres = :genre', { genres: genre });
+        query.andWhere('movie.genres && :genres', { genres: genre });
       }
       if (title) {
         query.andWhere('LOWER(movie.title) LIKE LOWER(:title)', {
@@ -65,7 +73,13 @@ export class MoviesService {
 
   async findOne(id: string) {
     try {
-      const movie = await this.movieRepo.findOneBy({ id });
+      const movie = await this.movieRepo.findOne({
+        where: { id: id },
+        relations: {
+          director: true,
+          actors: true,
+        },
+      });
       return movie;
     } catch (error) {
       if (error.code === INVALID_INPUT_CODE) {
@@ -85,7 +99,6 @@ export class MoviesService {
     Object.assign(movie, updatedMovie);
     await this.movieRepo.save(movie);
   }
-
   async remove(id: string) {
     try {
       const movie = await this.movieRepo.findOneBy({ id });
@@ -100,13 +113,32 @@ export class MoviesService {
   }
   async create(data: CreateMovieDto) {
     try {
-      const newMovie = this.movieRepo.create(data);
+      const { actors, director, ...movieData } = data;
+      const mappedActors = await Promise.all(
+        actors.map(async (actorId) => {
+          await this.actorService.findOne(actorId);
+          return { id: actorId };
+        }),
+      );
+      const foundDirector = await this.directorService.findOne(director);
+      if(!foundDirector){
+        throw new NotFoundException("director doesn't exist")
+      }
+      const newMovie = this.movieRepo.create({
+        ...movieData,
+        director: { id: foundDirector.id },
+        actors: mappedActors,
+      });
       await this.movieRepo.save(newMovie);
       return newMovie;
     } catch (error) {
+      console.log(error);
       if (error.code === DUPLICATE_CODE) {
         throw new BadRequestException('Movie already exists');
       }
+      if (error.code === NOT_EXIST_IN_TABLE) {
+        throw new BadRequestException("Information doesn't exist");
+      } // dali ima nekoj drug nacin da se popraj ovaj vid na error, kade ako vnesam uuid sto ne postoj vadi 500 error toest deka ne postoj vo tabelata?
       throw new InternalServerErrorException(error.message);
     }
   }

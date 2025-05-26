@@ -8,7 +8,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { movieGenre } from '../enums/genre-movies.enum';
+import { movieGenre, sortOrders } from '../enums/genre-movies.enum';
 
 export class filterMoviesDto {
   @IsOptional()
@@ -27,13 +27,13 @@ export class filterMoviesDto {
   @IsOptional()
   @Length(3, 50)
   title?: string;
-  @IsIn(['ASC', 'DESC'])
+  @IsEnum(sortOrders)
   @IsOptional()
-  release_year?: 'ASC' | 'DESC';
-  @IsIn(['ASC', 'DESC'])
+  release_year?: sortOrders;
+  @IsEnum(sortOrders)
   @IsOptional()
-  rating?: 'ASC' | 'DESC';
-  @IsIn(['ASC', 'DESC'])
+  rating?: sortOrders;
+  @IsEnum(sortOrders)
   @IsOptional()
-  duration?: 'ASC' | 'DESC';
+  duration?: sortOrders;
 }

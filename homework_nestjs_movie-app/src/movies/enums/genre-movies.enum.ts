@@ -10,3 +10,7 @@ export enum movieGenre {
   thriller = 'thriller',
   fantasy = 'fantasy',
 }
+export enum sortOrders {
+  ASC = "ASC",
+  DESC = "DESC"
+}

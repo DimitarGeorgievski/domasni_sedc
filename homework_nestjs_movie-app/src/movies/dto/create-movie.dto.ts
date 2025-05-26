@@ -1,4 +1,4 @@
-import { IsArray, IsDate, IsEnum, IsNumber, IsOptional, IsString, Length, Max, Min } from "class-validator"
+import { IsArray, IsEnum, IsNumber, IsOptional, IsString, IsUUID, isUUID, Length, Max, Min } from "class-validator"
 import { movieGenre } from "../enums/genre-movies.enum"
 
 export class CreateMovieDto {
@@ -24,4 +24,11 @@ export class CreateMovieDto {
     @IsOptional()
     @IsString()
     poster_url?:string
+    @IsUUID("4", {message: "Enter valid id"})
+    @IsString()
+    director: string
+    @IsString({ each: true})
+    @IsArray()
+    @IsUUID("4", {each: true})
+    actors: string[]
 }
