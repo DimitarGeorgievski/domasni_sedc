@@ -80,3 +80,14 @@ export class UsersService {
     return this.UserRepo.findOneBy({email})
   }
 }
+
+
+// NODE_ENV=development
+// DB_HOST=localhost
+// DB_PORT=5432
+// DB_USERNAME=postgres
+// DB_PASSWORD=Fudbal1234
+// DB_DATABASE=movie_db
+// PORT=3000
+// SECRET_REFRESH_TOKEN=verysecretiverefreshtoken
+// SECRET_ACCESS_TOKEN=verysecretiveaccesstoken
