@@ -16,6 +16,4 @@ export class CreateUserDto {
   @IsNumber()
   @Min(18)
   age: number;
-  @IsEnum(roleEnum)
-  role: roleEnum;
 }

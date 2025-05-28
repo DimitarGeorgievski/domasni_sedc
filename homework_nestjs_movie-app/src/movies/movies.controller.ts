@@ -19,37 +19,34 @@ import { Roles } from 'src/auth/roles.decorator';
 import { roleEnum } from 'src/auth/enums/role-enum';
 import { RoleGuard } from 'src/auth/role.guard';
 
-@UseGuards(AuthGuard,RoleGuard)
+@UseGuards(AuthGuard, RoleGuard)
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
   @HttpCode(201)
   @Post()
-  @Roles(roleEnum.admin)
   create(@Body() createMovieDto: CreateMovieDto) {
     return this.moviesService.create(createMovieDto);
   }
   @HttpCode(200)
+  @Roles(roleEnum.user)
   @Get()
-  @Roles(roleEnum.admin, roleEnum.user)
   async findAll(@Query() query: filterMoviesDto) {
     return this.moviesService.findAll(query);
   }
   @HttpCode(200)
+  @Roles(roleEnum.user, roleEnum.admin)
   @Get(':id')
-  @Roles(roleEnum.admin, roleEnum.user)
   findOne(@Param('id') id: string) {
     return this.moviesService.findOne(id);
   }
   @HttpCode(204)
   @Patch(':id')
-  @Roles(roleEnum.admin)
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(id, updateMovieDto);
   }
   @HttpCode(204)
   @Delete(':id')
-  @Roles(roleEnum.user, roleEnum.admin)
   remove(@Param('id') id: string) {
     return this.moviesService.remove(id);
   }

@@ -1,24 +1,31 @@
-import { CanActivate, ExecutionContext, Injectable, NotFoundException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Observable } from 'rxjs';
 import { roleEnum } from './enums/role-enum';
-import { ROLES_KEY } from './roles.decorator';
+import { Roles } from './roles.decorator';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
   constructor(private reflector: Reflector){}
-  canActivate(context: ExecutionContext,): boolean | Promise<boolean> | Observable<boolean> {
-    const roles = this.reflector.getAllAndOverride<roleEnum[]>(ROLES_KEY, [
+  canActivate(context: ExecutionContext): boolean {
+    const req = context.switchToHttp().getRequest();
+    const user = req.user;
+    // if(!user) return false
+    console.log(user)
+    const [classRole, handlerRole] = this.reflector.getAll<String[]>(Roles, [
+      context.getClass(),
       context.getHandler(),
-      context.getClass()
-    ])
-    if(!roles){
-      return true;
-    }
-    const { user} = context.switchToHttp().getRequest();
-    if(!user){
-      throw new NotFoundException("tuka lezi zajakot")
-    }
-    return roles.some(roles => user.roles?.includes(roles));
+    ]);
+    const decoratorRole = handlerRole || classRole;
+    console.log("decorator ROle: ",decoratorRole)
+    if(!decoratorRole) return true;
+    console.log("class Role: ", classRole)
+    console.log("handler Role: ", handlerRole)
+
+    const hasRole = user.roles.some((role: string) => {
+      decoratorRole.includes(role)
+    })
+    console.log("hasROle", hasRole);
+    if(!hasRole) return false
+    return true;
   }
 }

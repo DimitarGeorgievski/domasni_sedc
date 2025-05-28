@@ -30,8 +30,7 @@ export class User {
   })
   refreshTokens: string[];
   @Column({
-    type: "enum",
-    enum: roleEnum
+    default: roleEnum.user
   })
   role: roleEnum;
 }
