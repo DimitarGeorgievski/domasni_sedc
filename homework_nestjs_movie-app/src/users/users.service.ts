@@ -39,10 +39,7 @@ export class UsersService {
       const foundUser = this.UserRepo.findOneByOrFail({ id });
       return foundUser;
     } catch (error) {
-      if (error.code === INVALID_INPUT_CODE) {
-        throw new BadRequestException('Invalid id');
-      }
-      throw new NotFoundException(error.message);
+      throw new NotFoundException("User doesn't exist");
     }
   }
 
@@ -82,12 +79,3 @@ export class UsersService {
 }
 
 
-// NODE_ENV=development
-// DB_HOST=localhost
-// DB_PORT=5432
-// DB_USERNAME=postgres
-// DB_PASSWORD=Fudbal1234
-// DB_DATABASE=movie_db
-// PORT=3000
-// SECRET_REFRESH_TOKEN=verysecretiverefreshtoken
-// SECRET_ACCESS_TOKEN=verysecretiveaccesstoken

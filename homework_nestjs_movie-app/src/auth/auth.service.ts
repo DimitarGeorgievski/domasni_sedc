@@ -30,7 +30,7 @@ export class AuthService {
     if (!user) throw new UnauthorizedException('invalid credentials');
     const isPassValid = await compare(credentials.password, user.password);
     if (!isPassValid) throw new UnauthorizedException('invalid credentials');
-    const token = await this.jwtService.signAsync({ userId: user.id, roles: [user.role] });
+    const token = await this.jwtService.signAsync({ userId: user.id, role: user.role });
     const refreshToken = await this.jwtService.signAsync(
       { userId: user.id },
       {
@@ -68,7 +68,7 @@ export class AuthService {
         (token) => token === refreshToken,
       );
       if (!tokenValid) throw new Error();
-      const token = await this.jwtService.signAsync({ userId: user.id, roles: [user.role] });
+      const token = await this.jwtService.signAsync({ userId: user.id, role: user.role });
       return { token };
     } catch (error) {
         throw new ForbiddenException();

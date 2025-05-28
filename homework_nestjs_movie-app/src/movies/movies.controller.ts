@@ -20,10 +20,12 @@ import { roleEnum } from 'src/auth/enums/role-enum';
 import { RoleGuard } from 'src/auth/role.guard';
 
 @UseGuards(AuthGuard, RoleGuard)
+@Roles(roleEnum.admin)
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
   @HttpCode(201)
+  
   @Post()
   create(@Body() createMovieDto: CreateMovieDto) {
     return this.moviesService.create(createMovieDto);
@@ -35,7 +37,7 @@ export class MoviesController {
     return this.moviesService.findAll(query);
   }
   @HttpCode(200)
-  @Roles(roleEnum.user, roleEnum.admin)
+  @Roles(roleEnum.user)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.moviesService.findOne(id);

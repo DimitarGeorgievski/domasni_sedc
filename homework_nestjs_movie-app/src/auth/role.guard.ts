@@ -7,25 +7,15 @@ import { Roles } from './roles.decorator';
 export class RoleGuard implements CanActivate {
   constructor(private reflector: Reflector){}
   canActivate(context: ExecutionContext): boolean {
-    const req = context.switchToHttp().getRequest();
-    const user = req.user;
-    // if(!user) return false
-    // console.log(user)
-    const [classRole, handlerRole] = this.reflector.getAll<String[]>(Roles, [
+    const request = context.switchToHttp().getRequest();
+    const [classRole, handlerRole] = this.reflector.getAll(Roles, [
       context.getClass(),
       context.getHandler(),
-    ]);
-    const decoratorRole = handlerRole || classRole;
-    console.log("decorator ROle: ",decoratorRole)
-    if(!decoratorRole) return true;
-    console.log("class Role: ", classRole)
-    console.log("handler Role: ", handlerRole)
-
-    const hasRole = user.roles.some((role: string) => {
-      decoratorRole.includes(role)
-    })
-    console.log("hasROle", hasRole);
-    if(!hasRole) return false
+    ])
+    const decorateRole = handlerRole || classRole;
+    if (!decorateRole) return true;
+    const userRole = request.user.role;
+    if(userRole !== decorateRole) return false;
     return true;
   }
 }
