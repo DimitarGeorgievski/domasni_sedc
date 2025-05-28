@@ -9,11 +9,11 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+    return this.usersService.create(createUserDto);
   }
   @Get()
   findAllUsers() {
-    return this.usersService.findAllUsers();
+    return this.usersService.findAll();
   }
   @Get(':id')
   findUser(@Param('id') id: string) {

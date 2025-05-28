@@ -4,12 +4,12 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
-import { compare, hash } from 'bcryptjs';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
+import { hash, compare } from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 import { CredentialDto } from './dto/credentials.dto';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,59 +19,64 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
   async registerUser(userData: CreateUserDto) {
-    const user = await this.usersService.findByEmail(userData.email);
-    if (user) throw new BadRequestException('User already exists');
-    const hashedPass = await hash(userData.password, 8);
-    userData.password = hashedPass;
-    await this.usersService.createUser(userData);
+    const userExists = await this.usersService.findByEmail(userData.email);
+    if (userExists) throw new BadRequestException('User already exists');
+    const hashedPassword = await hash(userData.password, 8);
+    userData.password = hashedPassword;
+    await this.usersService.create(userData);
   }
   async loginUser(credentials: CredentialDto) {
-    const user = await this.usersService.findByEmail(credentials.email);
-    if (!user) throw new UnauthorizedException('invalid credentials');
-    const isPassValid = await compare(credentials.password, user.password);
-    if (!isPassValid) throw new UnauthorizedException('invalid credentials');
-    const token = await this.jwtService.signAsync({ userId: user.id, role: user.role });
+    const foundUser = await this.usersService.findByEmail(credentials.email);
+    if (!foundUser) throw new UnauthorizedException('invalid credentials');
+    const isPasswordValid = await compare(
+      credentials.password,
+      foundUser.password,
+    );
+    if (!isPasswordValid)
+      throw new UnauthorizedException('invalid credentials');
+    const token = await this.jwtService.signAsync({ userId: foundUser.id, role: foundUser.role });
     const refreshToken = await this.jwtService.signAsync(
-      { userId: user.id },
+      { userId: foundUser.id },
       {
         secret: this.configService.get('SECRET_REFRESH_TOKEN'),
         expiresIn: '7d',
       },
     );
-    await this.usersService.saveRefreshToken(user.id, refreshToken);
-    const { password, refreshTokens, ...userWithoutPassword } = user;
+    await this.usersService.saveRefreshToken(foundUser.id, refreshToken);
+    const { password, refreshTokens, ...userWithoutPass } = foundUser;
     return {
-      user: userWithoutPassword,
+      user: userWithoutPass,
       token,
       refreshToken,
     };
+  }
+
+  async refreshAccessToken(refreshToken: string) {
+    try {
+      const { userId } = await this.jwtService.verifyAsync(refreshToken, {
+        secret: this.configService.get('SECRET_REFRESH_TOKEN'),
+      });
+      const foundUser = await this.usersService.findUser(userId);
+      const tokenExists = foundUser.refreshTokens.some(
+        (token) => token === refreshToken,
+      );
+      if (!tokenExists) throw new Error();
+      const token = await this.jwtService.signAsync({ userId: foundUser.id, role: foundUser.role });
+      return { token };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException();
+    }
   }
   async logoutUser(refreshToken: string) {
     try {
       const { userId } = await this.jwtService.verifyAsync(refreshToken, {
         secret: this.configService.get('SECRET_REFRESH_TOKEN'),
       });
-      await this.usersService.removeRefreshToken(userId, refreshToken);
+      await this.usersService.RemoveRefreshToken(userId, refreshToken);
     } catch (error) {
-      throw new BadRequestException(
-        'something went wrong, user cannot be logout',
-      );
-    }
-  }
-  async refreshAccessToken(refreshToken: string) {
-    try {
-      const { userId } = await this.jwtService.verifyAsync(refreshToken, {
-        secret: this.configService.get('SECRET_REFRESH_TOKEN'),
-      });
-      const user = await this.usersService.findUser(userId);
-      const tokenValid = user.refreshTokens.some(
-        (token) => token === refreshToken,
-      );
-      if (!tokenValid) throw new Error();
-      const token = await this.jwtService.signAsync({ userId: user.id, role: user.role });
-      return { token };
-    } catch (error) {
-        throw new ForbiddenException();
+      console.log(error);
+      throw new BadRequestException("couldn't logout user");
     }
   }
 }

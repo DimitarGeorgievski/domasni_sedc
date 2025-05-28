@@ -7,174 +7,589 @@
 	},
 	"item": [
 		{
-			"name": "Get All Movies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{Link}}/movies?rating=DESC",
-					"host": [
-						"{{Link}}"
-					],
-					"path": [
-						"movies"
-					],
-					"query": [
-						{
-							"key": "maxDuration",
-							"value": "195",
-							"disabled": true
-						},
-						{
-							"key": "title",
-							"value": "Licen",
-							"disabled": true
-						},
-						{
-							"key": "minRating",
-							"value": "5",
-							"disabled": true
-						},
-						{
-							"key": "genres",
-							"value": "action",
-							"disabled": true
-						},
-						{
-							"key": "genre",
-							"value": "animation",
-							"disabled": true
-						},
-						{
-							"key": "genre",
-							"value": "fantasy",
-							"disabled": true
-						},
-						{
-							"key": "release_year",
-							"value": "ASC",
-							"disabled": true
-						},
-						{
-							"key": "duration",
-							"value": "DESC",
-							"disabled": true
-						},
-						{
-							"key": "rating",
-							"value": "DESC"
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Delete Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ce2b2f35-8f4a-4ff7-84ce-c37a78d870be"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "maxDuration",
+									"value": "195",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Licen",
+									"disabled": true
+								},
+								{
+									"key": "minRating",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "genres",
+									"value": "action",
+									"disabled": true
+								},
+								{
+									"key": "release_year",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "duration",
+									"value": "DESC",
+									"disabled": true
+								},
+								{
+									"key": "rating",
+									"value": "DESC",
+									"disabled": true
+								},
+								{
+									"key": "genre",
+									"value": "comedy",
+									"disabled": true
+								},
+								{
+									"key": "genre",
+									"value": "thriller",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1997,\r\n    \"genres\": [\r\n        \"drama\",\r\n        \"thriller\"\r\n    ],\r\n    \"duration\": 170,\r\n    \"rating\": 6.4,\r\n    \"director\": \"1c435955-a1de-451c-b0e2-a0430eaee6fa\",\r\n    \"actors\": [\"5ee6a139-9bdb-4716-a568-f775a0f4b6dc\", \"f7614c53-9591-47e5-9349-0e8ded15ad58\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/movies",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1999,\r\n    \"genres\": [\"romance\", \"drama\"],\r\n    \"duration\": 200,\r\n    \"rating\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/movies/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67936c8a-e2bd-4acd-a267-333ac365e749"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movie By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3135eeb2-d2a7-458d-a0d0-19a96da61ed8"
+								}
+							]
+						}
+					},
+					"response": []
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OGU0YzhmOC1iZGFkLTQ0ZGEtYWNkZC04NWNkNDU4OTcxM2IiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0ODQ3MTUzMSwiZXhwIjoxNzQ4NDczOTMxfQ.T4wxkNDPf2RdGnRyOuhwgQfRWeBk6lAFxa6Fkod-HUk",
+						"type": "string"
+					}
+				]
 			},
-			"response": []
-		},
-		{
-			"name": "Update Movie",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1999,\r\n    \"genres\": [\"romance\", \"drama\"],\r\n    \"duration\": 200,\r\n    \"rating\": 5\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
 					}
 				},
-				"url": {
-					"raw": "{{Link}}/movies/:id",
-					"host": [
-						"{{Link}}"
-					],
-					"path": [
-						"movies",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "67936c8a-e2bd-4acd-a267-333ac365e749"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Movie By Id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{Link}}/movies/:id",
-					"host": [
-						"{{Link}}"
-					],
-					"path": [
-						"movies",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "67936c8a-e2bd-4acd-a267-333ac365e749"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Movie By Id Copy",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{Link}}/movies/:id",
-					"host": [
-						"{{Link}}"
-					],
-					"path": [
-						"movies",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Movie",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1997,\r\n    \"genres\": [\"animation\", \"romance\"],\r\n    \"duration\": 195,\r\n    \"rating\": 7.8\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
 					}
-				},
-				"url": {
-					"raw": "{{Link}}/movies",
-					"host": [
-						"{{Link}}"
-					],
-					"path": [
-						"movies"
-					]
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Directors",
+			"item": [
+				{
+					"name": "Delete Director",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/directors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"directors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Directors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/directors",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"directors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Director",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"{{$randomFullName}}\",\r\n    \"birthYear\": 2001,\r\n    \"movies\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/directors",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"directors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Director",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1999,\r\n    \"genres\": [\"romance\", \"drama\"],\r\n    \"duration\": 200,\r\n    \"rating\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/directors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"directors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67936c8a-e2bd-4acd-a267-333ac365e749"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Director By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/directors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"directors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1c435955-a1de-451c-b0e2-a0430eaee6fa"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actors",
+			"item": [
+				{
+					"name": "Delete Actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/actors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/actors",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"{{$randomFullName}}\",\r\n    \"birthYear\": 2001,\r\n    \"movies\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/actors",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomProductName}}\", // nemase za movie pa za da ne pisam dinamicno vaka naprajv\r\n    \"description\": \"{{$randomJobDescriptor}}\",\r\n    \"release_year\": 1999,\r\n    \"genres\": [\"romance\", \"drama\"],\r\n    \"duration\": 200,\r\n    \"rating\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/actors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67936c8a-e2bd-4acd-a267-333ac365e749"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Actor By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/actors/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5ee6a139-9bdb-4716-a568-f775a0f4b6dc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"user123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/auth/login",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "refresh-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyOWUyOTlhMi00MTRmLTRkZjQtYWYzNC03MzhhZTgwMGZlODkiLCJpYXQiOjE3NDgyNjAxMjgsImV4cCI6MTc0ODg2NDkyOH0.ui_RDQZkLEHME96u7hawSVL5hJjbqhAchceBbbZ47m8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Link}}/auth/logout",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "refresh-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZDc1M2NlYy1mZTg3LTRhYzEtODcxNC0wNzI3YTE1MGUzY2IiLCJpYXQiOjE3NDgzNzYxNjIsImV4cCI6MTc0ODk4MDk2Mn0.pvALgxNntCvYEFTuAT6mcxKkCtRjnh5e99R1Lboh2P8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Link}}/auth/refresh-token",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin123\",\r\n    \"firstName\": \"admin\",\r\n    \"lastName\": \"adminovski\",\r\n    \"age\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Link}}/auth/register",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

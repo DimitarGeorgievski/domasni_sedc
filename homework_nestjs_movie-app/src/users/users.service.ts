@@ -17,30 +17,69 @@ const INVALID_INPUT_CODE = '22P02';
 export class UsersService {
   constructor(@InjectRepository(User) private UserRepo: Repository<User>) {}
 
-  async createUser(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     try {
-      const User = this.UserRepo.create(createUserDto);
-      await this.UserRepo.save(User);
-      return User;
+      const user = this.UserRepo.create(createUserDto);
+      await this.UserRepo.save(user);
+      return user;
     } catch (error) {
       if (error.code === DUPLICATE_CODE) {
-        throw new BadRequestException('Email is being taken');
+        throw new BadRequestException('User already exists');
       }
+
       throw new InternalServerErrorException(error.message);
     }
   }
 
-  findAllUsers() {
+  findAll() {
     return this.UserRepo.find();
   }
 
-  findUser(id: string) {
+  async findByEmail(email: string) {
     try {
-      const foundUser = this.UserRepo.findOneByOrFail({ id });
+      const foundUser = await this.UserRepo.findOneBy({ email });
       return foundUser;
     } catch (error) {
-      throw new NotFoundException("User doesn't exist");
+      if (error.code === INVALID_INPUT_CODE) {
+        throw new BadRequestException('Invalid input');
+      }
+      throw new NotFoundException(error.message);
     }
+  }
+  async findUser(id: string) {
+    try {
+      const foundUser = await this.UserRepo.findOneBy({ id });
+      if (!foundUser) {
+        throw new NotFoundException('User does not exists');
+      }
+      return foundUser;
+    } catch (error) {
+      if (error.code === INVALID_INPUT_CODE) {
+        throw new BadRequestException('Invalid id');
+      }
+      throw new NotFoundException(error.message);
+    }
+  }
+
+  async saveRefreshToken(id: string, refreshToken: string) {
+    const user = await this.findUser(id);
+    user.refreshTokens.push(refreshToken);
+    await this.UserRepo.save(user);
+  }
+
+  async RemoveRefreshToken(id: string, refreshToken: string) {
+    const user = await this.findUser(id);
+    user.refreshTokens = user.refreshTokens.filter(
+      (token) => token !== refreshToken,
+    );
+    await this.UserRepo.save(user);
+  }
+  
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    const foundUser = await this.findUser(id);
+    if (!foundUser) throw new NotFoundException('User does not exists');
+    Object.assign(foundUser, updateUserDto);
+    await this.UserRepo.save(foundUser);
   }
 
   async deleteUser(id: string) {
@@ -54,27 +93,6 @@ export class UsersService {
       }
       throw new NotFoundException(error.message);
     }
-  }
-  async saveRefreshToken(id: string, refreshToken: string){
-    const user = await this.findUser(id);
-    user.refreshTokens.push(refreshToken);
-    await this.UserRepo.save(user);
-  }
-  async removeRefreshToken(id: string, refreshToken: string){
-    const user = await this.findUser(id);
-    user.refreshTokens.filter(token => token !== refreshToken);
-    await this.UserRepo.save(user);
-  }
-  async updateUser(id:string, data: UpdateUserDto){
-      const user = await this.findUser(id);
-      if(!user){
-        throw new NotFoundException("User doesn't exist");
-      }
-      Object.assign(user, data);
-      await this.UserRepo.save(user);
-  }
-  async findByEmail(email: string){
-    return this.UserRepo.findOneBy({email})
   }
 }
 
