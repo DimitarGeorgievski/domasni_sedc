@@ -32,6 +32,7 @@ export class User {
   role: string;
   @Prop({
     type: Types.ObjectId,
+    ref: "UserAdress"
   })
   userAdress: Types.ObjectId;
   @Prop({
