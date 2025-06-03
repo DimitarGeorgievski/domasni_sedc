@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGe
 import { movieGenre } from '../enums/genre-movies.enum';
 import { Director } from 'src/directors/entities/director.entity';
 import { Actor } from 'src/actors/entities/actor.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Movie {
@@ -49,6 +50,11 @@ export class Movie {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+  // @Exclude()
+  @Column({
+    type: "varchar"
+  })
+  createdBy: string;
   @ManyToOne(() => Director, (director) => director.movies) 
   @JoinColumn({
     name: 'director_Id', 

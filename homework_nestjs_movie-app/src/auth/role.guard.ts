@@ -16,7 +16,6 @@ export class RolesGuard implements CanActivate {
       return true;
     }
     const request = context.switchToHttp().getRequest();
-    console.log("evego userot od role guardot: ", request.user)
     const userRole = request.user.role as roleEnum;
     return requiredRoles.includes(userRole);
   }

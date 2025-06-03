@@ -13,6 +13,7 @@ import { Repository } from 'typeorm';
 import { filterMoviesDto } from './dto/filter-movie.dto';
 import { DirectorsService } from 'src/directors/directors.service';
 import { ActorsService } from 'src/actors/actors.service';
+import { User } from 'src/users/entities/user.entity';
 
 const DUPLICATE_CODE = '23505';
 const NOT_EXIST_IN_TABLE = '23503';
@@ -111,7 +112,7 @@ export class MoviesService {
       throw new InternalServerErrorException(error.message);
     }
   }
-  async create(data: CreateMovieDto) {
+  async create(data: CreateMovieDto, userEmail: User["email"]) {
     try {
       const { actors, director, ...movieData } = data;
       const mappedActors = await Promise.all(
@@ -128,6 +129,7 @@ export class MoviesService {
         ...movieData,
         director: { id: foundDirector.id },
         actors: mappedActors,
+        createdBy: userEmail
       });
       await this.movieRepo.save(newMovie);
       return newMovie;
