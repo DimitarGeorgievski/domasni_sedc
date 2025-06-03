@@ -7,6 +7,7 @@ import { DirectorsModule } from 'src/directors/directors.module';
 import { ActorsModule } from 'src/actors/actors.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from 'src/auth/role.guard';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Module({
   imports: [
@@ -15,10 +16,7 @@ import { RolesGuard } from 'src/auth/role.guard';
     forwardRef(() => ActorsModule),
   ],
   controllers: [MoviesController],
-  providers: [MoviesService, {
-    provide: APP_GUARD,
-    useClass: RolesGuard
-  }],
+  providers: [MoviesService],
   exports: [MoviesService],
 })
 export class MoviesModule {}
