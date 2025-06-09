@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "bdae26f7-b632-4ba4-9bc8-678854e6f469",
+		"name": "new movies2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43062782"
+	},
+	"item": [
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "Get all Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movies MetaData",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/meta-data",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								"meta-data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movie by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies count by genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/genre/count",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								"genre",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Awards For Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/movies/10/awards",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"movies",
+								"10",
+								"awards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "directors",
+			"item": []
+		},
+		{
+			"name": "Production Companies",
+			"item": [
+				{
+					"name": "Get All Production Companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/production-companies",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"production-companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Production Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Link}}/production-companies/:id",
+							"host": [
+								"{{Link}}"
+							],
+							"path": [
+								"production-companies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
