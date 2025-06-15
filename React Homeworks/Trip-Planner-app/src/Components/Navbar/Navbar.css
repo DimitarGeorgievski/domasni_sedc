@@ -1,0 +1,14 @@
+.Navbar ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+.Navbar li{
+    font-size: 3rem;
+}
+.Navbar li a{
+    color: rgb(42, 194, 67);
+    text-decoration: none;
+}
