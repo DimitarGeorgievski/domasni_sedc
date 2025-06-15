@@ -1,19 +1,15 @@
 import "./CountriesPage.css";
-import type { Country } from "../../models/countries.model";
 import CountryCard from "../../Components/CountryCard/CountryCard";
 import countriesData from "../../data/countries.json";
-import { useState } from "react";
 
 interface CountriesPageProps{
   selectedContinent: string;
 }
 
-function CountriesPage({selectedContinent}: CountriesPageProps) {
-    const [countries, setCountries] = useState<Country[]>(countriesData)
-  
+function CountriesPage({selectedContinent}: CountriesPageProps) { 
   return (
     <section className="countries">
-      {countries
+      {countriesData
       .filter(country => country.continent === selectedContinent)
       .map((country) => (
         <CountryCard key={country.country} Country={country} />
