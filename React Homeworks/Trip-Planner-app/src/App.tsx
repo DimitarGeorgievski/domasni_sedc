@@ -14,7 +14,7 @@ function App() {
     "Americas",
     "Oceania",
   ];
-  const [selectedContinent, setSelectedContinent] = useState<string>("");
+  const [selectedContinent, setSelectedContinent] = useState("");
   return (
     // iskreno mi nemase logika interface-ot sto e za countries i morav barem da si go napram ponormalen da e so korisni informaci i se nadevam deka e okej
     <div className="App">
