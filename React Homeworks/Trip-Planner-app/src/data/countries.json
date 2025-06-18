@@ -1,6 +1,9 @@
 [
   {
     "country": "Japan",
+    "capital": "Tokyo",
+    "area": 377975,
+    "flag": "https://flagcdn.com/w320/jp.png",
     "cities": ["Tokyo", "Osaka", "Kyoto"],
     "destinations": ["Mount Fuji", "Tokyo Disneyland", "Fushimi Inari Shrine"],
     "population": 125800000,
@@ -8,6 +11,9 @@
   },
   {
     "country": "China",
+    "capital": "Beijing",
+    "area": 9596961,
+    "flag": "https://flagcdn.com/w320/cn.png",
     "cities": ["Beijing", "Shanghai", "Guangzhou"],
     "destinations": ["Great Wall", "Forbidden City", "Terracotta Army"],
     "population": 1402000000,
@@ -15,6 +21,9 @@
   },
   {
     "country": "Nigeria",
+    "capital": "Abuja",
+    "area": 923769,
+    "flag": "https://flagcdn.com/w320/ng.png",
     "cities": ["Lagos", "Abuja", "Kano"],
     "destinations": ["Zuma Rock", "Olumo Rock", "Erin Ijesha Waterfall"],
     "population": 223800000,
@@ -22,6 +31,9 @@
   },
   {
     "country": "Egypt",
+    "capital": "Cairo",
+    "area": 1002450,
+    "flag": "https://flagcdn.com/w320/eg.png",
     "cities": ["Cairo", "Alexandria", "Giza"],
     "destinations": ["Pyramids of Giza", "Sphinx", "Nile River"],
     "population": 104000000,
@@ -29,6 +41,9 @@
   },
   {
     "country": "Germany",
+    "capital": "Berlin",
+    "area": 357022,
+    "flag": "https://flagcdn.com/w320/de.png",
     "cities": ["Berlin", "Munich", "Hamburg"],
     "destinations": ["Brandenburg Gate", "Neuschwanstein Castle", "Cologne Cathedral"],
     "population": 83000000,
@@ -36,6 +51,9 @@
   },
   {
     "country": "France",
+    "capital": "Paris",
+    "area": 551695,
+    "flag": "https://flagcdn.com/w320/fr.png",
     "cities": ["Paris", "Lyon", "Marseille"],
     "destinations": ["Eiffel Tower", "Louvre Museum", "Mont Saint-Michel"],
     "population": 67000000,
@@ -43,6 +61,9 @@
   },
   {
     "country": "Brazil",
+    "capital": "Brasília",
+    "area": 8515767,
+    "flag": "https://flagcdn.com/w320/br.png",
     "cities": ["Rio de Janeiro", "São Paulo", "Brasília"],
     "destinations": ["Christ the Redeemer", "Sugarloaf Mountain", "Iguaçu Falls"],
     "population": 214000000,
@@ -50,6 +71,9 @@
   },
   {
     "country": "Canada",
+    "capital": "Ottawa",
+    "area": 9984670,
+    "flag": "https://flagcdn.com/w320/ca.png",
     "cities": ["Toronto", "Vancouver", "Montreal"],
     "destinations": ["Niagara Falls", "Banff National Park", "CN Tower"],
     "population": 38000000,
@@ -57,6 +81,9 @@
   },
   {
     "country": "Australia",
+    "capital": "Canberra",
+    "area": 7692024,
+    "flag": "https://flagcdn.com/w320/au.png",
     "cities": ["Sydney", "Melbourne", "Brisbane"],
     "destinations": ["Sydney Opera House", "Great Barrier Reef", "Uluru"],
     "population": 26000000,
@@ -64,6 +91,9 @@
   },
   {
     "country": "New Zealand",
+    "capital": "Wellington",
+    "area": 268838,
+    "flag": "https://flagcdn.com/w320/nz.png",
     "cities": ["Auckland", "Wellington", "Christchurch"],
     "destinations": ["Milford Sound", "Tongariro National Park", "Hobbiton"],
     "population": 5100000,

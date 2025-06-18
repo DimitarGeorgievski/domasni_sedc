@@ -7,10 +7,10 @@ interface CountriesPageProps{
 }
 
 function CountriesPage({selectedContinent}: CountriesPageProps) { 
+  const filterCountries = selectedContinent ? countriesData.filter(country => country.continent === selectedContinent) : countriesData;
   return (
     <section className="countries">
-      {countriesData
-      .filter(country => country.continent === selectedContinent)
+      {filterCountries
       .map((country) => (
         <CountryCard key={country.country} Country={country} />
       ))}
