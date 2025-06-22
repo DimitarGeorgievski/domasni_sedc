@@ -9,11 +9,11 @@ function CountryCard({ Country }: CountryCardProps) {
   return (
     <article className="card">
       <h1>{Country.country}</h1>
-          <div className="heading-wrapper">
-            <h2>Population</h2>
-          <h2>Cities</h2>
-          <h2>Destinations</h2>
-          </div>
+      <div className="heading-wrapper">
+        <h2>Destinations</h2>
+        <h2>Cities</h2>
+        <h2>Population</h2>
+      </div>
       <div className="wrapper">
         <ul className="cities">
           {Country.cities.map((city, i) => (
@@ -26,7 +26,9 @@ function CountryCard({ Country }: CountryCardProps) {
           ))}
         </ul>
         <ul>
-            <li><p>{Country.population}</p></li>
+          <li>
+            <p>{Country.population}</p>
+          </li>
         </ul>
       </div>
     </article>
