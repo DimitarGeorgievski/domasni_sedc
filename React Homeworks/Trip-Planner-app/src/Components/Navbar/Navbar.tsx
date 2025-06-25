@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
+interface linkDataProps {
+  name: string;
+  path: string;
+}
+
 interface NavbarProps {
-  linkData: string[];
-  onContinentClick: (continent: string) => void
+  linkData: linkDataProps[];
+  onContinentClick: (continent: string) => void;
 }
 
 function Navbar({ linkData, onContinentClick }: NavbarProps) {
@@ -11,9 +17,9 @@ function Navbar({ linkData, onContinentClick }: NavbarProps) {
       <ul>
         {linkData.map((link, i) => (
           <li key={i}>
-            <a href="#" onClick={() => {
-              onContinentClick(link)
-            }}>{link}</a>
+            <Link to={link.path} onClick={() => onContinentClick(link.name)}>
+              {link.name}
+            </Link>
           </li>
         ))}
       </ul>

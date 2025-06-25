@@ -1,9 +1,14 @@
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Header.css"
 
+interface LinkDataProps{
+    name: string;
+    path: string;
+}
+
 interface HeaderProps{
     title: string;
-    continents: string[];
+    continents: LinkDataProps[];
     onContinentClick: (continent: string) => void
 }
 

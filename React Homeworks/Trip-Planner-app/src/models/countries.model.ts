@@ -7,4 +7,5 @@ export interface Country {
   destinations: string[];
   population: number;
   continent: string;
+  landlocked: boolean;
 }

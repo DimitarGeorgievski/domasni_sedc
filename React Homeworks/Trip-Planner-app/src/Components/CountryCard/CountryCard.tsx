@@ -7,7 +7,8 @@ interface CountryCardProps {
 
 function CountryCard({ Country }: CountryCardProps) {
   return (
-    <article className="card">
+    <article className="card" style={{backgroundColor: Country.landlocked ? "lightgreen" : "lightblue"}}>
+      
       <h1>{Country.country}</h1>
       <div className="heading-wrapper">
         <h2>Destinations</h2>

@@ -7,7 +7,8 @@
     "cities": ["Tokyo", "Osaka", "Kyoto"],
     "destinations": ["Mount Fuji", "Tokyo Disneyland", "Fushimi Inari Shrine"],
     "population": 125800000,
-    "continent": "Asia"
+    "continent": "Asia",
+    "landlocked": false
   },
   {
     "country": "China",
@@ -17,7 +18,8 @@
     "cities": ["Beijing", "Shanghai", "Guangzhou"],
     "destinations": ["Great Wall", "Forbidden City", "Terracotta Army"],
     "population": 1402000000,
-    "continent": "Asia"
+    "continent": "Asia",
+    "landlocked": true
   },
   {
     "country": "Nigeria",
@@ -27,7 +29,8 @@
     "cities": ["Lagos", "Abuja", "Kano"],
     "destinations": ["Zuma Rock", "Olumo Rock", "Erin Ijesha Waterfall"],
     "population": 223800000,
-    "continent": "Africa"
+    "continent": "Africa",
+    "landlocked": true
   },
   {
     "country": "Egypt",
@@ -37,7 +40,8 @@
     "cities": ["Cairo", "Alexandria", "Giza"],
     "destinations": ["Pyramids of Giza", "Sphinx", "Nile River"],
     "population": 104000000,
-    "continent": "Africa"
+    "continent": "Africa",
+    "landlocked": false
   },
   {
     "country": "Germany",
@@ -47,7 +51,8 @@
     "cities": ["Berlin", "Munich", "Hamburg"],
     "destinations": ["Brandenburg Gate", "Neuschwanstein Castle", "Cologne Cathedral"],
     "population": 83000000,
-    "continent": "Europe"
+    "continent": "Europe",
+    "landlocked": false
   },
   {
     "country": "France",
@@ -57,7 +62,8 @@
     "cities": ["Paris", "Lyon", "Marseille"],
     "destinations": ["Eiffel Tower", "Louvre Museum", "Mont Saint-Michel"],
     "population": 67000000,
-    "continent": "Europe"
+    "continent": "Europe",
+    "landlocked": true
   },
   {
     "country": "Brazil",
@@ -67,7 +73,8 @@
     "cities": ["Rio de Janeiro", "São Paulo", "Brasília"],
     "destinations": ["Christ the Redeemer", "Sugarloaf Mountain", "Iguaçu Falls"],
     "population": 214000000,
-    "continent": "Americas"
+    "continent": "Americas",
+    "landlocked": false
   },
   {
     "country": "Canada",
@@ -77,7 +84,8 @@
     "cities": ["Toronto", "Vancouver", "Montreal"],
     "destinations": ["Niagara Falls", "Banff National Park", "CN Tower"],
     "population": 38000000,
-    "continent": "Americas"
+    "continent": "Americas",
+    "landlocked": true
   },
   {
     "country": "Australia",
@@ -87,7 +95,8 @@
     "cities": ["Sydney", "Melbourne", "Brisbane"],
     "destinations": ["Sydney Opera House", "Great Barrier Reef", "Uluru"],
     "population": 26000000,
-    "continent": "Oceania"
+    "continent": "Oceania",
+    "landlocked": true
   },
   {
     "country": "New Zealand",
@@ -97,6 +106,7 @@
     "cities": ["Auckland", "Wellington", "Christchurch"],
     "destinations": ["Milford Sound", "Tongariro National Park", "Hobbiton"],
     "population": 5100000,
-    "continent": "Oceania"
+    "continent": "Oceania",
+    "landlocked": false
   }
 ]
