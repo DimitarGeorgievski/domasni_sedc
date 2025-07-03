@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 interface linkDataProps {
@@ -8,18 +8,15 @@ interface linkDataProps {
 
 interface NavbarProps {
   linkData: linkDataProps[];
-  onContinentClick: (continent: string) => void;
 }
 
-function Navbar({ linkData, onContinentClick }: NavbarProps) {
+function Navbar({ linkData }: NavbarProps) {
   return (
     <nav className="Navbar">
       <ul>
         {linkData.map((link, i) => (
           <li key={i}>
-            <Link to={link.path} onClick={() => onContinentClick(link.name)}>
-              {link.name}
-            </Link>
+            <NavLink to={link.path}>{link.name}</NavLink>
           </li>
         ))}
       </ul>

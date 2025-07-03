@@ -1,0 +1,29 @@
+.PlannerItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-radius: 7px;
+  background-color: #eeedf3;
+  gap: 20px;
+  align-items: center;
+  width: 850px;
+  margin: 5px 0;
+}
+.PlannerItem strong {
+  margin-left: 20px;
+}
+.PlannerItem .display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.PlannerItem .days-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}

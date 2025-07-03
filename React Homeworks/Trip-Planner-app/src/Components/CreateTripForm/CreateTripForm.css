@@ -1,0 +1,28 @@
+.form{
+    display: flex;
+    width: 350px;
+    margin: 0 auto;
+    background-color: #e2d1a1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.form-group input{
+    width: 100%;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 4px;
+}
+.form-error {
+  font-size: 18px;
+  padding-top: 20px;
+  color: darkred;
+}

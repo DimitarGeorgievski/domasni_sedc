@@ -1,6 +1,6 @@
 .countries {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
   width: 500px;
   margin: 0 auto;
   gap: 20px;

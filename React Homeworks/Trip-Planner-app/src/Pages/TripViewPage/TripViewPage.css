@@ -1,0 +1,8 @@
+.wrapper-cards{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+.trips-header{
+    text-align: center;
+}

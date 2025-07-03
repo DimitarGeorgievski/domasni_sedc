@@ -1,0 +1,23 @@
+.trip-card {
+  background-color: #e2d1a1;
+  text-align: center;
+  width: 250px;
+  display: flex;
+  justify-content: start;
+  
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-budget {
+  background-color: #43bb47;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+}

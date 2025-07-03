@@ -1,11 +1,16 @@
 export interface Country {
-  country: string;
-  capital: string;
-  area: number;
-  flag: string;
-  cities: string[];
-  destinations: string[];
+  name: {
+    common: string;
+  };
+  capital: string[]; 
+  region: string; 
+  area: number; 
+  flags: {
+    png: string;
+    alt: string;
+  }; 
   population: number;
-  continent: string;
+  inPlanner: boolean
   landlocked: boolean;
+  days: number;
 }
