@@ -1,0 +1,47 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    .form{
+    margin-top: 3rem;
+    width: 450px;
+    height: 400px;
+    
+    h2{
+        text-align: center;
+        font-size: 30px;
+        color: #fff;
+    }
+    background-color: #2a85b3;
+    border: 2px solid #223843;
+    border-radius: 10px;
+    .form-inputs{
+        color: #fff;
+        .details-input{
+            textarea{
+                resize: vertical;
+                font-size: 20px;
+            }
+            padding: 1rem;
+            font-size: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .title-input{
+            input{
+                height: 30px;
+                font-size: 20px;
+            }
+            padding: 1rem;
+            font-size: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .form-controls{
+        padding-top: 1rem;
+        text-align: center;
+    }
+}
+}

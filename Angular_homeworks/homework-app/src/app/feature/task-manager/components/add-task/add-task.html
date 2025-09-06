@@ -1,0 +1,19 @@
+<div class="wrapper">
+<div class="form">
+  <h2>Add New Task</h2>
+  <div class="form-inputs">
+    <div class="title-input">
+      <label for="title">Task Title:</label>
+      <input type="text" name="title" id="title" (keyup)="titleChange($event)" />
+    </div>
+    <div class="details-input">
+      <label for="details">Task Details:</label>
+      <textarea name="details" id="details" (keyup)="detailsChange($event)"></textarea>
+    </div>
+    <div class="form-controls">
+      <app-button [text]="'Add New Task'" (btnClick)="addTask()" />
+    </div>
+  </div>
+</div>
+
+</div>

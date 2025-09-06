@@ -1,0 +1,16 @@
+<header>
+  <h1>Task Manager App</h1>
+  <div class="task-stats">
+    <strong
+      >Pending: <span class="pending-tasks">{{ pendingTasks() }}</span></strong
+    >
+    <strong
+      >Completed: <span class="completed-tasks">{{ completedTasks() }}</span></strong
+    >
+    <app-button
+      (btnClick)="clearTasks()"
+      [style]="{ backgroundColor: '#F15025' }"
+      iconClass="fa-solid fa-trash"
+    />
+  </div>
+</header>

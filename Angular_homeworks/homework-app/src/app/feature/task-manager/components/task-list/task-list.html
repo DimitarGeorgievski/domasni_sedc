@@ -1,0 +1,9 @@
+<ul>
+  @if (tasks().length > 0) { @for (task of tasks(); track task.id) {
+  <li>
+    <app-task-card [task]="task" />
+  </li>
+  } } @else {
+  <h2 class="empty-task">There are no tasks in the list</h2>
+  }
+</ul>

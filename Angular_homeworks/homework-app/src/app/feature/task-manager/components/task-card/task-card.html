@@ -1,0 +1,21 @@
+<div class="task-card">
+  <div class="task-header">
+    <h2>{{ task().title }}</h2>
+  </div>
+  <div class="task-info">
+    <p>{{ task().details }}</p>
+  </div>
+  <div class="task-status">{{ task().status }}</div>
+  <div class="control-btns">
+    <app-button
+      iconClass="fa-solid fa-spinner"
+      [style]="{ backgroundColor: '#E9C46A' }"
+      (btnClick)="onStatusChange(task(), 'PENDING')"
+    />
+    <app-button
+      iconClass="fa-solid fa-check"
+      [style]="{ backgroundColor: '#24c93f' }"
+      (btnClick)="onStatusChange(task(), 'COMPLETED')"
+    />
+  </div>
+</div>

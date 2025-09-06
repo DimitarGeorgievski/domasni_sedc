@@ -1,0 +1,20 @@
+.task-card{
+    border: 2px solid #223843;
+    background-color: #2a85b3;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 20rem;
+    height: 13rem;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        translate: 0 5px;
+    }
+    .task-info{
+        padding: 0 15px;
+    }
+    .task-status{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
