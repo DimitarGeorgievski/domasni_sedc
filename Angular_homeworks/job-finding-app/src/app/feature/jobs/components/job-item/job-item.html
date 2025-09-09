@@ -1,0 +1,21 @@
+<div class="card-wrapper">
+    <div class="job-stats">
+        <img [src]="'https://img.logo.dev/' + job().companyName + '.com' + '?token=pk_BCtsIwrtThKUnRxek3TF-g'" alt="company logo">
+        <div class="company-info">
+            <p class="job-position">{{job().position}}</p> 
+            <p class="job-company">{{job().companyName}}</p> 
+            <p class="job-location">{{job().location}}</p> 
+        </div>
+    </div>
+    <div class="job-info">
+        <p>{{job().startingSalary | currency : "USD" : "symbol" : "1.0"}}</p>
+        <p>{{job().workType}}</p>
+        <p>Expires: {{job().expires | date}}</p>
+    </div>
+    <div class="job-controls">
+        <app-button text="apply" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" (btnClick)="onJobApply()"/>
+        @if (job().isApplied) {
+            <app-button (btnClick)="onJobCancel()" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" iconClass="fa-solid fa-x"/>
+        }
+    </div>
+</div>

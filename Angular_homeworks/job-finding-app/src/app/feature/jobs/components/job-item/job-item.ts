@@ -1,0 +1,23 @@
+import { Component, inject, input } from '@angular/core';
+import { Job } from '../../models/job.model';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Button } from "../../../../shared/components/button/button";
+import { JobService } from '../../../../core/services/job-service.ts';
+
+@Component({
+  selector: 'app-job-item',
+  imports: [CurrencyPipe, DatePipe, Button],
+  templateUrl: './job-item.html',
+  styleUrl: './job-item.scss',
+})
+export class JobItem {
+  job = input.required<Job>();
+
+  jobService = inject(JobService);
+  onJobApply() {
+    this.jobService.applyJob(this.job().id);
+  }
+  onJobCancel(){
+    this.jobService.cancelJob(this.job().id);
+  }
+}

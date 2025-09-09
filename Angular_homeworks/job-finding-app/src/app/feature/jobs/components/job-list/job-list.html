@@ -1,0 +1,13 @@
+<h2>Job list</h2>
+<div class="wrapper">
+  <input type="text" name="" id="">
+  <ul>
+    @if (jobs().length > 0) { @for (job of jobs(); track job.id) {
+    <li [routerLink]="['/jobs', job.id]">
+      <app-job-item [job]="job"/>
+    </li>
+    } } @else {
+    <h2 class="empty-job">There are no jobs in the list</h2>
+    }
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+.button {
+  font-size: 20px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid darkgray;
+  box-shadow: rgba(3, 2, 9, 0.15) 0px 48px 100px 0px;
+
+  &:hover {
+    translate: 0 3px;
+  }
+}

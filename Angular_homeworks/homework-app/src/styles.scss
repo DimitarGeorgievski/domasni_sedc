@@ -1,5 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-html{
-    background-color: #4ECDC4;
-    color: #1c2a31;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+html {
+  font-family: 'Nunito', sans-serif;
+  background-color: #4ecdc4;
+  color: #1c2a31;
 }

@@ -1,0 +1,30 @@
+.card-wrapper{
+    margin: 2rem;
+    width: 400px;
+    height: 230px;
+    background-color: #918EF4;
+    color: #fff;
+    border-radius: 25px;
+    .job-controls{
+        text-align: center;
+    }
+    .job-info{
+        display: flex;
+        font-weight: bold;
+        justify-content: space-around;
+    }
+    .job-stats{
+        display: flex;
+        gap: 3rem;
+        img{
+            width: 80px;
+            border-radius: 80%;
+            height: 80px;
+            padding: 1rem;
+        }
+        .company-info{
+            font-weight: bold;
+            font-size: 17px;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<header>
+  <h1 routerLink="/">Job Finding App</h1>
+  <div class="wrapper">
+    <div class="job-stats">
+      <strong
+      >Jobs: <span class="total-jobs">{{ allJobs() }}</span></strong
+    >
+    <strong
+      >Applied: <span class="applied-jobs">{{ appliedJobs() }}</span></strong
+    >
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+      <li><a routerLink="/jobs" routerLinkActive="active">Jobs</a></li>
+    </ul>
+  </div>
+</header>
