@@ -9,9 +9,36 @@ h2 {
   margin: 0 auto;
   border-radius: 10px;
   background-color: #fff;
+  .filters{
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 2rem;
+    .worktype-filter{
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      padding: 0 10px;
+    }
+    p, label{
+      font-size: 20px;
+    }
+    select{
+      width: 100px;
+      height: 25px;
+      border-radius: 15px;
+      background-color: #98B9F2;
+      text-align: center;
+      border: 1px solid black;
+      font-weight: bold;
+    }
+  }
   ul {
+    margin: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     list-style: none;
     gap: 10px;

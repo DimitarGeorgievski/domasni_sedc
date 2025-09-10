@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { JobService } from '../../core/services/job-service.ts';
+import { JobService } from '../../core/services/job-service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { JobService } from '../../core/services/job-service.ts';
 })
 export class Home {
   jobService = inject(JobService);
-  ngOnInit() { // dali e najpravilno ovde da se povika loadJobs() oti ova e glaven page i trebat za header-ot podatocite od jobs?
+  ngOnInit() {
     this.jobService.loadJobs();
   }
 }

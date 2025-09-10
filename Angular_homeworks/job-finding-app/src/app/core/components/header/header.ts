@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { JobService } from '../../services/job-service.ts';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { JobService } from '../../services/job-service';
 
 @Component({
   selector: 'app-header',

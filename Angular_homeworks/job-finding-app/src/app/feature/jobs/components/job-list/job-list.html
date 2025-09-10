@@ -1,10 +1,23 @@
 <h2>Job list</h2>
 <div class="wrapper">
-  <input type="text" name="" id="">
+  <div class="filters">
+    <p>Sort by: </p>
+    <div class="worktype-filter">
+      <label for="workType">work type</label>
+    <select (change)="sortByWorkType($event)" name="workType" id="workType">
+      <option value="select" disabled selected>Select</option>
+      <option value="remote">Remote</option>
+      <option value="onsite">Onsite</option>
+      <option value="hybrid">Hybrid</option>
+    </select>
+  </div>
+  <app-button (btnClick)="sortBySalary()" text="Salary" [style]="{'padding': '2px 10px','background-color': '#98B9F2', 'border-radius': '15px', 'border': '1px solid black'}"/>
+  <app-button (btnClick)="resetJob()" iconClass="fa-solid fa-remove" [style]="{'background-color': '#da3838', 'color': '#fff', 'padding': '5px 10px', 'border': 'none'}"/>
+  </div>
   <ul>
     @if (jobs().length > 0) { @for (job of jobs(); track job.id) {
     <li [routerLink]="['/jobs', job.id]">
-      <app-job-item [job]="job"/>
+      <app-job-item [job]="job" />
     </li>
     } } @else {
     <h2 class="empty-job">There are no jobs in the list</h2>

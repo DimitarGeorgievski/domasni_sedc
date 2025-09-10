@@ -12,7 +12,7 @@ export interface Job {
   // Show the below in the details expanding element
   location: string;
   country: string;
-  qualifications: string;
+  qualifications: string[];
   description: string;
   isApplied: boolean;
   //Shown in the company details page + companyName and companyLogo
