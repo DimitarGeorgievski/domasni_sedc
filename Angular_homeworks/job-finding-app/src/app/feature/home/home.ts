@@ -9,7 +9,4 @@ import { JobService } from '../../core/services/job-service';
 })
 export class Home {
   jobService = inject(JobService);
-  ngOnInit() {
-    this.jobService.loadJobs();
-  }
 }

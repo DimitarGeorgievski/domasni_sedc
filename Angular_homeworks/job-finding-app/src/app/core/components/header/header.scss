@@ -5,6 +5,10 @@ header {
   align-items: center;
   color: #fff;
   background-color: #306BAC;
+  a{
+    text-decoration: none;
+    color: #fff;
+  }
   .wrapper {
     display: flex;
     gap: 15px;
@@ -20,10 +24,16 @@ header {
     }
     .nav-links{
       display: flex;
+      align-items: center;
       gap: 20px;
       font-weight: bold;
       font-size: 20px;
       list-style: none;
+      .profile{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
       a{
         text-decoration: none;
         color: #fff;

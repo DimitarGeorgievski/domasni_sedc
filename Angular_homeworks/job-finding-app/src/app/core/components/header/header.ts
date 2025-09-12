@@ -10,7 +10,7 @@ import { JobService } from '../../services/job-service';
 })
 export class Header {
   jobService = inject(JobService);
-
+  
   allJobs = this.jobService.jobLength;
   appliedJobs = this.jobService.AppliedJobs;
 }

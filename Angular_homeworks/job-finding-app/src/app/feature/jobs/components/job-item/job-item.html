@@ -13,9 +13,9 @@
         <p>Expires: {{job().expires | date}}</p>
     </div>
     <div class="job-controls">
-        <app-button text="apply" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" (btnClick)="onJobApply()"/>
+        <app-button text="apply" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" (btnClick)="onJobApply($event)"/>
         @if (job().isApplied) {
-            <app-button (btnClick)="onJobCancel()" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" iconClass="fa-solid fa-x"/>
+            <app-button (btnClick)="onJobCancel($event)" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" iconClass="fa-solid fa-x"/>
         }
     </div>
 </div>

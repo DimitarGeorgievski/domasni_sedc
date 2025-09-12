@@ -16,7 +16,7 @@
   </div>
   <ul>
     @if (jobs().length > 0) { @for (job of jobs(); track job.id) {
-    <li [routerLink]="['/jobs', job.id]">
+    <li (click)="onJobClick(job)">
       <app-job-item [job]="job" />
     </li>
     } } @else {

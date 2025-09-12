@@ -6,14 +6,26 @@ import { mockJobs } from '../../feature/jobs/jobs.mock';
   providedIn: 'root',
 })
 export class JobService {
-  jobs = signal<Job[]>([]);
+  private jobs = signal<Job[]>([]);
+  private isLoaded = false;
   workFilteredJobs = signal<Job[]>(mockJobs);
+  selectedJob = signal<Job>(null)
   sortDirection: 'asc' | 'desc' = 'desc';
+  constructor(){
+    this.getAllJobs()
+  }
   loadJobs() {
     this.jobs.set(mockJobs);
+    this.isLoaded = true;
   }
   jobLength = computed(() => this.jobs().length);
   AppliedJobs = computed(() => this.jobs().filter((job) => job.isApplied).length);
+  getAllJobs(){
+    if(!this.isLoaded){
+      this.loadJobs()
+    }
+    return this.jobs;
+  }
   applyJob(jobId: number) {
     this.jobs.update((prev) =>
       prev.map((job) => {
@@ -49,5 +61,8 @@ export class JobService {
     });
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     this.jobs.set(filteredJobs);
+  }
+  selectJob(job: Job) {
+    this.selectedJob.set(job);
   }
 }

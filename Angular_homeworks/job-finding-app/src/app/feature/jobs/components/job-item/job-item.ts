@@ -15,10 +15,12 @@ export class JobItem {
   job = input.required<Job>();
 
   jobService = inject(JobService);
-  onJobApply() {
+  onJobApply(e: any) {
+    event?.stopPropagation?.();
     this.jobService.applyJob(this.job().id);
   }
-  onJobCancel(){
+  onJobCancel(e: any){
+    event?.stopPropagation?.();
     this.jobService.cancelJob(this.job().id);
   }
 }
