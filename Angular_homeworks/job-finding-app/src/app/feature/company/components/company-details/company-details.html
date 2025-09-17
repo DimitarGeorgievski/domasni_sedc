@@ -1,0 +1,104 @@
+<h1>Company's Details</h1>
+<div class="wrapper">
+  <div class="company-info">
+    <img
+      [src]="
+        'https://img.logo.dev/' +
+        selectedJob().companyName +
+        '.com' +
+        '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+      "
+      alt="company logo"
+    />
+    <div class="company-details">
+      <h2>{{ selectedJob().companyName }}</h2>
+      <p>
+        {{ selectedJob().companyIndustry }}
+        <span>{{ selectedJob().location }}</span>
+        <span>{{ selectedJob().companyFollowers | number }} Followers</span>
+        <span>{{ selectedJob().companyEmployees | number }} Employees</span>
+      </p>
+      <a [href]="selectedJob().companyWebsite" target="_blank">{{
+        selectedJob().companyWebsite
+      }}</a>
+    </div>
+  </div>
+  <div class="btn-controls">
+    <button (click)="setActiveTab('home')" [ngClass]="{ active: activeTab === 'home' }">
+      Home
+    </button>
+    <button (click)="setActiveTab('about')" [ngClass]="{ active: activeTab === 'about' }">
+      About
+    </button>
+    <button (click)="setActiveTab('jobs')" [ngClass]="{ active: activeTab === 'jobs' }">
+      Jobs
+    </button>
+  </div>
+</div>
+<span class="divider"></span>
+<div class="container">
+  @if (activeTab === 'home') {
+  <h2>Overview</h2>
+  <div class="company-description">
+    @if (!showAllDescriptions) {
+    <p>{{ selectedJob().companyDescription[0] }}</p>
+    } @else { @for (desc of selectedJob().companyDescription; track $index) {
+    <p>{{ desc }}</p>
+    } }
+    <button (click)="showAllDescriptions = !showAllDescriptions">
+      ... {{ showAllDescriptions ? 'show less' : 'show more' }}
+    </button>
+    <div class="company-contact">
+      <div class="company-card">
+        <h3>Contact Info</h3>
+        <a [href]="selectedJob().companyWebsite" target="_blank">{{
+          selectedJob().companyWebsite
+        }}</a>
+      </div>
+      <div class="company-card">
+        <h3>Company Location</h3>
+        <p>{{ selectedJob().companyAddress }}</p>
+      </div>
+    </div>
+  </div>
+  } @if (activeTab === 'about') {
+  <h2>Overview</h2>
+  <div class="company-details">
+    @for (desc of selectedJob().companyDescription; track $index) {
+    <p>{{ desc }}</p>
+    }
+  </div>
+  <div class="company-informations">
+    <h2>Website</h2>
+    <a [href]="selectedJob().companyWebsite" class="company-website">{{ selectedJob().companyWebsite }}</a>
+  </div >
+  <div class="company-informations">
+    <h2>Industry</h2>
+    <p>{{ selectedJob().companyIndustry }}</p>
+  </div>
+  <div class="company-informations">
+    <h2>Employees</h2>
+    <p>{{ selectedJob().companyEmployees | number }} Employees</p>
+  </div>
+  <div class="company-informations">
+    <h2>Headquarters</h2>
+    <p>{{ selectedJob().location }}, {{ selectedJob().country }}</p>
+  </div>
+  } @if (activeTab === 'jobs') {
+    <div class="header-jobs">
+      <h2>Recently posted jobs</h2>
+      @if(filteredJobsByCompanyName().length > 3){
+        <p>{{currentPage()}} / {{pages()}}</p>
+        <div class="btn-controls">
+          <app-button (btnClick)="previousPage()" text="< Previous" [disabled]="currentPage() === 1"/>
+          <app-button (btnClick)="nextPage()" text="Next >" [disabled]="currentPage() === pages()"/>
+        </div>
+      }
+    </div>
+    <div class="card-wrapper">
+      @for (job of filteredJobsByCompanyName(); track $index) {
+        <app-company-details-card [job]="job" />
+      }
+    </div>
+  }
+</div>

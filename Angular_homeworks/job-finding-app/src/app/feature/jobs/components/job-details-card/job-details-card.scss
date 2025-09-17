@@ -1,0 +1,56 @@
+.card-wrapper:hover h2 {
+  text-decoration: underline;
+}
+.card-wrapper.border {
+  border-left: 2px solid black;
+}
+.card-wrapper.bg-color {
+  background-color: rgb(140 140 140/0.1);
+}
+.card-wrapper {
+  cursor: pointer;
+  height: 100%;
+  padding-top: 10px;
+  position: relative;
+  hr{
+    position: absolute;
+    margin: 0;
+    right: 0;
+    align-self: end;
+    width: calc(100% - 90px);
+    color: rgb(140 140 140);
+    opacity: 20%;
+  }
+  .header {
+    img {
+      padding-left: 10px;
+      width: 70px;
+      height: 70px;
+    }
+    h2 {
+      color: #0a66c2;
+      font-size: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    p:last-child {
+      color: gray;
+    }
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    display: flex;
+    gap: 10px;
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      div:last-child {
+        p {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}

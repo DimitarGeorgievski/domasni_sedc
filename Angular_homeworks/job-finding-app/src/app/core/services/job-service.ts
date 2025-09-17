@@ -9,10 +9,10 @@ export class JobService {
   private jobs = signal<Job[]>([]);
   private isLoaded = false;
   workFilteredJobs = signal<Job[]>(mockJobs);
-  selectedJob = signal<Job>(null)
+  selectedJobId = signal<number>(null);
   sortDirection: 'asc' | 'desc' = 'desc';
-  constructor(){
-    this.getAllJobs()
+  constructor() {
+    this.getAllJobs();
   }
   loadJobs() {
     this.jobs.set(mockJobs);
@@ -20,9 +20,10 @@ export class JobService {
   }
   jobLength = computed(() => this.jobs().length);
   AppliedJobs = computed(() => this.jobs().filter((job) => job.isApplied).length);
-  getAllJobs(){
-    if(!this.isLoaded){
-      this.loadJobs()
+  selectedJob = computed(() => this.jobs().find((j) => j.id === this.selectedJobId()));
+  getAllJobs() {
+    if (!this.isLoaded) {
+      this.loadJobs();
     }
     return this.jobs;
   }
@@ -63,6 +64,22 @@ export class JobService {
     this.jobs.set(filteredJobs);
   }
   selectJob(job: Job) {
-    this.selectedJob.set(job);
+    this.selectedJobId.set(job.id);
+  }
+  filterJobsBy(filter: string, filterBy: string): Job[] {
+    let jobs = this.getAllJobs()();
+    let result: Job[] = []
+    filter = filter.toLowerCase();
+    if(!filter) return jobs;
+    if(filterBy === 'companyName'){
+      result = jobs.filter((job: Job) => job.companyName.toLowerCase().includes(filter));
+    }
+    if(filterBy === 'workType'){
+      result = jobs.filter((job: Job) => job.workType.toLowerCase().includes(filter))
+    }
+    if(filterBy === 'location'){
+      result = jobs.filter((job: Job) => job.location.toLowerCase().includes(filter))
+    }
+    return result
   }
 }

@@ -1,0 +1,21 @@
+<div class="card-wrapper" [ngClass]="{'border': selectedJob() === job(), 'bg-color' : selectedJob() === job()}" (click)="onJobClick(job())">
+  <div class="header">
+    <img
+      [src]="
+        'https://img.logo.dev/' + job().companyName + '.com' + '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+      "
+      alt="company logo"
+    />
+    <div class="header-text">
+      <div>
+        <h2>{{ job().position }}</h2>
+        <p>{{ job().companyName }}</p>
+        <p>{{ job().location }}, {{ job().country }} ({{ job().workType }})</p>
+      </div>
+      <div>
+        <p>{{job().createdAt | timeAgo}}</p>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

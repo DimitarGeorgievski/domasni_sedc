@@ -1,4 +1,4 @@
-<button class="button" (click)="onBtnClick()" [ngStyle]="style()">
+<button class="button" (click)="onBtnClick()" [disabled]="disabled()" [ngStyle]="style()">
   @if (text()) {
     {{ text() }}
   }

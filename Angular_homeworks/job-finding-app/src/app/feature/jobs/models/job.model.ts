@@ -19,4 +19,10 @@ export interface Job {
   companyAddress: string;
   companyIndustry: string;
   companyWebsite: string;
+  companyFollowers: number;
+  companyEmployees: number;
+  companyDescription: string[];
+  techStack: string[];
+  prefferedSkills: string[];
+  createdAt: string;
 }

@@ -11,9 +11,12 @@ export class Button {
   text = input<string>('');
   iconClass = input<string>('');
   style = input<{ [key: string]: string }>({});
+  disabled = input<boolean>(false);
   btnClick = output();
 
   onBtnClick() {
-    this.btnClick.emit();
+    if(!this.disabled()){
+      this.btnClick.emit();
+    }
   }
 }

@@ -1,0 +1,157 @@
+h1 {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 38px;
+}
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  .btn-controls {
+    padding-left: 0.5rem;
+    button.active {
+      color: #01754f;
+      border-bottom: 2px solid #01754f;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 15px;
+      color: gray;
+    }
+  }
+  .company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 2.4rem 0.75rem 2.4rem;
+    border-bottom: 1px solid rgb(140 140 140/0.2);
+    img {
+      width: 90px;
+      height: 90px;
+    }
+    .company-details {
+      h2 {
+        margin: 0;
+        padding-bottom: 5px;
+      }
+      p {
+        margin: 0;
+        padding-bottom: 5px;
+        display: flex;
+        gap: 5px;
+        color: gray;
+        span::before {
+          margin: 0 5px;
+          content: '\00B7\0020\0020\0020';
+        }
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a {
+        text-decoration: none;
+        color: #0a66c2;
+      }
+    }
+  }
+}
+.divider {
+  display: block;
+  height: 10px;
+  background-color: #6f9ceb;
+}
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2.4rem;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  .header-jobs{
+    display: flex;
+    justify-content: space-between;
+  }
+  .card-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .company-informations {
+    .company-website:hover {
+      text-decoration: underline;
+    }
+    .company-website {
+      cursor: pointer;
+      text-decoration: none;
+      color: #0a66c2;
+    }
+    h2 {
+      margin: 0;
+    }
+    p {
+      color: gray;
+      margin: 0;
+    }
+  }
+  .company-details {
+    color: gray;
+  }
+  .company-description {
+    display: flex;
+    flex-direction: column;
+    button {
+      border: none;
+      background-color: transparent;
+      color: gray;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      align-self: flex-end;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    button:hover {
+      text-decoration: underline #0a66c2;
+    }
+  }
+  h2 {
+    margin: 0;
+  }
+  .company-contact {
+    display: flex;
+    gap: 10px;
+    .company-card {
+      border-radius: 0.8rem;
+      font-size: 14px;
+      box-shadow: 0px 0px 0px 1px rgb(140 140 140/0.2);
+      padding: 14px;
+      width: 100%;
+      a {
+        text-decoration: none;
+        color: #0a66c2;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h3 {
+        margin-top: 0;
+      }
+      p {
+        margin: 0;
+      }
+    }
+    .company-card:first-child {
+      margin-right: 16px;
+    }
+  }
+}

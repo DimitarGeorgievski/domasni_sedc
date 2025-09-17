@@ -1,1 +1,172 @@
-<p>job-details works!</p>
+<div class="wrapper">
+  <div class="company-jobs">
+    <h2>Other jobs at {{ selectedJob().companyName }}</h2>
+    <div class="card-wrapper">
+        @for (item of filteredJobsByCompany(); track $index) {
+          <app-job-details-card [job]="item" />
+        }
+    </div>
+    <span class="divider"></span>
+    <div class="others-jobs">
+      <h2>Top job picks for you</h2>
+      <p>Based on your profile, preferences, and activity like applies, searches, and saves</p>
+      <div class="card-wrapper">
+        @for (item of filteredJobsByWorkType(); track $index) {
+          <app-job-details-card [job]="item"/>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="job-details-wrapper">
+    <h2 class="heading">Job Details</h2>
+    <div class="company-details">
+      <div class="company-logo">
+        <img
+          [routerLink]="['/company', selectedJob().companyName]"
+          [src]="
+            'https://img.logo.dev/' +
+            selectedJob().companyName +
+            '.com' +
+            '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+          "
+          alt="company logo"
+        />
+        <a [routerLink]="['/company', selectedJob().companyName]">{{
+          selectedJob().companyName
+        }}</a>
+      </div>
+      <h2>{{ selectedJob().position }} - {{ selectedJob().companyName }}</h2>
+      <p class="job-info">
+        {{ selectedJob().location }}, {{ selectedJob().country }} · {{ selectedJob().workType }} ·
+        {{ selectedJob().createdAt | timeAgo }} · 42 people already clicked
+      </p>
+      <p class="job-info">Expires: {{ selectedJob().expires | date }}</p>
+      <div class="job-controls">
+        <app-button
+          text="apply"
+          [style]="{ 'background-color': '#0A66C2', color: 'white', border: 'none' }"
+          (btnClick)="onJobApply($event)"
+        />
+        @if (selectedJob().isApplied) {
+        <app-button
+          (btnClick)="onJobCancel($event)"
+          [style]="{ 'background-color': '#0A66C2', color: 'white', border: 'none' }"
+          iconClass="fa-solid fa-x"
+        />
+        }
+      </div>
+    </div>
+    <div class="job-description">
+      <section>
+        <h3>🌍 About the Job</h3>
+        <p>
+          At <strong>{{ selectedJob().companyName }}</strong
+          >, we are on a mission to redefine the future of
+          <strong>{{ selectedJob().companyIndustry }}</strong
+          >. We believe in building solutions that empower businesses and individuals worldwide. 🚀
+        </p>
+        <p>
+          As a <strong>{{ selectedJob().position }}</strong
+          >, you will {{ selectedJob().description }}
+        </p>
+      </section>
+      <section>
+        <h3>🎯 Responsibilities</h3>
+        <ul>
+          <li>Design, develop, and maintain scalable systems.</li>
+          <li>Collaborate with cross-functional teams to deliver high-quality solutions.</li>
+          <li>Ensure performance, reliability, and security of applications.</li>
+          <li>Write clean, maintainable, and testable code.</li>
+          <li>Participate in code reviews and mentor junior engineers.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>🧠 Qualifications</h3>
+        <p>We are looking for candidates with the following skills:</p>
+        <ul>
+          @for (q of selectedJob().qualifications; track $index) {
+          <li>{{ q }}</li>
+          }
+        </ul>
+      </section>
+      <section>
+        <h3>💡 Preferred Skills</h3>
+        <ul>
+          @for (ps of selectedJob().prefferedSkills; track $index) {
+          <li>{{ ps }}</li>
+          }
+        </ul>
+      </section>
+      <section>
+        <h3>⚙️ Tech Stack</h3>
+        <p>Our main technologies include:</p>
+        <ul>
+          @for (ts of selectedJob().techStack; track $index) {
+          <li>{{ ts }}</li>
+          }
+        </ul>
+      </section>
+      <section>
+        <h3>⚡️ Fast Facts about {{ selectedJob().companyName }}</h3>
+        <ul>
+          <li>📦 Operating in over 15 countries.</li>
+          <li>👥 1000+ employees worldwide.</li>
+          <li>💰 Competitive salaries and performance bonuses.</li>
+          <li>🌈 Inclusive and diverse workplace culture.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>🎁 Benefits</h3>
+        <ul>
+          <li>🌴 Unlimited PTO and flexible work hours.</li>
+          <li>🌍 Remote-friendly culture.</li>
+          <li>🧠 Learning & development support.</li>
+          <li>💬 Multicultural, international team environment.</li>
+          <li>🚀 High-impact projects with global reach.</li>
+        </ul>
+      </section>
+    </div>
+    <div class="company-informations">
+      <h2>About the Company</h2>
+      <div class="company-header">
+        <img
+          [routerLink]="['/company', selectedJob().companyName]"
+          [src]="
+            'https://img.logo.dev/' +
+            selectedJob().companyName +
+            '.com' +
+            '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+          "
+          alt="company logo"
+        />
+        <div class="company-stats">
+          <a href="" [routerLink]="['/company', selectedJob().companyName]">{{
+            selectedJob().companyName
+          }}</a>
+          <p>{{ selectedJob().companyFollowers | number }} Followers</p>
+        </div>
+      </div>
+      <p class="company-info">
+        {{ selectedJob().companyIndustry }}
+        <span class="company-employees"
+          >{{ selectedJob().companyEmployees | number }} Employees</span
+        >
+      </p>
+      <div class="company-description">
+        @if (!showAllDescriptions) {
+        <p>{{ selectedJob().companyDescription[0] }}</p>
+        } @else { @for (desc of selectedJob().companyDescription; track $index) {
+        <p>{{ selectedJob().companyDescription }}</p>
+        } }
+        <button (click)="showAllDescriptions = !showAllDescriptions">
+          ... {{ showAllDescriptions ? 'show less' : 'show more' }}
+        </button>
+      </div>
+      <div class="btn-wrapper">
+        <button [routerLink]="['/company', selectedJob().companyName]" class="btn-control">
+          Show more
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

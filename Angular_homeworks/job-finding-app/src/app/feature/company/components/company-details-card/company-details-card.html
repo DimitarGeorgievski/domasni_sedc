@@ -1,0 +1,19 @@
+<div [routerLink]="['/jobs', job().id]" (click)="onJobClick(job())" class="wrapper">
+    <div class="info">
+        <img
+          [src]="
+            'https://img.logo.dev/' +
+            job().companyName +
+            '.com' +
+            '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+          "
+          alt="company logo"
+        />
+        <div class="company-info">
+            <h2>{{job().position}}</h2>
+            <p class="company-informations">{{job().companyName}}</p>
+            <p class="company-informations">{{job().location}},{{job().country}}</p>
+        </div>
+        <p class="job-time">{{job().createdAt | timeAgo}}</p>
+    </div>
+</div>
