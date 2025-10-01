@@ -1,0 +1,124 @@
+.header {
+  text-align: center;
+  font-size: 50px;
+  color: #fff;
+}
+.container:last-child {
+  margin-bottom: 1rem;
+}
+.container {
+  width: 55%;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  .wrapper-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    .container-header {
+      margin: 0;
+    }
+  }
+  .card-job-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-right: 4rem;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    .job-card {
+      display: flex;
+      align-items: center;
+      .info {
+        display: flex;
+        margin-top: 15px;
+        flex-direction: column;
+      }
+      gap: 10px;
+      cursor: pointer;
+      h2 {
+        font-size: 16px;
+        margin: 0;
+      }
+      p {
+        font-size: 14px;
+        margin: 0;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+  ol {
+    li {
+      padding-left: 5px;
+    }
+    hr {
+      margin-top: 5px;
+      margin-left: 5px;
+      right: 0;
+      align-self: end;
+      width: calc(100% - 50px);
+      color: rgb(56, 49, 49);
+      opacity: 20%;
+    }
+  }
+
+  img {
+    margin-top: 15px;
+  }
+  .profile-name {
+    margin: 0;
+  }
+  .profile-job {
+    margin: 0;
+  }
+  .profile-country {
+    color: gray;
+  }
+  .profile-connections {
+    margin-top: 0;
+    color: #0a66c2;
+  }
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+    .education-card {
+      width: 50%;
+      border-top: black;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      h2 {
+        font-size: 16px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    .container-header {
+      padding: 0.75rem 0 0.25rem 0.75rem;
+    }
+    h2 {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+.divider {
+  display: block;
+  height: 10px;
+  background-color: #6f9ceb;
+}

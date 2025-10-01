@@ -1,0 +1,224 @@
+@let jobDataBasicCtrls = jobForm.controls.jobData.controls;
+@let companyDataBasicCtrls = jobForm.controls.companyData.controls;
+
+<h2>Edit Job</h2>
+<form [formGroup]="jobForm" (ngSubmit)="onFormSubmit()">
+  <div class="job-data" formGroupName="jobData">
+    <h3>Job Data</h3>
+    <div class="form-group">
+      <label for="job-position">Position</label>
+      <input
+        formControlName="position"
+        type="text"
+        class="form-control"
+        id="job-position"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.position.touched) {
+      @if (jobDataBasicCtrls.position.errors?.['required']) {
+        <p class="help-block">Position is required</p>
+      }
+      @if(jobDataBasicCtrls.position.errors?.['maxlength']){
+        <p class="help-block">Position must be under 40 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-expires">Expires</label>
+      <input
+        formControlName="expires"
+        type="date"
+        class="form-control"
+        id="job-expires"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.expires.touched) {
+      @if (jobDataBasicCtrls.expires.errors?.['required']) {
+        <p class="help-block">Expires is required</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-salary">starting Salary</label>
+      <input
+        formControlName="startingSalary"
+        type="number"
+        class="form-control"
+        id="job-salary"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.startingSalary.touched) {
+      @if (jobDataBasicCtrls.startingSalary.errors?.['required']) {
+        <p class="help-block">Starting salary is required</p>
+      }
+      @if (jobDataBasicCtrls.startingSalary.errors?.['min']) {
+        <p class="help-block">Starting Salary must be higher than 0</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-worktype">WorkType</label>
+      <select formControlName="workType" type="text" class="form-control" id="job-worktype">
+        @for (wt of workTypes; track $index) {
+        <option [value]="wt">{{ wt }}</option>
+        }
+      </select>
+    </div>
+    @if (jobDataBasicCtrls.workType.touched) {
+      @if (jobDataBasicCtrls.workType.errors?.['required']) {
+        <p class="help-block">workType is required</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-location">Location</label>
+      <input
+        formControlName="location"
+        type="text"
+        class="form-control"
+        id="job-location"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.location.touched) {
+      @if (jobDataBasicCtrls.location.errors?.['required']) {
+        <p class="help-block">Location is required</p>
+      }
+      @if(jobDataBasicCtrls.location.errors?.['maxlength']){
+        <p class="help-block">Location must be under 30 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-country">Country</label>
+      <input
+        formControlName="country"
+        type="text"
+        class="form-control"
+        id="job-country"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.country.touched) {
+      @if (jobDataBasicCtrls.country.errors?.['required']) {
+        <p class="help-block">Country is required</p>
+      }
+      @if(jobDataBasicCtrls.country.errors?.['maxlength']){
+        <p class="help-block">Country must be under 20 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="job-description">Description</label>
+      <input
+        formControlName="description"
+        type="text"
+        class="form-control"
+        id="job-description"
+        autocomplete="off"
+      />
+    </div>
+    @if (jobDataBasicCtrls.position.touched) {
+      @if (jobDataBasicCtrls.description.errors?.['required']) {
+        <p class="help-block">description is required</p>
+      }
+      @if(jobDataBasicCtrls.description.errors?.['maxlength']){
+        <p class="help-block">description must be under 100 characters</p>
+      }
+      @if(jobDataBasicCtrls.description.errors?.['minlength']){
+        <p class="help-block">description must be higher than 0 characters</p>
+      }
+    }
+  </div>
+  <div class="company-data" formGroupName="companyData">
+    <h3>Company Data</h3>
+    <div class="form-group">
+      <label for="company-name">Company Name</label>
+      <input
+        formControlName="companyName"
+        type="text"
+        class="form-control"
+        id="company-name"
+        autocomplete="off"
+      />
+    </div>
+    @if (companyDataBasicCtrls.companyName.touched) {
+      @if (companyDataBasicCtrls.companyName.errors?.['required']) {
+        <p class="help-block">Company Address is required</p>
+      }
+      @if(companyDataBasicCtrls.companyName.errors?.['maxlength']){
+        <p class="help-block">Company Name must be under 50 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="company-address">Company Address</label>
+      <input
+        formControlName="companyAddress"
+        type="text"
+        class="form-control"
+        id="company-address"
+        autocomplete="off"
+      />
+    </div>
+    @if (companyDataBasicCtrls.companyAddress.touched) {
+      @if (companyDataBasicCtrls.companyAddress.errors?.['required']) {
+        <p class="help-block">Company Address is required</p>
+      }
+      @if(companyDataBasicCtrls.companyAddress.errors?.['maxlength']){
+        <p class="help-block">Company Address must be under 60 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="company-industry">Company Industry</label>
+      <input
+        formControlName="companyIndustry"
+        type="text"
+        class="form-control"
+        id="company-industry"
+        autocomplete="off"
+      />
+    </div>
+    @if (companyDataBasicCtrls.companyIndustry.touched) {
+      @if (companyDataBasicCtrls.companyIndustry.errors?.['required']) {
+        <p class="help-block">Company Address is required</p>
+      }
+      @if(companyDataBasicCtrls.companyIndustry.errors?.['maxlength']){
+        <p class="help-block">Company Industry must be under 30 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="company-followers">Company Followers</label>
+      <input
+        formControlName="companyFollowers"
+        type="number"
+        class="form-control"
+        id="company-followers"
+        autocomplete="off"
+      />
+    </div>
+    @if (companyDataBasicCtrls.companyFollowers.touched) {
+      @if (companyDataBasicCtrls.companyFollowers.errors?.['required']) {
+        <p class="help-block">Company Followers is required</p>
+      }
+      @if(companyDataBasicCtrls.companyFollowers.errors?.['min']){
+        <p class="help-block">Company Followers value must be higher than 0</p>
+      }
+    }
+    <div class="form-group">
+      <label for="company-employees">Company Employees</label>
+      <input
+        formControlName="companyEmployees"
+        type="number"
+        class="form-control"
+        id="company-employees"
+        autocomplete="off"
+      />
+    </div>
+    @if (companyDataBasicCtrls.companyEmployees.touched) {
+      @if (companyDataBasicCtrls.companyEmployees.errors?.['required']) {
+        <p class="help-block">Company Employees is required</p>
+      }
+      @if(companyDataBasicCtrls.companyEmployees.errors?.['min']){
+        <p class="help-block">Company Employees value must be higher than 0</p>
+      }
+    }
+      <Button type="submit">Edit Job</Button>
+  </div>
+</form>

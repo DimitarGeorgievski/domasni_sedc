@@ -1,0 +1,83 @@
+<h2 class="header">Profile</h2>
+<div class="container">
+  <img
+    width="80"
+    alt="Default pfp"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/256px-Default_pfp.svg.png?20220226140232"
+  />
+  <h2 class="profile-name">Dimitar Georgievski</h2>
+  <p class="profile-job">Full Stack Developer</p>
+  <p class="profile-country">North Macedonia</p>
+  <p class="profile-connections">100 connections</p>
+</div>
+<span class="divider"></span>
+<div class="container">
+  <h2 class="container-header">Education</h2>
+  <div class="card-wrapper">
+    <div class="education-card">
+      <img
+        width="48"
+        height="48"
+        src="https://media.licdn.com/dms/image/v2/D4E0BAQFpoSNjNhoRaw/company-logo_100_100/B4EZcWqVvmHQAQ-/0/1748431887709/qinshift_academy_logo?e=1761177600&v=beta&t=pz1JOoF66niFfJ2O1al4b69_GbnmaFkdSzcNKciNa5Q"
+        alt="Avenga Academy Logo"
+      />
+      <div>
+        <h2>Avenga Academy</h2>
+        <p>Oct 2024 - Oct 2025</p>
+        <p>Junior Web Developer</p>
+      </div>
+    </div>
+    <div class="education-card">
+      <img
+        width="48"
+        src="https://media.licdn.com/dms/image/v2/C4E0BAQF8_2613sHbfw/company-logo_100_100/company-logo_100_100/0/1631351804965?e=1761177600&v=beta&t=olMgICIYhaVD_XeaUuX3kFRiLKfQljuZbdUUdVb2B6g"
+        alt="Sourcico Logo"
+      />
+      <div>
+        <h2>Sourcico</h2>
+        <p>Oct 2024 - Oct 2025</p>
+        <p>Junior Web Intern</p>
+      </div>
+    </div>
+  </div>
+</div>
+<span class="divider"></span>
+<div class="container">
+  <h2 class="container-header">Skills</h2>
+  <ol>
+    <li>React</li>
+    <hr />
+    <li>Angular</li>
+    <hr />
+    <li>Nest.js</li>
+  </ol>
+</div>
+<span class="divider"></span>
+<div class="container">
+  <div class="wrapper-header">
+    <h2 class="container-header">Applied Jobs</h2>
+    @if(filteredJobsByApplied().length > 3){
+    <p>{{ currentPage() }} / {{ pages() }}</p>
+    <div class="btn-controls">
+      <app-button (btnClick)="previousPage()" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" text="< Previous" [disabled]="currentPage() === 1" />
+      <app-button (btnClick)="nextPage()" [style]="{ 'background-color': '#141B41', 'color': 'white', 'border': 'none' }" text="Next >" [disabled]="currentPage() === pages()" />
+    </div>
+    }
+  </div>
+  <div class="card-job-wrapper">
+    @for (job of currentJobs(); track $index) {
+    <div class="job-card" (click)="onJobClick(job)">
+      <img
+        [src]="
+          'https://img.logo.dev/' + job.companyName + '.com' + '?token=pk_BCtsIwrtThKUnRxek3TF-g'
+        "
+        alt="company logo"
+      />
+      <div class="info">
+        <h2>{{ job.companyName }}</h2>
+        <p>{{ job.companyFollowers | number }} Followers</p>
+      </div>
+    </div>
+    }
+  </div>
+</div>

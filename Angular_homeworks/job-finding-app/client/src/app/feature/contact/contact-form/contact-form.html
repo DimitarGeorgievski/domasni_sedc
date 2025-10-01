@@ -1,0 +1,102 @@
+@let contactGroupBasicCtrls = contactGroup.controls.contactGroup.controls;
+<h2>Contact Page</h2>
+<form [formGroup]="contactGroup" (ngSubmit)="onFormSubmit()">
+  <div class="contact-data" formGroupName="contactGroup">
+    <h3>Ask Questions</h3>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        formControlName="firstName"
+        class="form-control"
+        autocomplete="none"
+        id="firstName"
+        name="firstName"
+      />
+    </div>
+    @if (contactGroupBasicCtrls.firstName.touched) {
+      @if (contactGroupBasicCtrls.firstName.errors?.['required']) {
+        <p class="help-block">First Name is required</p>
+      }
+      @if(contactGroupBasicCtrls.firstName.errors?.['maxlength']){
+        <p class="help-block">First Name must be under 30 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        formControlName="lastName"
+        class="form-control"
+        autocomplete="none"
+        id="lastName"
+        name="lastName"
+      />
+    </div>
+    @if (contactGroupBasicCtrls.lastName.touched) {
+      @if (contactGroupBasicCtrls.lastName.errors?.['required']) {
+        <p class="help-block">Last Name is required</p>
+      }
+      @if(contactGroupBasicCtrls.lastName.errors?.['maxlength']){
+        <p class="help-block">Last Name must be under 40 characters</p>
+      }
+    }
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        autocomplete="none"
+        id="email"
+        name="email"
+      />
+    </div>
+    @if (contactGroupBasicCtrls.email.touched) {
+      @if (contactGroupBasicCtrls.email.errors?.['required']) {
+        <p class="help-block">Email is required</p>
+      }
+      @if(contactGroupBasicCtrls.email.errors?.['email']){
+        <p class="help-block">You should enter an correct email</p>
+      }
+    }
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        type="number"
+        formControlName="phoneNumber"
+        class="form-control"
+        autocomplete="none"
+        id="phoneNumber"
+        name="phoneNumber"
+      />
+    </div>
+  </div>
+  @if (contactGroupBasicCtrls.phoneNumber.touched) {
+      @if (contactGroupBasicCtrls.phoneNumber.errors?.['required']) {
+        <p class="help-block">Phone Number is required</p>
+      }
+    }
+  <div class="outer-form-group" formGroupName="contactGroup">
+    <label for="comment">Comment</label>
+    <textarea
+      id="comment"
+      formControlName="comment"
+      class="form-control"
+      autocomplete="none"
+      name="comment"
+    ></textarea>
+  </div>
+  @if (contactGroupBasicCtrls.comment.touched) {
+      @if (contactGroupBasicCtrls.comment.errors?.['required']) {
+        <p class="help-block">Comment is required</p>
+      }
+      @if(contactGroupBasicCtrls.comment.errors?.['minlength']){
+        <p class="help-block">Comment must be higher than 0 characters</p>
+      }
+      @if(contactGroupBasicCtrls.comment.errors?.['maxlength']){
+        <p class="help-block">Comment must be under 500 characters</p>
+      }
+    }
+  <button type="submit">Send Email</button>
+</form>
