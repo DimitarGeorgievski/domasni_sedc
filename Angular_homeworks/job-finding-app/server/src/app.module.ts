@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { EducationModule } from './education/education.module';
+import { CompaniesModule } from './companies/companies.module';
 import { UsersModule } from './users/users.module';
 import { JobsModule } from './jobs/jobs.module';
 
@@ -17,7 +19,6 @@ import { JobsModule } from './jobs/jobs.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          // Type must be an explicit and hardcoded string
           type: 'postgres',
           host: configService.get('DB_HOST'),
           port: configService.get('DB_PORT'),
@@ -32,6 +33,8 @@ import { JobsModule } from './jobs/jobs.module';
     AuthModule,
     UsersModule,
     JobsModule,
+    EducationModule,
+    CompaniesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

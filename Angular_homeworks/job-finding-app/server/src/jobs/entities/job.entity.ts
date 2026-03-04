@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Company } from 'src/companies/entities/company.entity';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum JobWorkType {
   REMOTE = 'remote',
@@ -9,65 +18,39 @@ export enum JobWorkType {
 @Entity()
 export class Job {
   @PrimaryGeneratedColumn()
-  id: number;
-
+  id: string;
   @Column()
   expires: string;
-
   @Column()
   position: string;
-
   @Column()
   startingSalary: number;
-
   @Column({ enum: JobWorkType })
   workType: JobWorkType;
-
   @Column()
   location: string;
-
   @Column()
   country: string;
-
-  @Column()
+  @Column('text', { array: true })
   qualifications: string[];
-
   @Column()
   description: string;
-
-  @Column()
-  companyName: string;
-
-  @Column()
-  companyLogo: string;
-
-  @Column()
-  companyAddress: string;
-
-  @Column()
-  companyIndustry: string;
-
-  @Column()
-  companyWebsite: string;
-
-  @Column()
-  companyDescription: string[];
-
-  @Column()
+  @Column('text', { array: true })
   techStack: string[];
-
-  @Column()
+  @Column('text', { array: true })
   prefferedSkills: string[];
-  
-  @Column()
-  companyFollowers: number;
-
-  @Column()
-  companyEmployees: number;
-  
-  @Column()
+  @Column({
+    default: false
+  })
   isApplied: boolean;
-
   @Column()
   createdAt: string;
+  @ManyToOne(() => User, (user) => user.jobs)
+  @JoinColumn({
+    name: 'user_id',
+  })
+  user: User;
+  @OneToOne(() => Company)
+  @JoinColumn()
+  company: Company;
 }

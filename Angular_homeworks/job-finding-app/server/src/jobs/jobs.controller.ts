@@ -1,19 +1,8 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
 
-@UseGuards(AuthGuard)
 @Controller('jobs')
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
@@ -23,11 +12,6 @@ export class JobsController {
     return this.jobsService.create(createJobDto);
   }
 
-  @Post('many')
-  createMany(@Body() createJobDtoArr: CreateJobDto[]) {
-    return this.jobsService.createMany(createJobDtoArr);
-  }
-
   @Get()
   findAll() {
     return this.jobsService.findAll();
@@ -35,16 +19,16 @@ export class JobsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.jobsService.findOne(Number(id));
+    return this.jobsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateJobDto: UpdateJobDto) {
-    return this.jobsService.update(Number(id), updateJobDto);
+    return this.jobsService.update(id, updateJobDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.jobsService.remove(Number(id));
+    return this.jobsService.remove(id);
   }
 }

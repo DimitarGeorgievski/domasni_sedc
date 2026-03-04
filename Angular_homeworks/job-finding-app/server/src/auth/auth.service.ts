@@ -20,35 +20,25 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async registerUser(userData: CreateUserDto) {
-    const foundUser = await this.usersService.findUserByEmail(userData.email);
-
+  async registerUser(user: CreateUserDto) {
+    const foundUser = await this.usersService.findUserByEmail(user.email);
     if (foundUser) throw new BadRequestException('Email already exists');
-
-    const hashedPassword = await hash(userData.password, 8);
-
-    userData.password = hashedPassword;
-
-    await this.usersService.create(userData);
+    const hashedPassword = await hash(user.password, 8);
+    user.password = hashedPassword;
+    await this.usersService.create(user);
   }
-
   async loginUser(credentials: CredentialsDto) {
     const foundUser = await this.usersService.findUserByEmail(
       credentials.email,
     );
-
-    if (!foundUser) throw new UnauthorizedException('Invalid Credentials');
-
+    if (!foundUser) throw new UnauthorizedException('Invalid credentials');
     const isPasswordValid = await compare(
       credentials.password,
       foundUser.password,
     );
-
     if (!isPasswordValid)
-      throw new UnauthorizedException('Invalid Credentials');
-
+      throw new UnauthorizedException('Invalid credentials');
     const token = await this.jwtService.signAsync({ id: foundUser.id });
-
     const refreshToken = await this.jwtService.signAsync(
       { id: foundUser.id },
       {
@@ -56,49 +46,37 @@ export class AuthService {
         expiresIn: '7d',
       },
     );
-
     await this.usersService.saveRefreshToken(foundUser.id, refreshToken);
-
-    delete foundUser.refreshTokens;
-    delete foundUser.password;
-
+    const { password, refreshTokens, ...userWithoutPassAndToken } = foundUser;
     return {
-      user: foundUser,
+      user: userWithoutPassAndToken,
       token,
       refreshToken,
     };
   }
-
   async logoutUser(refreshToken: string) {
     try {
       const { id } = await this.jwtService.verifyAsync(refreshToken, {
         secret: this.configService.get('REFRESH_TOKEN_SECRET'),
       });
-
       await this.usersService.deleteRefreshToken(id, refreshToken);
     } catch (error) {
-      console.log(error);
       throw new BadRequestException("Can't logout user");
     }
   }
-
   async refreshAccessToken(refreshToken: string) {
     try {
       const { id } = await this.jwtService.verifyAsync(refreshToken, {
         secret: this.configService.get('REFRESH_TOKEN_SECRET'),
       });
       const foundUser = await this.usersService.findUserById(id);
-
       const tokenExists = foundUser.refreshTokens.some(
         (token) => token === refreshToken,
       );
-
       if (!tokenExists) throw new Error();
-
       const newAccessToken = await this.jwtService.signAsync({
         id: foundUser.id,
       });
-
       const newRefreshToken = await this.jwtService.signAsync(
         { id: foundUser.id },
         {
@@ -106,10 +84,8 @@ export class AuthService {
           expiresIn: '7d',
         },
       );
-
       await this.usersService.deleteRefreshToken(foundUser.id, refreshToken);
       await this.usersService.saveRefreshToken(foundUser.id, newRefreshToken);
-
       return {
         token: newAccessToken,
         refreshToken: newRefreshToken,
