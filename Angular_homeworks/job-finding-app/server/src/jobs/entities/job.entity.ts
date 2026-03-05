@@ -5,7 +5,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -17,7 +16,7 @@ export enum JobWorkType {
 
 @Entity()
 export class Job {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column()
   expires: string;
@@ -40,7 +39,7 @@ export class Job {
   @Column('text', { array: true })
   prefferedSkills: string[];
   @Column({
-    default: false
+    default: false,
   })
   isApplied: boolean;
   @Column()
@@ -50,7 +49,9 @@ export class Job {
     name: 'user_id',
   })
   user: User;
-  @OneToOne(() => Company)
-  @JoinColumn()
+  @ManyToOne(() => Company, (company) => company.job)
+  @JoinColumn({
+    name: 'company_id',
+  })
   company: Company;
 }

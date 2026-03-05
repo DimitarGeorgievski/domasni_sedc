@@ -1,26 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEducationDto } from './dto/create-education.dto';
 import { UpdateEducationDto } from './dto/update-education.dto';
+import { User } from 'src/users/entities/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Education } from './entities/education.entity';
 
 @Injectable()
 export class EducationService {
-  create(createEducationDto: CreateEducationDto) {
-    return 'This action adds a new education';
+  constructor(
+    @InjectRepository(Education) private educationRepo: Repository<Education>,
+  ) {}
+  async create(createEducationDto: CreateEducationDto) {
+    const newEducation = this.educationRepo.create({
+      ...createEducationDto,
+      user: { id: createEducationDto.userId },
+    });
+    await this.educationRepo.save(newEducation);
   }
 
   findAll() {
-    return `This action returns all education`;
+    return this.educationRepo.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} education`;
+  findOne(id: string) {
+    try {
+      const foundEducation = this.educationRepo.findOneByOrFail({ id });
+      return foundEducation;
+    } catch (error) {
+      throw new NotFoundException('Education not found');
+    }
   }
 
-  update(id: number, updateEducationDto: UpdateEducationDto) {
-    return `This action updates a #${id} education`;
+  async update(id: string, updateEducationDto: UpdateEducationDto) {
+    const foundEducation = await this.findOne(id);
+    Object.assign(foundEducation, updateEducationDto);
+    await this.educationRepo.save(foundEducation);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} education`;
+  async remove(id: string) {
+    const foundEducation = await this.findOne(id);
+    await this.educationRepo.remove(foundEducation);
   }
 }

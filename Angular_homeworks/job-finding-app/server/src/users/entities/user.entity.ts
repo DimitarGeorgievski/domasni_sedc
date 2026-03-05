@@ -5,7 +5,7 @@ import { Job } from 'src/jobs/entities/job.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column({
     name: 'first_name',
